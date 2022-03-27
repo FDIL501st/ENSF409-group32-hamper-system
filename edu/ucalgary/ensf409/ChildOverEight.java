@@ -1,7 +1,7 @@
-package edu.ucalgary.ensf409.gr32;
+package edu.ucalgary.ensf409;
 
-public class AdultMale extends Person {
-    public AdultMale(int percentGrain, int percentVeggies, 
+public class ChildOverEight extends Person {
+    public ChildOverEight(int percentGrain, int percentVeggies, 
     int percentProtiens, int percentOther, int Calories) 
     throws IllegalArgumentException {
         //Call the Person constructor

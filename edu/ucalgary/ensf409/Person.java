@@ -1,4 +1,4 @@
-package edu.ucalgary.ensf409.gr32;
+package edu.ucalgary.ensf409;
 
 public abstract class Person {
     private static int grains;
