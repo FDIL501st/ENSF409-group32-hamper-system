@@ -15,6 +15,12 @@ public class ChildUnderEight extends Person{
     throws IllegalArgumentException {
         //Call the Person constructor
         super(percentGrain, percentVeggies, percentProtiens, percentOther, Calories);
+        //Using getters, copy values from the Person object
+        setGrains(grain);
+        setVeggies(veggie);
+        setProtiens(protien);
+        setOthers(other);
+        setCalories(calorie);
     }
 
     public static double getGrains() {
