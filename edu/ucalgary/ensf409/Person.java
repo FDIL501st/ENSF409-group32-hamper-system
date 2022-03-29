@@ -1,4 +1,5 @@
 package edu.ucalgary.ensf409;
+
 /**
  * @since 1.0
  * @version 1.4
@@ -10,7 +11,7 @@ public abstract class Person {
     protected double other;
     protected double calorie;
 
-    public Person(double percentGrain, double percentVeggies, 
+    protected Person(double percentGrain, double percentVeggies, 
                 double percentProtiens, double percentOther, double TotalCalories) 
                 throws IllegalArgumentException{
         
@@ -26,6 +27,5 @@ public abstract class Person {
         other = (percentOther/100)*TotalCalories;
     }
     // Above assumes insert values
-    // So access database from somewhere before creating this object
-  
+    // So access database from somewhere before creating this object  
 }
