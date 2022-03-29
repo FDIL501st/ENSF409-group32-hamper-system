@@ -2,7 +2,7 @@ package edu.ucalgary.ensf409;
 
 /**
  * @since 1.0
- * @version 1.4
+ * @version 1.5
  */
 public abstract class Person {
     protected double grain;
@@ -43,4 +43,11 @@ public abstract class Person {
     }
     // Above assumes insert values
     // So access database from somewhere before creating this object  
+
+    // Throws IllegalArguementException if number is negative
+    protected static void checkNotNegative(double number) throws IllegalArgumentException{
+        if (number < 0) {
+            throw new IllegalArgumentException("Negative value not allowed.");
+        }
+    }
 }

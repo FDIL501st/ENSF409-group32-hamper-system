@@ -1,7 +1,7 @@
 package edu.ucalgary.ensf409;
 /**
  * @since 1.0
- * @version 1.2
+ * @version 1.3
  */
 public class AdultMale extends Person {
     private static double grains;
@@ -27,7 +27,8 @@ public class AdultMale extends Person {
         return grains;
     }
 
-    public static void setGrains(double grains) {
+    public static void setGrains(double grains) throws IllegalArgumentException{
+        checkNotNegative(grains);
         AdultMale.grains = grains;
     }
 
@@ -35,7 +36,8 @@ public class AdultMale extends Person {
         return veggies;
     }
 
-    public static void setVeggies(double veggies) {
+    public static void setVeggies(double veggies) throws IllegalArgumentException{
+        checkNotNegative(veggies);
         AdultMale.veggies = veggies;
     }
 
@@ -43,7 +45,8 @@ public class AdultMale extends Person {
         return protiens;
     }
 
-    public static void setProtiens(double protiens) {
+    public static void setProtiens(double protiens) throws IllegalArgumentException{
+        checkNotNegative(protiens);
         AdultMale.protiens = protiens;
     }
 
@@ -51,7 +54,8 @@ public class AdultMale extends Person {
         return others;
     }
 
-    public static void setOthers(double others) {
+    public static void setOthers(double others) throws IllegalArgumentException{
+        checkNotNegative(others);
         AdultMale.others = others;
     }
 
@@ -59,7 +63,8 @@ public class AdultMale extends Person {
         return calories;
     }
 
-    public static void setCalories(double calories) {
+    public static void setCalories(double calories) throws IllegalArgumentException{
+        checkNotNegative(calories);
         AdultMale.calories = calories;
     }
     
