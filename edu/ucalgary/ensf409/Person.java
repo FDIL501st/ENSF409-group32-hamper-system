@@ -19,7 +19,22 @@ public abstract class Person {
         if (percentGrain + percentVeggies + percentProtiens + percentOther != 100) {
             throw new IllegalArgumentException("Calorie percentage needs must add up to 100%.");
         }
-
+        // Add a check that each argument is positive
+        if (percentGrain < 0) {
+            throw new IllegalArgumentException("Can't have negative percent grain intake.");
+        }
+        if (percentVeggies < 0) {
+            throw new IllegalArgumentException("Can't have negative percent veggie intake.");
+        }
+        if (percentProtiens < 0) {
+            throw new IllegalArgumentException("Can't have negative percent protien intake.");
+        }
+        if (percentOther < 0) {
+            throw new IllegalArgumentException("Can't have negative percent other intake.");
+        }
+        if (TotalCalories < 0) {
+            throw new IllegalArgumentException("Can't have negative calorie intake.");
+        }
         calorie = TotalCalories;
         grain = (percentGrain/100)*TotalCalories;
         veggie = (percentVeggies/100)*TotalCalories;
