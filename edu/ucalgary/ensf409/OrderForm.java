@@ -16,9 +16,18 @@ import java.io.*;
 public class OrderForm {
     
     private int formCounter = 1;
+    private boolean textCheck;
+    
+    public boolean getTextCheck () {
+        return this.textCheck;
+    }
+    
+    public int getFormCounter () {
+        return this.formCounter;
+    }
     
     public void createForm (ArrayList<String>[] hamper1, ArrayList<String>[] hamper2) { //Full implementation take in an ArrayList of Hampers
-        clearText("Order_Form" + formCounter);
+        textCheck = createNewText("Order_Form" + formCounter);
         appendToText("Example Food Bank\nHamper Order Form\n\nName:\nDate:\n\nOriginal Request\n", "Order_Form" + formCounter);
         for (int i = 0; i < 2; i++) { //2 is arbitrary from number of inputs
             int counter = i+1;
@@ -53,7 +62,6 @@ public class OrderForm {
      * @param outputfile is the name of the desired output file.
      */
      //Method for appending text to a text file
-     //Code for this method adapted from reference [1]
     public static void appendToText(String outputString, String outputfile) {
         FileWriter fw = null;
         PrintWriter out = null;
@@ -87,14 +95,16 @@ public class OrderForm {
      * @param outputfile is the name of the desired output file.
      */
      //Method for clearing a text file
-     //Code for this method adapted from reference [1]
-    public static void clearText(String outputfile) {
+    public static boolean createNewText(String outputfile) {
         PrintWriter out = null;
+        boolean creationCheck = false;
         try {
             out = new PrintWriter(outputfile + ".txt");
+            creationCheck = true;
         }
         catch (IndexOutOfBoundsException e) {
             System.err.println(e.getMessage());
+            return false;
         }
         catch (IOException e) {
             System.err.println(e.getMessage());
@@ -109,5 +119,6 @@ public class OrderForm {
                 System.exit(0);
             }
         }
+        return creationCheck;
     }
 }
