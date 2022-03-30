@@ -53,7 +53,7 @@ public class OrderFormTests {
             form.createForm(hamper1, hamper2);
 
             boolean expected = true;
-            boolean actual = form.getTextCheck;
+            boolean actual = form.getTextCheck();
 
             assertEquals("File was not successfully created", expected, actual);
         }
@@ -64,7 +64,7 @@ public class OrderFormTests {
             form.reportShortage();
             
             boolean expected = true;
-            boolean actual = form.reportShortage;
+            boolean actual = form.getTextCheck();
 
             assertEquals("File was not successfully created", expected, actual);
         }
