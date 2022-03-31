@@ -37,7 +37,9 @@ public class FoodInventory {
     public ArrayList<String> getInventory() { 
         return inventory; 
     }
-
+    public void setInventory(ArrayList<String> inventory) {
+        this.inventory = inventory;
+    }
     public int getInventoryProteinCalories() {
         return inventoryProteinCalories;
     }
