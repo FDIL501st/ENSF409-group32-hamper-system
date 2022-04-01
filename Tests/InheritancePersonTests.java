@@ -7,13 +7,16 @@ import org.junit.*;
 
 public class InheritancePersonTests {
     //All the tests also check if the functions can be statically called
-    
+    AdultMale adultMale;
+    AdultFemale adultFemale;
+    ChildOverEight childOverEight;
+    ChildUnderEight childUnderEight;
     @Before
     public void setUp() {
-        AdultMale adultMale = new AdultMale(5, 25, 30, 40, 10000);
-        AdultFemale adultFemale = new AdultFemale(10,20,30,40,10000);
-        ChildOverEight childOverEight = new ChildOverEight(15, 15, 35, 35, 10_000);
-        ChildUnderEight childUnderEight = new ChildUnderEight(3, 2, 5, 90, 10_000);
+        adultMale = new AdultMale(5, 25, 30, 40, 10000);
+        adultFemale = new AdultFemale(10,20,30,40,10000);
+        childOverEight = new ChildOverEight(15, 15, 35, 35, 10_000);
+        childUnderEight = new ChildUnderEight(3, 2, 5, 90, 10_000);
     }
     
     @Test
