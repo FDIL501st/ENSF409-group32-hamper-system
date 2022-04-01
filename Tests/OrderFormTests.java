@@ -25,9 +25,14 @@ public class OrderFormTests {
         ArrayList<String[]> hamper2 = new ArrayList<String>();
         
         String[] pear = {"8", "Pears", "30", "30", "20", "20", "10"};
-        String[] chicken = {"7", "Chicken", "10", "40", "40", "10", "10"};
+        String[] beef = {"7", "Chicken", "10", "40", "40", "10", "10"};
         String[] cake = {"6", "Cake", "10", "20", "20", "50", "10"};
         String[] potato = {"5", "Potato", "20", "60", "10", "10", "10"};
+        
+        hamper2.add(pear);
+        hamper2.add(beef);
+        hamper2.add(cake);
+        hamper2.add(potato);
          
         @Test
         public void testOrderFormCreated() {
