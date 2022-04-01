@@ -46,17 +46,6 @@ public class FoodCalculatorTest{
 	@Test
 	public void testFoodCalculatorGettersSam(){
 		
-		/*
-		Notes to bring up:
-		- I think we should take a look at the relationship between HamperRequest and Hamper, it might be aggregation.
-		- Should calculateFoodCombos() return an arraylist of strings? Shouldn't it directly change the food combos member variable without
-		  needing to return a value?
-		- Are the calculate methods for each calorie type called during the constructor of FoodCalculator?
-		  If so, then shouldn't they be helper methods? Does this mean we don't need to test them?
-		  
-		
-		*/
-		
 		//// Setting up variables for testing.
 		
 		// Create a new hamper object
