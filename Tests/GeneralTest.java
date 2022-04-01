@@ -97,38 +97,38 @@ public class GeneralTest{
 	@Test
 	public void testTwoDuplicateHampers(){
 
-	ArrayList<String[]> expectedFoodCombos = new ArrayList<String[]>();
-	expectedFoodCombos.add({“1”, “Apples”, “0”, “60”, “10”, “30”, “10”});
-	expectedFoodCombos.add({“2”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
-	expectedFoodCombos.add({“3”, “Pie”, “30”, “40”, “10”, “20”, “10”});
-	expectedFoodCombos.add({“4”, “Yam”, “40”, “50”, “10”, “0”, “10”});
+		ArrayList<String[]> expectedFoodCombos = new ArrayList<String[]>();
+		expectedFoodCombos.add({“1”, “Apples”, “0”, “60”, “10”, “30”, “10”});
+		expectedFoodCombos.add({“2”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
+		expectedFoodCombos.add({“3”, “Pie”, “30”, “40”, “10”, “20”, “10”});
+		expectedFoodCombos.add({“4”, “Yam”, “40”, “50”, “10”, “0”, “10”});
 
 
-	// Create a new hamper object
-	Hamper myHamper = new Hamper(1,1,0,0);
+		// Create a new hamper object
+		Hamper myHamper = new Hamper(1,1,0,0);
 
-	Hamper myHamper2 = new Hamper(1,1,0,0);
-			
-	// Setup an array of two hampers.
-	Hamper[] hamperArr = { myHamper, myHamper2 };
-			
-	// Create HamperRequest object for testing. 
-	HamperRequest myRequest = new HamperRequest(hamperArr);
+		Hamper myHamper2 = new Hamper(1,1,0,0);
 
-	// Grab the FoodCalculator reference for testing.		
-	FoodCalculator foodCalcReferenceHamp1 = myRequest.getHampers().get(0).getFoodCalculator();
-	FoodCalculator foodCalcReferenceHamp2 = myRequest.getHampers().get(1).getFoodCalculator();
+		// Setup an array of two hampers.
+		Hamper[] hamperArr = { myHamper, myHamper2 };
 
-	foodCalcReferenceHamp1.calculateFoodCombos();
-	foodCalcReferenceHamp2.calculateFoodCombos();
+		// Create HamperRequest object for testing. 
+		HamperRequest myRequest = new HamperRequest(hamperArr);
 
-	ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombos();
-	ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombos();
+		// Grab the FoodCalculator reference for testing.		
+		FoodCalculator foodCalcReferenceHamp1 = myRequest.getHampers().get(0).getFoodCalculator();
+		FoodCalculator foodCalcReferenceHamp2 = myRequest.getHampers().get(1).getFoodCalculator();
 
-	assertEquals(“The first duplicate hamper was not as expected”, expectedFoodCombos, actualFoodCombosHamp1);
+		foodCalcReferenceHamp1.calculateFoodCombos();
+		foodCalcReferenceHamp2.calculateFoodCombos();
 
-	assertEquals(“The second duplicate hamper was not as expected”, expectedFoodCombos, actualFoodCombosHamp2);
+		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombos();
+		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombos();
 
+		assertEquals(“The first duplicate hamper was not as expected”, expectedFoodCombos, actualFoodCombosHamp1);
+
+		assertEquals(“The second duplicate hamper was not as expected”, expectedFoodCombos, actualFoodCombosHamp2);
+	}
 
 	@Test
 	public void testTwoDifferentHampers(){
