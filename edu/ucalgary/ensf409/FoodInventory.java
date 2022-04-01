@@ -1,20 +1,21 @@
 package edu.ucalgary.ensf409;
 
 import java.util.ArrayList;
+import java.util.Vector;
 /**
  * @since 1.0
  * @version 1.1
  */
 public class FoodInventory {
-    private ArrayList<ArrayList<String>> inventory = new ArrayList<>(2);
-    private ArrayList<ArrayList<String>> toBeRemoved;
+    private ArrayList<String[]> inventory = new ArrayList<>();
+    private ArrayList<String[]> toBeRemoved = new ArrayList<>();
     private int inventoryProteinCalories;
     private int inventoryVeggieCalories;
     private int inventoryGrainCalories;
     private int inventoryOtherCalories;
 
     public FoodInventory() {
-        
+        Vector vector = new Vector<>();
     }
 
     public boolean readDatabaseInventory() {
@@ -29,17 +30,16 @@ public class FoodInventory {
         return true;
     }
 
-    public boolean removeHamper(ArrayList<String> hamperContents) {
+    public boolean removeHamper(ArrayList<String[]> hamperContents) {
         return true;
     }
 
     //Getters and Setters
-    public ArrayList<String> getInventory() { 
-        return inventory.get(1); 
+    public ArrayList<String[]> getInventory() { 
+        return inventory; 
     }
-    public void setInventory(ArrayList<String> inventory) {
-        this.inventory.get(1).clear();
-        this.inventory.add(1, inventory);
+    public void setInventory(ArrayList<String[]> inventory) {
+        this.inventory = inventory;
     }
     public int getInventoryProteinCalories() {
         return inventoryProteinCalories;
