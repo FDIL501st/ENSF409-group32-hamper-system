@@ -7,45 +7,27 @@ import org.junit.*;
 
 public class OrderFormTests {
     
-    OrderForm form = new OrderForm();
+        OrderForm form = new OrderForm();
         
-         ArrayList<String>[] hamper1 = new ArrayList[2];
-         for (int i = 0; i < 2; i++) {
-             hamper1[i] = new ArrayList<String>();
-         }
-         hamper1[0].add("1");
-         hamper1[1].add("Cucumber, 3-pack");
-         hamper1[0].add("4");
-         hamper1[1].add("Oat Meal, 12-pack");
-         hamper1[0].add("12");
-         hamper1[1].add("Chicken Breast, 12 oz");
-         hamper1[0].add("96");
-         hamper1[1].add("Avacado, dozen");
-         hamper1[0].add("111");
-         hamper1[1].add("Avacado, dozen");
-         hamper1[0].add("109");
-         hamper1[1].add("Tomato, dozen");
-         hamper1[0].add("2");
-         hamper1[1].add("Ground Beef, 1 lb");
+        ArrayList<String[]> hamper1 = new ArrayList<String>();
          
-         ArrayList<String>[] hamper2 = new ArrayList[2];
-         for (int i = 0; i < 2; i++) {
-             hamper2[i] = new ArrayList<String>();
-         }
-         hamper2[0].add("3");
-         hamper2[1].add("Lettuce, head");
-         hamper2[0].add("17");
-         hamper2[1].add("Oat Meal, 12-pack");
-         hamper2[0].add("38");
-         hamper2[1].add("Chicken Wings, 2 dozen");
-         hamper2[0].add("42");
-         hamper2[1].add("Avacado, dozen");
-         hamper2[0].add("90");
-         hamper2[1].add("Peach, dozen");
-         hamper2[0].add("60");
-         hamper2[1].add("Tomato, dozen");
-         hamper2[0].add("112");
-         hamper2[1].add("Ground Beef, 2 lbs");
+        String[] apple = {"1", "Apples", "30", "30", "10", "30", "10"};
+        String[] chicken = {"2", "Chicken", "10", "40", "40", "10", "10"};
+        String[] pie = {"3", "Pie", "10", "20", "30", "40", "10"};
+        String[] yam = {"4", "Yam", "20", "50", "10", "20", "10"};
+        
+        hamper1.add(apple);
+        hamper1.add(chicken);
+        hamper1.add(pie);
+        hamper1.add(yam);
+
+        
+        ArrayList<String[]> hamper2 = new ArrayList<String>();
+        
+        String[] pear = {"8", "Pears", "30", "30", "20", "20", "10"};
+        String[] chicken = {"7", "Chicken", "10", "40", "40", "10", "10"};
+        String[] cake = {"6", "Cake", "10", "20", "20", "50", "10"};
+        String[] potato = {"5", "Potato", "20", "60", "10", "10", "10"};
          
         @Test
         public void testOrderFormCreated() {
@@ -64,7 +46,7 @@ public class OrderFormTests {
             form.reportShortage();
             
             boolean expected = true;
-            boolean actual = form.getTextCheck();
+            boolean actual = form.reportShortage();
 
             assertEquals("File was not successfully created", expected, actual);
         }
