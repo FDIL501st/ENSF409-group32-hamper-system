@@ -26,7 +26,7 @@ public class OrderForm {
         return this.formCounter;
     }
     
-    public void createForm (ArrayList<String>[] hamper1, ArrayList<String>[] hamper2) { //Full implementation take in an ArrayList of Hampers
+    public void createForm (ArrayList<String[]> hamper1, ArrayList<String[]> hamper2) { //Full implementation take in an ArrayList of Hampers
         textCheck = createNewText("Order_Form" + formCounter);
         appendToText("Example Food Bank\nHamper Order Form\n\nName:\nDate:\n\nOriginal Request\n", "Order_Form" + formCounter);
         for (int i = 0; i < 2; i++) { //2 is arbitrary from number of inputs
@@ -44,7 +44,7 @@ public class OrderForm {
         appendToText(hamperContents, "Order_Form" + formCounter);
         this.formCounter++;
     }
-    
+/* 
     public String documentHamper(ArrayList<String>[] hamper) {
         StringBuilder myString = new StringBuilder("");
             for (int j = 0; j < hamper[0].size(); j++) {
@@ -53,7 +53,16 @@ public class OrderForm {
             }
         return myString.toString();
     }
-    
+*/
+    public String documentHamper(ArrayList<String[]> hamper) {
+        StringBuilder myString = new StringBuilder("");
+
+        for (int j = 0; j < hamper.size(); j++) {
+            myString.append(hamper.get(j)[0] + '\t' + hamper.get(j)[1]);
+            myString.append('\n');
+        }
+        return myString.toString();
+    }    
     
     /**
      * The appendToText method appends data to a text file. It does not 
