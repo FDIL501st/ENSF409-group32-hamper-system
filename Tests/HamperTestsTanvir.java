@@ -1,5 +1,3 @@
-import java.beans.Transient;
-
 public class Tests{
 
     @Test
