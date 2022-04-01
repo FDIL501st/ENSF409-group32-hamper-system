@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 import org.junit.*;
 
+import edu.ucalgary.ensf409.ChildOverEight;
+
 public class GeneralTest{
 	
 	
@@ -32,7 +34,8 @@ public class GeneralTest{
 	final double CHILDO8_PROTEIN_CALORIES = 30;
 	final double CHILDO8_OTHER_CALORIES = 10;
 	final double CHILDO8_TOTAL_CALORIES = 100;
-
+	@Before
+	public void setUp() {
 	AdultMale.setGrains(ADULTMALE_GRAIN_CALORIES);
 	AdultMale.setVeggies(ADULTMALE_VEGGIE_CALORIES);
 	AdultMale.setProteins(ADULTMALE_PROTEIN_CALORIES);
@@ -45,14 +48,14 @@ public class GeneralTest{
 	AdultFemale.setOthers(ADULTFEMALE_OTHER_CALORIES);
 	AdultFemale.setCalories(ADULTFEMALE_TOTAL_CALORIES);
 
-	ChildO8.setGrains(CHILDO8_GRAIN_CALORIES);
-	ChildO8.setVeggies(CHILDO8_VEGGIE_CALORIES);
-	ChildO8.setProteins(CHILDO8_PROTEIN_CALORIES);
-	ChildO8.setOthers(CHILDO8_OTHER_CALORIES);
-	ChildO8.setCalories(CHILDO8_TOTAL_CALORIES);
+	ChildOverEight.setGrains(CHILDO8_GRAIN_CALORIES);
+	ChildOverEight.setVeggies(CHILDO8_VEGGIE_CALORIES);
+	ChildOverEight.setProteins(CHILDO8_PROTEIN_CALORIES);
+	ChildOverEight.setOthers(CHILDO8_OTHER_CALORIES);
+	ChildOverEight.setCalories(CHILDO8_TOTAL_CALORIES);
 
 
-	Arraylist<String[]> sampleDatabase = new Arraylist<String[]>();
+	ArrayList<String[]> sampleDatabase = new ArrayList<String[]>();
 
 	sampleDatabase.add({“1”, “Apples”, “0”, “60”, “10”, “30”, “10”});
 	sampleDatabase.add({“2”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
@@ -66,6 +69,7 @@ public class GeneralTest{
 
 	FoodInventory inventory = new FoodInventory();
 	FoodInventory.setInventory(sampleDatabase);
+	}
 
 	@Test
 	public void oneHamperTest(){
