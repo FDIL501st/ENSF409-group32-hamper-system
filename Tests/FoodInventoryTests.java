@@ -12,7 +12,7 @@ public class FoodInventoryTests {
     public void setUp() {
         foodInventory = new FoodInventory();
     }
-
+/*
     @Test
     public void FoodInventoryCalorieSettersGettersTest() {
         // Tests all the setters and getters for FoodInventory
@@ -77,7 +77,7 @@ public class FoodInventoryTests {
         boolean actual = foodInventory.checkShortage();
         assertTrue("Expected there to be a shortage.", actual);
     }
-
+*/
     @Test
     public void RemoveHaperTest() {
         // Tests to see if item actually removed from inventory and moved to toBeRemoved
