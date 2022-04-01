@@ -38,6 +38,7 @@ public void checkShortageTest(){
     // Test that checkShortageTest returns true when there is a shortage
     FoodInventory inventory = new FoodInventory();
     ArrayList<String> expectedFoods = new ArrayList<>();
+    inventory.setInventory();
 
     boolean expected = true;
     boolean actual = inventory.checkShortage();
