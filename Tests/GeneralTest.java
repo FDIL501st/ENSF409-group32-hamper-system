@@ -4,6 +4,8 @@
 @since 1.0 
 */
 
+package edu.ucalgary.ensf409;
+
 public class GeneralTest{
 	
 	
