@@ -4,7 +4,7 @@
 @since 1.0 
 */
 
-//package edu.ucalgary.ensf409;
+package edu.ucalgary.ensf409;
 
 import org.junit.*;
 import static org.junit.Assert.*;
