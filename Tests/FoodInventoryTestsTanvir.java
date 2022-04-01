@@ -10,13 +10,16 @@ public class FoodInventoryTestsTanvir {
 public void setInventoryTest(){
     // Test setInventory and getInventory 
     FoodInventory inventory = new FoodInventory();
-    ArrayList<String> expectedFoods = new ArrayList<>();
-    expectedFoods.add("Apples");
-    expectedFoods.add("Milk");
-    expectedFoods.add("Pizza");
+    ArrayList<String[]> expectedFoods = new ArrayList<>();
+    String[] add1 = {"0", "Apples", "5", "4", "2", "100"};
+    String[] add2 = {"1", "Milk", "23", "44", "44", "32", "1000"};
+    String[] add3 = {"2", "Pizza", "33", "45", "33", "2", "5000"};
+    expectedFoods.add(add1);
+    expectedFoods.add(add2);
+    expectedFoods.add(add3);
 
     inventory.setInventory(expectedFoods);
-    ArrayList<String> actualFoods = inventory.getInventory();
+    ArrayList<String[]> actualFoods = inventory.getInventory();
     assertEquals("getInventory did not return the correct values", expectedFoods, actualFoods);
 }
 
@@ -45,8 +48,9 @@ public void updateDatabaseTest(){
 public void checkShortageTest(){
     // Test that checkShortageTest returns true when there is a shortage
     FoodInventory inventory = new FoodInventory();
-    ArrayList<String> expectedFoods = new ArrayList<>();
-    inventory.setInventory();
+    ArrayList<String[]> expectedFoods = new ArrayList<>();
+    expectedFoods.clear();
+    inventory.setInventory(expectedFoods);
 
     boolean expected = true;
     boolean actual = inventory.checkShortage();
@@ -82,27 +86,29 @@ public void RemoveHaperTest() {
     // Tests to see if item actually removed from inventory and moved to toBeRemoved
     FoodInventory foodInventory = new FoodInventory();
     
-    ArrayList<String> newInventory = new ArrayList<>();
-    newInventory.add("Canned Apples");
-    newInventory.add("Oranges");
-    newInventory.add("Cereal");
-    newInventory.add("Avacado");
-    newInventory.add("Canned Pineapples");
-    newInventory.add("Cake");
-    newInventory.add("Sliced Cheese");
-    newInventory.add("Bread");
-    newInventory.add("Pears"); 
-    newInventory.add("Frozen Spinach"); 
-    newInventory.add("Lettuce");
+    ArrayList<String[]> newInventory = new ArrayList<>();
+    String[] add1 = {"10", "Lettuce", "33", "1", "33", "1", "1000"};
+    String[] add2 = {"11", "Cake", "22", "12", "33", "22", "332"};
+    String[] add3 = {"12", "Bread", "21", "21", "44", "12", "414"};
+    String[] add4 = {"13", "Lettuce", "33", "1", "33", "1", "1000"};
+    String[] add5 = {"14", "Lettuce", "33", "1", "33", "1", "1000"};
+    String[] add6 = {"15", "Cake", "22", "12", "33", "22", "332"};
+    String[] add7 = {"16", "Cake", "22", "12", "33", "22", "332"};
+    newInventory.add(add1);
+    newInventory.add(add2);
+    newInventory.add(add3);
+    newInventory.add(add4);
+    newInventory.add(add5);
+    newInventory.add(add6);
+    newInventory.add(add7);
     foodInventory.setInventory(newInventory);
 
-    ArrayList<String> toRemove = new ArrayList<>();
-    toRemove.add("Bread");
-    toRemove.add("Cake");
-    toRemove.add("Oranges");
+    ArrayList<String[]> toRemove = new ArrayList<>();
+    toRemove.add(add3);
+    toRemove.add(add7);
     foodInventory.removeHamper(toRemove);
     
-    ArrayList<String> expected = (ArrayList<String>) newInventory.clone();
+    ArrayList<String[]> expected = (ArrayList<String[]>) newInventory.clone();
     expected.removeAll(toRemove);
 
     assertArrayEquals(expected.toArray(), foodInventory.getInventory().toArray());

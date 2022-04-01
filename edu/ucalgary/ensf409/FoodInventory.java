@@ -15,7 +15,7 @@ public class FoodInventory {
     private int inventoryOtherCalories;
 
     public FoodInventory() {
-        Vector vector = new Vector<>();
+
     }
 
     public boolean readDatabaseInventory() {
