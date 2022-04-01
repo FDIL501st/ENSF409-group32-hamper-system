@@ -10,14 +10,14 @@ public class OrderFormTests {
     
         OrderForm form = new OrderForm();
         
-        ArrayList<String[]> hamper1 = new ArrayList<>();
+        ArrayList<String[]> hamper1;
          
         String[] apple = {"1", "Apples", "30", "30", "10", "30", "10"};
         String[] chicken = {"2", "Chicken", "10", "40", "40", "10", "10"};
         String[] pie = {"3", "Pie", "10", "20", "30", "40", "10"};
         String[] yam = {"4", "Yam", "20", "50", "10", "20", "10"};
         
-        ArrayList<String[]> hamper2 = new ArrayList<>();
+        ArrayList<String[]> hamper2;
         
         String[] pear = {"8", "Pears", "30", "30", "20", "20", "10"};
         String[] beef = {"7", "Chicken", "10", "40", "40", "10", "10"};
@@ -26,11 +26,13 @@ public class OrderFormTests {
         
         @Before
         public void setUp() {
+            hamper1 = new ArrayList<>();
             hamper1.add(apple);
             hamper1.add(chicken);
             hamper1.add(pie);
             hamper1.add(yam);
-
+            
+            hamper2 = new ArrayList<>();
             hamper2.add(pear);
             hamper2.add(beef);
             hamper2.add(cake);
