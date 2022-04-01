@@ -18,7 +18,7 @@ public class AdultFemale extends Person{
         //Using getters, copy values from the Person object
         setGrains(grain);
         setVeggies(veggie);
-        setProtiens(protien);
+        setProteins(protien);
         setOthers(other);
         setCalories(calorie);
     }
@@ -41,11 +41,11 @@ public class AdultFemale extends Person{
         AdultFemale.veggies = veggies;
     }
 
-    public static double getProtiens() {
+    public static double getProteins() {
         return protiens;
     }
 
-    public static void setProtiens(double protiens) throws IllegalArgumentException{
+    public static void setProteins(double protiens) throws IllegalArgumentException{
         checkNotNegative(protiens);
         AdultFemale.protiens = protiens;
     }

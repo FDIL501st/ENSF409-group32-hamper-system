@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import edu.ucalgary.ensf409.ChildOverEight;
+import edu.ucalgary.ensf409.*;
 
 public class GeneralTest{
 	
@@ -34,6 +34,7 @@ public class GeneralTest{
 	final double CHILDO8_PROTEIN_CALORIES = 30;
 	final double CHILDO8_OTHER_CALORIES = 10;
 	final double CHILDO8_TOTAL_CALORIES = 100;
+	
 	@Before
 	public void setUp() {
 	AdultMale.setGrains(ADULTMALE_GRAIN_CALORIES);
@@ -56,16 +57,24 @@ public class GeneralTest{
 
 
 	ArrayList<String[]> sampleDatabase = new ArrayList<String[]>();
-
-	sampleDatabase.add({“1”, “Apples”, “0”, “60”, “10”, “30”, “10”});
-	sampleDatabase.add({“2”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
-	sampleDatabase.add({“3”, “Pie”, “30”, “40”, “10”, “20”, “10”});
-	sampleDatabase.add({“4”, “Yam”, “40”, “50”, “10”, “0”, “10”});
-	sampleDatabase.add({“5”, “Apples”, “0”, “60”, “10”, “30”, “10”});
-	sampleDatabase.add({“6”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
-	sampleDatabase.add({“7”, “Pie”, “30”, “40”, “10”, “20”, “10”});
-	sampleDatabase.add({“8”, “Yam”, “40”, “50”, “10”, “0”, “10”});
-	sampleDatabase.add({“9”, “Gum”, “30”, “30”, “30”, “10”, “100”});
+	String[] add1 = {"1", "Apples", "0", "60", "10", "30", "10"};
+	sampleDatabase.add(add1);
+	String[] add2 = {"2", "Chicken", "10", "0", "50", "40", "10"};
+	sampleDatabase.add(add2);
+	String[] add3 = {"3", "Pie", "30", "40", "10", "20", "10"};
+	sampleDatabase.add(add3);
+	String[] add4 = {"4", "Yam", "40", "50", "10", "0", "10"};
+	sampleDatabase.add(add4);
+	String[] add5 = {"5", "Apples", "0", "60", "10", "30", "10"};
+	sampleDatabase.add(add5);
+	String[] add6 = {"6", "Chicken", "10", "0", "50", "40", "10"};
+	sampleDatabase.add(add6);
+	String[] add7 = {"7", "Pie", "30", "40", "10", "20", "10"}; 
+	sampleDatabase.add(add7);
+	String[] add8 = {"8", "Yam", "40", "50", "10", "0", "10"};
+	sampleDatabase.add(add8);
+	String[] add9 = {"9", "Gum", "30", "30", "30", "10", "100"};
+	sampleDatabase.add(add9);
 
 	FoodInventory inventory = new FoodInventory();
 	FoodInventory.setInventory(sampleDatabase);

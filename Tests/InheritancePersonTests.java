@@ -31,7 +31,7 @@ public class InheritancePersonTests {
         assertEquals("Expected veggies intake to be 2000.", expected, actual, 0.0001);
 
         expected = 3000;
-        actual = AdultFemale.getProtiens();
+        actual = AdultFemale.getProteins();
         assertEquals("Expected protiens intake to be 3000.", expected, actual, 0.0001);
 
         expected = 4000;
@@ -153,8 +153,8 @@ public class InheritancePersonTests {
         actual = AdultFemale.getVeggies();
         assertEquals("Expected veggies to be set to 500.", expected, actual, 0.001);
 
-        AdultFemale.setProtiens(expected);
-        actual = AdultFemale.getProtiens();
+        AdultFemale.setProteins(expected);
+        actual = AdultFemale.getProteins();
         assertEquals("Expected protiens to be set to 500.", expected, actual, 0.001);
 
         AdultFemale.setOthers(expected);
@@ -319,7 +319,7 @@ public class InheritancePersonTests {
 
         exceptionThrown = false;
         try {
-            AdultFemale.setProtiens(-100);
+            AdultFemale.setProteins(-100);
         } catch (IllegalArgumentException e) {
             exceptionThrown = true;
         }
