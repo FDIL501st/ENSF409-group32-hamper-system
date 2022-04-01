@@ -1,4 +1,11 @@
+package Tests;
 
+import edu.ucalgary.ensf409.*;
+import java.util.ArrayList;
+import static org.junit.Assert.*;
+import org.junit.*;
+
+public class FoodInventoryTestsTanvir {
 @Test
 public void setInventoryTest(){
     // Test setInventory and getInventory 
@@ -8,12 +15,13 @@ public void setInventoryTest(){
     expectedFoods.add("Milk");
     expectedFoods.add("Pizza");
 
-    inventory.setInventory(foods);
-    Arraylist<String> actualFoods = getInventory();
+    inventory.setInventory(expectedFoods);
+    ArrayList<String> actualFoods = inventory.getInventory();
     assertEquals("getInventory did not return the correct values", expectedFoods, actualFoods);
 }
 
 // Are these ok like this, or should we exclude?
+// They are ok to keep
 
 @Test
 public void readDatabaseInventoryTest(){
@@ -57,15 +65,46 @@ public void setInventoryCaloriesTest(){
     inventory.setInventoryProteinCalories(expectedInventoryProteinCals);
     inventory.setInventoryVeggieCalories(expectedInventoryVeggieCals);
     inventory.setInventoryGrainCalories(expectedInventoryGrainCals);
-    inventory.setInventoryOtheralories(expectedInventoryOtherCals);
+    inventory.setInventoryOtherCalories(expectedInventoryOtherCals);
 
     int actualInventoryProteinCals = inventory.getInventoryProteinCalories();
     int actualInventoryVeggieCals = inventory.getInventoryVeggieCalories();
-    int actualInventoryGrainCals = inventory.getInventoryGrainalories();
+    int actualInventoryGrainCals = inventory.getInventoryGrainCalories();
     int actualInventoryOtherCals = inventory.getInventoryOtherCalories();
 
     assertEquals("Incorrect number of Protein Calories", expectedInventoryProteinCals, actualInventoryProteinCals);
     assertEquals("Incorrect number of Veggie Calories", expectedInventoryVeggieCals, actualInventoryVeggieCals);
     assertEquals("Incorrect number of Grain Calories", expectedInventoryGrainCals, actualInventoryGrainCals);
     assertEquals("Incorrect number of Other Calories", expectedInventoryOtherCals, actualInventoryOtherCals);
+}
+@Test
+public void RemoveHaperTest() {
+    // Tests to see if item actually removed from inventory and moved to toBeRemoved
+    FoodInventory foodInventory = new FoodInventory();
+    
+    ArrayList<String> newInventory = new ArrayList<>();
+    newInventory.add("Canned Apples");
+    newInventory.add("Oranges");
+    newInventory.add("Cereal");
+    newInventory.add("Avacado");
+    newInventory.add("Canned Pineapples");
+    newInventory.add("Cake");
+    newInventory.add("Sliced Cheese");
+    newInventory.add("Bread");
+    newInventory.add("Pears"); 
+    newInventory.add("Frozen Spinach"); 
+    newInventory.add("Lettuce");
+    foodInventory.setInventory(newInventory);
+
+    ArrayList<String> toRemove = new ArrayList<>();
+    toRemove.add("Bread");
+    toRemove.add("Cake");
+    toRemove.add("Oranges");
+    foodInventory.removeHamper(toRemove);
+    
+    ArrayList<String> expected = (ArrayList<String>) newInventory.clone();
+    expected.removeAll(toRemove);
+
+    assertArrayEquals(expected.toArray(), foodInventory.getInventory().toArray());
+}
 }

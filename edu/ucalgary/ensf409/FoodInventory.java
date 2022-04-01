@@ -73,5 +73,4 @@ public class FoodInventory {
         this.inventoryOtherCalories = inventoryOtherCalories;
     }
 
-    
 }

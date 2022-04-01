@@ -81,6 +81,8 @@ public class FoodInventoryTests {
     @Test
     public void RemoveHaperTest() {
         // Tests to see if item actually removed from inventory and moved to toBeRemoved
+        foodInventory = new FoodInventory();
+        
         ArrayList<String> newInventory = new ArrayList<>();
         newInventory.add("Canned Apples");
         newInventory.add("Oranges");
