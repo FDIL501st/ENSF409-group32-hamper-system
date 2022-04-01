@@ -12,13 +12,18 @@ public class FoodInventoryTests{
     @Test
     public void setInventoryTest(){
         FoodInventory inventory = new FoodInventory();
-        ArrayList<String> expectedFoods = new ArrayList<>();
-        expectedFoods.add("Apples");
-        expectedFoods.add("Milk");
-        expectedFoods.add("Pizza");
+        ArrayList<String[]> expectedFoods = new ArrayList<String[]>();
+        String[] apple = {"1", "Apples", "0", "60", "10", "30", "10"};
+        String[] chicken = {"2", "Chicken", "10", "0", "50", "40", "10"};
+        String[] pie = {"3", "Pie", "30", "40", "10", "20", "10"};
+        String[] yam = {"4", "Yam", "40", "50", "10", "0", "10"};
+        expectedFoods.add(apple);
+        expectedFoods.add(chicken);
+        expectedFoods.add(pie);
+        expectedFoods.add(yam);
     
-        inventory.setInventory(foods);
-        Arraylist<String> actualFoods = getInventory();
+        inventory.setInventory(expectedFoods);
+        Arraylist<String[]> actualFoods = getInventory();
         assertEquals("getInventory did not return the correct values", expectedFoods, actualFoods);
     }
     
