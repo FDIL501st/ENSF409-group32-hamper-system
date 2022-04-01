@@ -45,10 +45,10 @@ public class FoodCalculatorTestsAdem {
         double actualProteinCalories = food.getProteinCalories();
         double actualOtherCalories = food.getOtherCalories();
         
-        assertEquals("Total number of calories was not calculated successfully", expectedTotalCalories, actualTotalCalories);
-        assertEquals("Number of calories from whole grain foods was not calculated successfully", expectedWholeGrainCalories, actualWholeGrainCalories);
-        assertEquals("Number of calories from fruits and veggies was not calculated successfully", expectedFruitsVeggiesCalories, actualFruitsVeggiesCalories);
-        assertEquals("Number of calories from proteins was not calculated successfully", expectedProteinCalories, actualProteinCalories);
-        assertEquals("Number of calories from other calorie sources was not calculated successfully", expectedOtherCalories, actualOtherCalories);
+        assertEquals("Total number of calories was not calculated successfully", expectedTotalCalories, actualTotalCalories, 0.001);
+        assertEquals("Number of calories from whole grain foods was not calculated successfully", expectedWholeGrainCalories, actualWholeGrainCalories, 0.001);
+        assertEquals("Number of calories from fruits and veggies was not calculated successfully", expectedFruitsVeggiesCalories, actualFruitsVeggiesCalories, 0.001);
+        assertEquals("Number of calories from proteins was not calculated successfully", expectedProteinCalories, actualProteinCalories, 0.001);
+        assertEquals("Number of calories from other calorie sources was not calculated successfully", expectedOtherCalories, actualOtherCalories, 0.001);
     }
 }
