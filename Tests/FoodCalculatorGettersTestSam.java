@@ -42,8 +42,6 @@ public class FoodCalculatorGettersTestSam{
 	final double CHILDO8_OTHER_CALORIES = 2310.0;
 	final double CHILDO8_TOTAL_CALORIES = 15400.0;
 	
-	// Placeholder expected value, need to access either the real database or a smaller test database for the final testing.
-	final ArrayList<String>[] EXPECTED_FOOD_COMBO = { new ArrayList<String>(), new ArrayList<String>() };
 	
 	@Test
 	public void testFoodCalculatorGettersSam(){
@@ -84,7 +82,6 @@ public class FoodCalculatorGettersTestSam{
 		
 		//// Testing Getters.
 		
-		ArrayList<String>[] actualFoodCombos = foodCalcReference.getHamperFoodCombos();
 		
 		double actualWholeGrainCalories = foodCalcReference.getWholeGrainCalories();
 		double actualFruitsVeggiesCalories = foodCalcReference.getFruitsVeggiesCalories();
@@ -96,7 +93,6 @@ public class FoodCalculatorGettersTestSam{
 		int actualChildU8 = foodCalcReference.getNumChildrenU8();
 		int actualChildO8 = foodCalcReference.getNumChildrenO8();
 		
-		assertEquals("Value of food combos did not match what was expected", EXPECTED_FOOD_COMBO, actualFoodCombos);
 		assertEquals("Value of Whole Grain Calories did not match what was expected", expectedWholeGrainCalories, actualWholeGrainCalories);
 		assertEquals("Value of Fruits Veggies Calories did not match what was expected", expectedFruitsVeggiesCalories, actualFruitsVeggiesCalories);
 		assertEquals("Value of Protein Calories did not match what was expected", expectedProteinCalories, actualProteinCalories);
