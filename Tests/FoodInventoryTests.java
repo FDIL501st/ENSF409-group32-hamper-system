@@ -82,4 +82,37 @@ public class FoodInventoryTests{
         assertEquals("Incorrect number of Grain Calories", expectedInventoryGrainCals, actualInventoryGrainCals);
         assertEquals("Incorrect number of Other Calories", expectedInventoryOtherCals, actualInventoryOtherCals);
     }
+
+    @Test
+public void RemoveHaperTest() {
+    // Tests to see if item actually removed from inventory and moved to toBeRemoved
+    FoodInventory foodInventory = new FoodInventory();
+    
+    ArrayList<String[]> newInventory = new ArrayList<>();
+    String[] add1 = {"10", "Lettuce", "33", "1", "33", "1", "1000"};
+    String[] add2 = {"11", "Cake", "22", "12", "33", "22", "332"};
+    String[] add3 = {"12", "Bread", "21", "21", "44", "12", "414"};
+    String[] add4 = {"13", "Lettuce", "33", "1", "33", "1", "1000"};
+    String[] add5 = {"14", "Lettuce", "33", "1", "33", "1", "1000"};
+    String[] add6 = {"15", "Cake", "22", "12", "33", "22", "332"};
+    String[] add7 = {"16", "Cake", "22", "12", "33", "22", "332"};
+    newInventory.add(add1);
+    newInventory.add(add2);
+    newInventory.add(add3);
+    newInventory.add(add4);
+    newInventory.add(add5);
+    newInventory.add(add6);
+    newInventory.add(add7);
+    foodInventory.setInventory(newInventory);
+
+    ArrayList<String[]> toRemove = new ArrayList<>();
+    toRemove.add(add3);
+    toRemove.add(add7);
+    foodInventory.removeHamper(toRemove);
+    
+    ArrayList<String[]> expected = (ArrayList<String[]>) newInventory.clone();
+    expected.removeAll(toRemove);
+
+    assertArrayEquals(expected.toArray(), foodInventory.getInventory().toArray());
+}
 }

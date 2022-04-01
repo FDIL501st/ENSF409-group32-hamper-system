@@ -34,7 +34,7 @@ public class GeneralTest{
 	final double CHILDO8_PROTEIN_CALORIES = 30;
 	final double CHILDO8_OTHER_CALORIES = 10;
 	final double CHILDO8_TOTAL_CALORIES = 100;
-	
+
 	@Before
 	public void setUp() {
 	AdultMale.setGrains(ADULTMALE_GRAIN_CALORIES);
@@ -84,10 +84,14 @@ public class GeneralTest{
 	public void oneHamperTest(){
 
 		ArrayList<String[]> expectedFoodCombos = new ArrayList<String[]>();
-		expectedFoodCombos.add({“1”, “Apples”, “0”, “60”, “10”, “30”, “10”});
-		expectedFoodCombos.add({“2”, “Chicken”, “10”, “0”, “50”, “40”, “10”};;
-		expectedFoodCombos.add({“3”, “Pie”, “30”, “40”, “10”, “20”, “10”});
-		expectedFoodCombos.add({“4”, “Yam”, “40”, “50”, “10”, “0”, “10”});
+		String[] add1 = {"1", "Apples", "0", "60", "10", "30", "10"};
+		String[] add2 = {"2", "Chicken", "10", "0", "50", "40", "10"};
+		String[] add3 = {"3", "Pie", "30", "40", "10", "20", "10"};
+		String[] add4 = {"4", "Yam", "40", "50", "10", "0", "10"};
+		expectedFoodCombos.add(add1);
+		expectedFoodCombos.add(add2);
+		expectedFoodCombos.add(add3);
+		expectedFoodCombos.add(add4);
 
 		// Create a new hamper object
 		Hamper myHamper = new Hamper(1,1,0,0);
@@ -106,7 +110,7 @@ public class GeneralTest{
 
 		ArrayList<String[]> actualFoodCombos = foodCalcReference.getHamperFoodCombos();
 
-		assertEquals(“The hamper created with only one hamper in the request was not as expected”, expectedFoodCombos, actualFoodCombos);
+		assertEquals("The hamper created with only one hamper in the request was not as expected", expectedFoodCombos, actualFoodCombos);
 	}
 
 
@@ -115,12 +119,15 @@ public class GeneralTest{
 	public void testTwoDuplicateHampers(){
 
 		ArrayList<String[]> expectedFoodCombos = new ArrayList<String[]>();
-		expectedFoodCombos.add({“1”, “Apples”, “0”, “60”, “10”, “30”, “10”});
-		expectedFoodCombos.add({“2”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
-		expectedFoodCombos.add({“3”, “Pie”, “30”, “40”, “10”, “20”, “10”});
-		expectedFoodCombos.add({“4”, “Yam”, “40”, “50”, “10”, “0”, “10”});
-
-
+		String[] add1 = {"1", "Apples", "0", "60", "10", "30", "10"};
+		String[] add2 = {"2", "Chicken", "10", "0", "50", "40", "10"};
+		String[] add3 = {"3", "Pie", "30", "40", "10", "20", "10"};
+		String[] add4 = {"4", "Yam", "40", "50", "10", "0", "10"};
+		expectedFoodCombos.add(add1);
+		expectedFoodCombos.add(add2);
+		expectedFoodCombos.add(add3);
+		expectedFoodCombos.add(add4);
+		
 		// Create a new hamper object
 		Hamper myHamper = new Hamper(1,1,0,0);
 
@@ -142,26 +149,35 @@ public class GeneralTest{
 		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombos();
 		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombos();
 
-		assertEquals(“The first duplicate hamper was not as expected”, expectedFoodCombos, actualFoodCombosHamp1);
+		assertEquals("The first duplicate hamper was not as expected", expectedFoodCombos, actualFoodCombosHamp1);
 
-		assertEquals(“The second duplicate hamper was not as expected”, expectedFoodCombos, actualFoodCombosHamp2);
+		assertEquals("The second duplicate hamper was not as expected", expectedFoodCombos, actualFoodCombosHamp2);
 	}
 
 	@Test
 	public void testTwoDifferentHampers(){
 
 		ArrayList<String[]> expectedFoodCombosHamp1 = new ArrayList<String[]>();
-		expectedFoodCombosHamp1.add({“1”, “Apples”, “0”, “60”, “10”, “30”, “10”});
-		expectedFoodCombosHamp1.add({“2”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
-		expectedFoodCombosHamp1.add({“3”, “Pie”, “30”, “40”, “10”, “20”, “10”});
-		expectedFoodCombosHamp1.add({“4”, “Yam”, “40”, “50”, “10”, “0”, “10”});
+		String[] add1 = {"1", "Apples", "0", "60", "10", "30", "10"};
+		expectedFoodCombosHamp1.add(add1);
+		String[] add2 = {"2", "Chicken", "10", "0", "50", "40", "10"};
+		expectedFoodCombosHamp1.add(add2);
+		String[] add3 = {"3", "Pie", "30", "40", "10", "20", "10"};
+		expectedFoodCombosHamp1.add(add3);
+		String[] add4 = {"4", "Yam", "40", "50", "10", "0", "10"};
+		expectedFoodCombosHamp1.add(add4);
 
 		ArrayList<String[]> expectedFoodCombosHamp2 = new ArrayList<String[]>();
-		expectedFoodCombosHamp2.add({“5”, “Apples”, “0”, “60”, “10”, “30”, “10”});
-		expectedFoodCombosHamp2.add({“6”, “Chicken”, “10”, “0”, “50”, “40”, “10”});
-		expectedFoodCombosHamp2.add({“7”, “Pie”, “30”, “40”, “10”, “20”, “10”});
-		expectedFoodCombosHamp2.add({“8”, “Yam”, “40”, “50”, “10”, “0”, “10”});
-		expectedFoodCombosHamp2.add({“9”, “Gum”, “30”, “30”, “30”, “10”, “100”});
+		String[] add5 = {"5", "Apples", "0", "60", "10", "30", "10"};
+		expectedFoodCombosHamp2.add(add5);
+		String[] add6 = {"6", "Chicken", "10", "0", "50", "40", "10"};
+		expectedFoodCombosHamp2.add(add6);
+		String[] add7 = {"7", "Pie", "30", "40", "10", "20", "10"};
+		expectedFoodCombosHamp2.add(add7);
+		String[] add8 = {"8", "Yam", "40", "50", "10", "0", "10"};
+		expectedFoodCombosHamp2.add(add8);
+		String[] add9 = {"9", "Gum", "30", "30", "30", "10", "100"};
+		expectedFoodCombosHamp2.add(add9);
 
 
 		// Create a new hamper object
@@ -185,9 +201,9 @@ public class GeneralTest{
 		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombos();
 		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombos();
 
-		assertEquals(“The first hamper was not as expected”, expectedFoodCombosHamp1, actualFoodCombosHamp1);
+		assertEquals("The first hamper was not as expected", expectedFoodCombosHamp1, actualFoodCombosHamp1);
 
-		assertEquals(“The second duplicate hamper was not as expected”, expectedFoodCombosHamp2, actualFoodCombosHamp2);
+		assertEquals("The second duplicate hamper was not as expected", expectedFoodCombosHamp2, actualFoodCombosHamp2);
 	}
 
 		
