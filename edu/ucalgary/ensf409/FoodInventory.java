@@ -3,18 +3,18 @@ package edu.ucalgary.ensf409;
 import java.util.ArrayList;
 /**
  * @since 1.0
- * @version 1.0
+ * @version 1.1
  */
 public class FoodInventory {
-    private ArrayList<String> inventory = new ArrayList<>();
-    private ArrayList<String> toBeRemoved = new ArrayList<>();
+    private ArrayList<ArrayList<String>> inventory = new ArrayList<>(2);
+    private ArrayList<ArrayList<String>> toBeRemoved;
     private int inventoryProteinCalories;
     private int inventoryVeggieCalories;
     private int inventoryGrainCalories;
     private int inventoryOtherCalories;
 
     public FoodInventory() {
-
+        
     }
 
     public boolean readDatabaseInventory() {
@@ -35,10 +35,11 @@ public class FoodInventory {
 
     //Getters and Setters
     public ArrayList<String> getInventory() { 
-        return inventory; 
+        return inventory.get(1); 
     }
     public void setInventory(ArrayList<String> inventory) {
-        this.inventory = inventory;
+        this.inventory.get(1).clear();
+        this.inventory.add(1, inventory);
     }
     public int getInventoryProteinCalories() {
         return inventoryProteinCalories;
