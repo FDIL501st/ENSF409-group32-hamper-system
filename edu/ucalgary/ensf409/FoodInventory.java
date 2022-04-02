@@ -4,73 +4,76 @@ import java.util.ArrayList;
 
 /**
  * @since 1.0
- * @version 1.2
+ * @version 1.3
  */
 public class FoodInventory {
-    static private ArrayList<String[]> inventory = new ArrayList<>();
-    private ArrayList<String[]> toBeRemoved = new ArrayList<>();
-    private int inventoryProteinCalories;
-    private int inventoryVeggieCalories;
-    private int inventoryGrainCalories;
-    private int inventoryOtherCalories;
+    private static ArrayList<String[]> inventory = new ArrayList<>();
+    private static ArrayList<String[]> toBeRemoved = new ArrayList<>();
+    private static int inventoryProteinCalories;
+    private static int inventoryVeggieCalories;
+    private static int inventoryGrainCalories;
+    private static int inventoryOtherCalories;
 
     public FoodInventory() {
         
     }
 
-    public boolean readDatabaseInventory() {
+    public static boolean readDatabaseInventory() {
         return true;
     }
 
-    public boolean updateDatabase() {
+    public static boolean updateDatabase() {
         return true;
     }
 
-    public boolean checkShortage() {
+    public static boolean checkShortage() {
         return true;
     }
 
-    public boolean removeHamper(ArrayList<String[]> hamperContents) {
+    public static boolean removeHamper(ArrayList<String[]> hamperContents) {
         return true;
     }
 
-    //Getters and Setters
-    static public ArrayList<String[]> getInventory() { 
-        return inventory; 
+    public static ArrayList<String[]> getInventory() {
+        return inventory;
     }
+
     public static void setInventory(ArrayList<String[]> inventory) {
         FoodInventory.inventory = inventory;
     }
-    public int getInventoryProteinCalories() {
+
+    public static int getInventoryProteinCalories() {
         return inventoryProteinCalories;
     }
 
-    public void setInventoryProteinCalories(int inventoryProteinCalories) {
-        this.inventoryProteinCalories = inventoryProteinCalories;
+    public static void setInventoryProteinCalories(int inventoryProteinCalories) {
+        FoodInventory.inventoryProteinCalories = inventoryProteinCalories;
     }
 
-    public int getInventoryVeggieCalories() {
+    public static int getInventoryVeggieCalories() {
         return inventoryVeggieCalories;
     }
 
-    public void setInventoryVeggieCalories(int inventoryVeggieCalories) {
-        this.inventoryVeggieCalories = inventoryVeggieCalories;
+    public static void setInventoryVeggieCalories(int inventoryVeggieCalories) {
+        FoodInventory.inventoryVeggieCalories = inventoryVeggieCalories;
     }
 
-    public int getInventoryGrainCalories() {
+    public static int getInventoryGrainCalories() {
         return inventoryGrainCalories;
     }
 
-    public void setInventoryGrainCalories(int inventoryGrainCalories) {
-        this.inventoryGrainCalories = inventoryGrainCalories;
+    public static void setInventoryGrainCalories(int inventoryGrainCalories) {
+        FoodInventory.inventoryGrainCalories = inventoryGrainCalories;
     }
 
-    public int getInventoryOtherCalories() {
+    public static int getInventoryOtherCalories() {
         return inventoryOtherCalories;
     }
 
-    public void setInventoryOtherCalories(int inventoryOtherCalories) {
-        this.inventoryOtherCalories = inventoryOtherCalories;
+    public static void setInventoryOtherCalories(int inventoryOtherCalories) {
+        FoodInventory.inventoryOtherCalories = inventoryOtherCalories;
     }
 
+    //Getters and Setters
+    
 }
