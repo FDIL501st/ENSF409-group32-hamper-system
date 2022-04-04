@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +19,16 @@ public class FoodInventory {
         
     }
 
+    /**
+     * Reads food inventory from database
+     * @return True if read was successfull. False if read failed.
+     */
     public static boolean readDatabaseInventory() {
+        try {
+            inventory = DatabaseReader.readInventory();
+        } catch (SQLException e) {
+            return false;
+        }
         return true;
     }
 
@@ -33,6 +43,8 @@ public class FoodInventory {
     public static boolean removeHamper(ArrayList<String[]> hamperContents) {
         return true;
     }
+
+    //Getters and Setters
 
     public static ArrayList<String[]> getInventory() {
         return inventory;
@@ -72,8 +84,5 @@ public class FoodInventory {
 
     public static void setInventoryOtherCalories(int inventoryOtherCalories) {
         FoodInventory.inventoryOtherCalories = inventoryOtherCalories;
-    }
-
-    //Getters and Setters
-    
+    }    
 }
