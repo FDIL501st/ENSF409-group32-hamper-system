@@ -2,6 +2,7 @@ package edu.ucalgary.ensf409;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @since 1.0
@@ -15,8 +16,29 @@ public class FoodInventory {
     private static int inventoryGrainCalories;
     private static int inventoryOtherCalories;
 
+    /**
+     * Constructor is like a reset, used to first set up the FoodInventory class or reset it
+     */
     public FoodInventory() {
-        
+        // Constructor is like a reset, used to first set up the FoodInventory class
+        // or reset it
+
+        // Initialize inventory
+        readDatabaseInventory();
+        // Initialize inventory calories to 0
+        setInventoryGrainCalories(0);
+        setInventoryVeggieCalories(0);
+        setInventoryProteinCalories(0);
+        setInventoryOtherCalories(0);
+        // Calculate inventory calories from inventory
+        Iterator<String[]> inventoryIterator = inventory.iterator();
+        while (inventoryIterator.hasNext()) {
+            String[] foodItem = inventoryIterator.next();
+            inventoryGrainCalories += Integer.parseInt(foodItem[2]);
+            inventoryVeggieCalories += Integer.parseInt(foodItem[3]);
+            inventoryProteinCalories += Integer.parseInt(foodItem[4]);
+            inventoryOtherCalories += Integer.parseInt(foodItem[5]);
+        }
     }
 
     /**
@@ -36,6 +58,11 @@ public class FoodInventory {
         return true;
     }
 
+    /**
+     * Checks if current inventory has enough food items to fulfil the caloric needs of a hamper
+     * @return False if there is no food shortage. This means inventory has enough food for a hamper.
+     * True if there is a food shortage. This means inventory does not have enough food for a hamper.
+     */
     public static boolean checkShortage() {
         return true;
     }
