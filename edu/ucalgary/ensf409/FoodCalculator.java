@@ -38,16 +38,124 @@ public class FoodCalculator{
     //Getter for Hamper Food Combo
     public ArrayList<String[]> getHamperFoodCombo() { return this.hamperFoodCombo; }
 
-    
-    // MISSING CALCULATE METHODS
 
-    public void calculateWholeGrainCalories(){}
-    public void calculateFruitsVeggiesCalories(){}
-    public void calculateProteinCalories(){}
-    public void calculateOtherCalories(){}
-    public void calculateTotalCalories(){}
+    //Calculate the total number of whole grain calories needed
+    public void calculateWholeGrainCalories(){
+        double cals = 0;
+
+        for(int i = 0; i < numAdultMales; i++){
+            cals += AdultMale.getGrains();
+        }
+
+        for(int i = 0; i < numAdultFemales; i++){
+            cals += AdultFemale.getGrains();
+        }
+
+        for(int i = 0; i < numChildrenU8; i++){
+            cals += ChildUnderEight.getGrains();
+        }
+
+        for(int i = 0; i < numChildrenO8; i++){
+            cals += ChildOverEight.getGrains();
+        }
+
+        this.wholeGrainCalories = cals;
+    }
+
+    //Calculate the total number of fruits/veggies calories needed
+    public void calculateFruitsVeggiesCalories(){
+        double cals = 0;
+
+        for(int i = 0; i < numAdultMales; i++){
+            cals += AdultMale.getVeggies();
+        }
+
+        for(int i = 0; i < numAdultFemales; i++){
+            cals += AdultFemale.getVeggies();
+        }
+
+        for(int i = 0; i < numChildrenU8; i++){
+            cals += ChildUnderEight.getVeggies();
+        }
+
+        for(int i = 0; i < numChildrenO8; i++){
+            cals += ChildOverEight.getVeggies();
+        }
+
+        this.fruitsVeggiesCalories = cals;
+    }
+
+    //Calculate the total number of protein calories needed
+    public void calculateProteinCalories(){
+        double cals = 0;
+
+        for(int i = 0; i < numAdultMales; i++){
+            cals += AdultMale.getProteins();
+        }
+
+        for(int i = 0; i < numAdultFemales; i++){
+            cals += AdultFemale.getProteins();
+        }
+
+        for(int i = 0; i < numChildrenU8; i++){
+            cals += ChildUnderEight.getProteins();
+        }
+
+        for(int i = 0; i < numChildrenO8; i++){
+            cals += ChildOverEight.getProteins();
+        }
+
+        this.proteinCalories = cals;
+    }
+
+    //Calculate the total number of other calories needed
+    public void calculateOtherCalories(){
+        double cals = 0;
+
+        for(int i = 0; i < numAdultMales; i++){
+            cals += AdultMale.getOthers();
+        }
+
+        for(int i = 0; i < numAdultFemales; i++){
+            cals += AdultFemale.getOthers();
+        }
+
+        for(int i = 0; i < numChildrenU8; i++){
+            cals += ChildUnderEight.getOthers();
+        }
+
+        for(int i = 0; i < numChildrenO8; i++){
+            cals += ChildOverEight.getOthers();
+        }
+
+        this.otherCalories = cals;
+    }
+
+    //Calculate the total number of calories needed
+    public void calculateTotalCalories(){
+        double cals = 0;
+
+        for(int i = 0; i < numAdultMales; i++){
+            cals += AdultMale.getCalories();
+        }
+
+        for(int i = 0; i < numAdultFemales; i++){
+            cals += AdultFemale.getCalories();
+        }
+
+        for(int i = 0; i < numChildrenU8; i++){
+            cals += ChildUnderEight.getCalories();
+        }
+
+        for(int i = 0; i < numChildrenO8; i++){
+            cals += ChildOverEight.getCalories();
+        }
+
+        this.totalCalories = cals;
+    }
+
+        // MISSING METHOD
 
     public void calculateFoodCombos() {}
-
 
 }
