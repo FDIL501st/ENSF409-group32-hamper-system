@@ -59,7 +59,7 @@ public class InheritancePersonTests {
         assertEquals("Expected veggie intake to be 2500.", expected, actual, 0.0001);
 
         expected = 0.3*10_000;
-        actual = AdultMale.getProtiens();
+        actual = AdultMale.getProteins();
         assertEquals("Expected veggie intake to be 3000.", expected, actual, 0.0001);
 
         expected = 0.4*10_000;
@@ -82,7 +82,7 @@ public class InheritancePersonTests {
         assertEquals("Expected veggie intake to be 1500.", expected, actual, 0.0001);
 
         expected = 0.35*10_000;
-        actual = ChildOverEight.getProtiens();
+        actual = ChildOverEight.getProteins();
         assertEquals("Expected veggie intake to be 3500.", expected, actual, 0.0001);
 
         expected = 0.35*10_000;
@@ -106,7 +106,7 @@ public class InheritancePersonTests {
         assertEquals("Expected veggie intake to be 200.", expected, actual, 0.0001);
 
         expected = 0.05*10_000;
-        actual = ChildUnderEight.getProtiens();
+        actual = ChildUnderEight.getProteins();
         assertEquals("Expected veggie intake to be 500.", expected, actual, 0.0001);
 
         expected = 0.90*10_000;
@@ -129,8 +129,8 @@ public class InheritancePersonTests {
         actual = AdultMale.getVeggies();
         assertEquals("Expected veggies to be set to 500.", expected, actual, 0.001);
 
-        AdultMale.setProtiens(expected);
-        actual = AdultMale.getProtiens();
+        AdultMale.setProteins(expected);
+        actual = AdultMale.getProteins();
         assertEquals("Expected protiens to be set to 500.", expected, actual, 0.001);
 
         AdultMale.setOthers(expected);
@@ -177,8 +177,8 @@ public class InheritancePersonTests {
         actual = ChildOverEight.getVeggies();
         assertEquals("Expected veggies to be set to 500.", expected, actual, 0.001);
 
-        ChildOverEight.setProtiens(expected);
-        actual = ChildOverEight.getProtiens();
+        ChildOverEight.setProteins(expected);
+        actual = ChildOverEight.getProteins();
         assertEquals("Expected protiens to be set to 500.", expected, actual, 0.001);
 
         ChildOverEight.setOthers(expected);
@@ -201,8 +201,8 @@ public class InheritancePersonTests {
         actual = ChildUnderEight.getVeggies();
         assertEquals("Expected veggies to be set to 500.", expected, actual, 0.001);
 
-        ChildUnderEight.setProtiens(expected);
-        actual = ChildUnderEight.getProtiens();
+        ChildUnderEight.setProteins(expected);
+        actual = ChildUnderEight.getProteins();
         assertEquals("Expected protiens to be set to 500.", expected, actual, 0.001);
 
         ChildUnderEight.setOthers(expected);
@@ -363,7 +363,7 @@ public class InheritancePersonTests {
 
         exceptionThrown = false;
         try {
-            AdultMale.setProtiens(-100);
+            AdultMale.setProteins(-100);
         } catch (IllegalArgumentException e) {
             exceptionThrown = true;
         }
@@ -407,7 +407,7 @@ public class InheritancePersonTests {
 
         exceptionThrown = false;
         try {
-            ChildUnderEight.setProtiens(-100);
+            ChildUnderEight.setProteins(-100);
         } catch (IllegalArgumentException e) {
             exceptionThrown = true;
         }
@@ -451,7 +451,7 @@ public class InheritancePersonTests {
 
         exceptionThrown = false;
         try {
-            ChildOverEight.setProtiens(-100);
+            ChildOverEight.setProteins(-100);
         } catch (IllegalArgumentException e) {
             exceptionThrown = true;
         }

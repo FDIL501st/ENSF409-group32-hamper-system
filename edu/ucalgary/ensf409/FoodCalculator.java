@@ -1,5 +1,7 @@
 package edu.ucalgary.ensf409;
 
+import java.util.*;
+
 public class FoodCalculator{
     private double wholeGrainCalories;
     private double fruitsVeggiesCalories;
@@ -12,7 +14,7 @@ public class FoodCalculator{
     private int numChildrenU8;
     private int numChildrenO8;
 
-    Arraylist<String[]> hamperFoodCombo = new ArrayList<String[]>();
+    ArrayList<String[]> hamperFoodCombo = new ArrayList<String[]>();
 
     // Constructor
     public FoodCalculator(int numAdultMales, int numAdultFemales, int numChildrenU8, int numChildrenO8){
@@ -60,6 +62,12 @@ public class FoodCalculator{
         }
 
         this.wholeGrainCalories = cals;
+
+        //Calculations can be written as such
+        // this.wholeGrainCalories = numAdultMales*AdultMale.getGrains
+        // + numAdultFemales*AdultFemale.getGrains()
+        // + numChildrenU8*ChildUnderEight.getGrains()
+        // + numChildrenO8*ChildOverEight.getGrains();
     }
 
     //Calculate the total number of fruits/veggies calories needed
