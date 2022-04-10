@@ -128,8 +128,9 @@ public class DatabaseReader {
 
     // Below a main to test the static methods of this class
     public static void main(String[] args) throws SQLException{
-        DatabaseReader.initializeConnection();
         /*
+        DatabaseReader.initializeConnection();
+        
         ArrayList<String[]> needs = DatabaseReader.readWeeklyClientNeeds();
         Iterator<String[]> needsIterator= needs.iterator();
         while (needsIterator.hasNext()) {

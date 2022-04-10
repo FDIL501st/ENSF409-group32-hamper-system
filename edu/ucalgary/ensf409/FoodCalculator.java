@@ -22,6 +22,12 @@ public class FoodCalculator{
         this.numAdultFemales = numAdultFemales;
         this.numChildrenU8 = numChildrenU8;
         this.numChildrenO8 = numChildrenO8;
+
+        calculateWholeGrainCalories();
+        calculateFruitsVeggiesCalories();
+        calculateProteinCalories();
+        calculateOtherCalories();
+        calculateTotalCalories();
     }
 
     //Getters for numbers of people
@@ -162,8 +168,60 @@ public class FoodCalculator{
         this.totalCalories = cals;
     }
 
-        // MISSING METHOD
+    // INCOMPLETE METHOD
 
-    public void calculateFoodCombos() {}
+    public void calculateFoodCombos() {
+        double[] calories = {wholeGrainCalories, fruitsVeggiesCalories,
+        proteinCalories, otherCalories};
+        FoodInventory.checkShortage(calories);
+
+        Comparator<String[]> decsendingTotalCalories = new Comparator<String[]>() {
+           @Override
+           public int compare(String[] o1, String[] o2) {
+               //Compare total calories provided by each food
+               // Sort so that greater one comes first (returns negative)
+               double o1Calories = Double.parseDouble(o1[2])
+               + Double.parseDouble(o1[3])
+               + Double.parseDouble(o1[4])
+               + Double.parseDouble(o1[5]);
+
+               double o2Calories = Double.parseDouble(o2[2])
+               + Double.parseDouble(o2[3])
+               + Double.parseDouble(o2[4])
+               + Double.parseDouble(o2[5]);
+
+               return Double.compare(o2Calories, o1Calories);
+               //Does help to order from greatest to least total calories
+           }
+       };
+
+        TreeSet<String[]> inventory = new TreeSet<>(decsendingTotalCalories);
+        inventory.addAll(FoodInventory.getInventory());
+       // Stored inventory in descending order of total calories a food provides
+        /*
+        Iterator<String[]> foodsIterator= inventory.iterator();
+        while (foodsIterator.hasNext()) {
+            String[] info = foodsIterator.next();
+            double x = Double.parseDouble(info[2])
+               + Double.parseDouble(info[3])
+               + Double.parseDouble(info[4])
+               + Double.parseDouble(info[5]);
+            System.out.println(x);
+        }
+        */  
+
+    }
+
+    private double checkRemainingGrain() {
+        double remain = 0;
+        return remain;
+    }
+    public static void main(String[] args) {
+        DatabaseReader.initializeConnection();
+        FoodInventory foodInventory = new FoodInventory();
+        FoodCalculator foodCalculator = new FoodCalculator(1, 1, 1, 1);
+        foodCalculator.calculateFoodCombos();
+        DatabaseReader.close();
+    }
 
 }
