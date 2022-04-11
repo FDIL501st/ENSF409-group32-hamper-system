@@ -193,11 +193,46 @@ public class FoodCalculator{
                return Double.compare(o2Calories, o1Calories);
                //Does help to order from greatest to least total calories
            }
-       };
+        };
 
         TreeSet<String[]> inventory = new TreeSet<>(decsendingTotalCalories);
+        Iterator<String[]> inventoryIterator = inventory.iterator();
         inventory.addAll(FoodInventory.getInventory());
-       // Stored inventory in descending order of total calories a food provides
+        // Stored inventory in descending order of total calories a food provides
+        TreeSet<String[]> hamper = new TreeSet<>(decsendingTotalCalories);
+
+        //Loop through inventory from start to end
+        // adding 1 item at a time then checking for surplus.
+        //Quit loop when surplus in even one is detected
+        while (inventoryIterator.hasNext()) {
+            String[] foodItem = inventoryIterator.next();
+            hamper.add(foodItem);
+            double grainDifference = checkRemainingGrain(hamper);
+            double veggieDifference = checkRemainingVeggie(hamper);
+            double proteinDifference = checkRemainingProtein(hamper);
+            double otherDifference = checkRemainingOther(hamper);
+            if (grainDifference > 0) {
+                break;
+            }
+            if (veggieDifference > 0) {
+                break;
+            }
+            if (proteinDifference > 0) {
+                break;
+            }
+            if (otherDifference > 0) {
+                break;
+            }
+        }
+        
+        
+        // Then remove last item from hamper
+        // Check all remainings and see which food item would meet all needs
+        
+        //If there is no 1 item that meets all needs, then add the item that was removed
+        // and do check for all remainings again
+        //Keep looping this process until all calories are supluses
+
         /*
         Iterator<String[]> foodsIterator= inventory.iterator();
         while (foodsIterator.hasNext()) {
@@ -211,10 +246,49 @@ public class FoodCalculator{
         */  
 
     }
+    //Below are 4 private methods that returns the difference in calories between inventory and hamper
+    private double checkRemainingGrain(TreeSet<String[]> hamper) {
+        Iterator<String[]> foodIterator = hamper.iterator();
+        double current = 0;
+        //Sum up all grain calories currently in hamper
+        while (foodIterator.hasNext()) {
+            current += Double.parseDouble(foodIterator.next()[2]);
+        }
+        // return the difference 
+        return FoodInventory.getInventoryGrainCalories() - current;
+    }
 
-    private double checkRemainingGrain() {
-        double remain = 0;
-        return remain;
+    private double checkRemainingVeggie(TreeSet<String[]> hamper) {
+        Iterator<String[]> foodIterator = hamper.iterator();
+        double current = 0;
+        //Sum up all grain calories currently in hamper
+        while (foodIterator.hasNext()) {
+            current += Double.parseDouble(foodIterator.next()[3]);
+        }
+        // return the difference 
+        return FoodInventory.getInventoryVeggieCalories() - current;
+    }
+
+    private double checkRemainingProtein(TreeSet<String[]> hamper) {
+        Iterator<String[]> foodIterator = hamper.iterator();
+        double current = 0;
+        //Sum up all grain calories currently in hamper
+        while (foodIterator.hasNext()) {
+            current += Double.parseDouble(foodIterator.next()[4]);
+        }
+        // return the difference 
+        return FoodInventory.getInventoryProteinCalories() - current;
+    }
+
+    private double checkRemainingOther(TreeSet<String[]> hamper) {
+        Iterator<String[]> foodIterator = hamper.iterator();
+        double current = 0;
+        //Sum up all grain calories currently in hamper
+        while (foodIterator.hasNext()) {
+            current += Double.parseDouble(foodIterator.next()[5]);
+        }
+        // return the difference 
+        return FoodInventory.getInventoryOtherCalories() - current;
     }
     public static void main(String[] args) {
         DatabaseReader.initializeConnection();
