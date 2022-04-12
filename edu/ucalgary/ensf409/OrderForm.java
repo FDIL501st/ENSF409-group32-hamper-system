@@ -69,15 +69,15 @@ public class OrderForm {
         for (int i = 0; i < hamperList.size(); i++) {
             currentHamper = hamperList.get(i);
             int counter = i+1;
-            numAdultFemale = currentHamper.getFoodCalculator().getNumAdultFemales();
-            numAdultMale = currentHamper.getFoodCalculator().getNumAdultMales();
-            numChildU8 = currentHamper.getFoodCalculator().getNumChildrenU8();
-            numChildO8 = currentHamper.getFoodCalculator().getNumChildrenO8();
-            if (numAdultFemales != 0) {
-                adultFemaleString = numAdultFemales + "Adult Female, ";
+            numAdultFemale = currentHamper.getNumAdultFemales();
+            numAdultMale = currentHamper.getNumAdultMales();
+            numChildU8 = currentHamper.getNumChildrenO8();
+            numChildO8 = currentHamper.getNumChildrenU8();
+            if (numAdultFemale != 0) {
+                adultFemaleString = numAdultFemale + "Adult Female, ";
             }
-            if (numAdultMales != 0) {
-                adultMaleString = numAdultMales + "Adult Male, ";
+            if (numAdultMale != 0) {
+                adultMaleString = numAdultMale + "Adult Male, ";
             }
             if (numChildU8 != 0) {
                 childU8String = numChildU8 + "Child under 8, ";
