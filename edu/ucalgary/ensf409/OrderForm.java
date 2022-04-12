@@ -3,7 +3,7 @@
  * Project for ENSF 409
  * <p>
  * @author Group 32
- * @version 1.4
+ * @version 1.5
  * @since 1.0
  */
 
@@ -18,42 +18,79 @@ public class OrderForm {
     private int formCounter = 1;
     private boolean textCheck;
     
+    
     public boolean getTextCheck () {
         return this.textCheck;
     }
+    
     
     public int getFormCounter () {
         return this.formCounter;
     }
     
-    public void createForm (ArrayList<String[]> hamper1, ArrayList<String[]> hamper2) { //Full implementation take in an ArrayList of Hampers
+    
+    //Sort of the main method of this Class. Calls other methods to complete printing of output file.
+    public void createForm (ArrayList<Hamper> hamperList) {
+        
+        Hamper currentHamper = null;
+        
         textCheck = createNewText("Order_Form" + formCounter);
         appendToText("Example Food Bank\nHamper Order Form\n\nName:\nDate:\n\nOriginal Request\n", "Order_Form" + formCounter);
-        for (int i = 0; i < 2; i++) { //2 is arbitrary from number of inputs
-            int counter = i+1;
-            appendToText("Hamper " + counter + ": " + "1 Adult Female, 2 Child under 8\n", "Order_Form" + formCounter); //This would take in integer values from the hampers for number of people
-        }
+        
+        formSetup(hamperList);
+        
         appendToText("\n", "Order_Form" + formCounter);
-        //for full implementation we would want a for loop here
-        appendToText("Hamper 1 Items:\n", "Order_Form" + formCounter);
-        String hamperContents = documentHamper(hamper1);
-        appendToText(hamperContents, "Order_Form" + formCounter);
-        appendToText("\n\n", "Order_Form" + formCounter);
-        appendToText("Hamper 2 Items:\n", "Order_Form" + formCounter);
-        hamperContents = documentHamper(hamper2);
-        appendToText(hamperContents, "Order_Form" + formCounter);
+        
+        for (int i = 0; i < hamperList.size(); i++) {
+            currentHamper = hamperList.get(i);
+            int counter = i + 1;
+            appendToText("Hamper " + counter + "Items:\n", "Order_Form" + formCounter);
+            String hamperContents = documentHamper(currentHamper.getFoodCalculator().getHamperFoodCombos());
+            appendToText(hamperContents, "Order_Form" + formCounter);
+            appendToText("\n\n", "Order_Form" + formCounter);
+        }
         this.formCounter++;
     }
-/* 
-    public String documentHamper(ArrayList<String>[] hamper) {
-        StringBuilder myString = new StringBuilder("");
-            for (int j = 0; j < hamper[0].size(); j++) {
-                myString.append(hamper[0].get(j) + "\t" + hamper[1].get(j));
-                myString.append("\n");
+    
+    
+    //I had to create this method to keep CreateForm under 25 lines of code.
+    //It basically does most of the printing up until the part that prints each hamper.
+    public void formSetup (ArrayList<Hamper> hamperList) {
+        Hamper currentHamper = null;
+        int numAdultFemale = 0;
+        int numAdultMale = 0;
+        int numChildU8 = 0;
+        int numChildO8 = 0;
+        String adultFemaleString = "";
+        String adultMaleString = "";
+        String childU8String = "";
+        String childO8String = "";
+        
+        for (int i = 0; i < hamperList.size(); i++) {
+            currentHamper = hamperList.get(i);
+            int counter = i+1;
+            numAdultFemale = currentHamper.getNumAdultFemales();
+            numAdultMale = currentHamper.getNumAdultMales();
+            numChildU8 = currentHamper.getNumChildrenO8();
+            numChildO8 = currentHamper.getNumChildrenU8();
+            if (numAdultFemale != 0) {
+                adultFemaleString = numAdultFemale + "Adult Female, ";
             }
-        return myString.toString();
+            if (numAdultMale != 0) {
+                adultMaleString = numAdultMale + "Adult Male, ";
+            }
+            if (numChildU8 != 0) {
+                childU8String = numChildU8 + "Child under 8, ";
+            }
+            if (numChildO8 != 0) {
+                childO8String = numChildO8 + "Child over 8";
+            }
+            appendToText("Hamper " + counter + ": " + adultFemaleString + adultMaleString + childU8String + childO8String + "\n", "Order_Form" + formCounter);
+        }
     }
-*/
+    
+    
+    //Method for creating String representation of each hamper
     public String documentHamper(ArrayList<String[]> hamper) {
         StringBuilder myString = new StringBuilder("");
 
@@ -63,6 +100,7 @@ public class OrderForm {
         }
         return myString.toString();
     }    
+    
     
     /**
      * The appendToText method appends data to a text file. It does not 
@@ -99,11 +137,11 @@ public class OrderForm {
     
     
     /**
-     * The clearText method clears any data currently in a specified 
-     * text file.
+     * The createNewText method clears any data currently in a specified 
+     * text file if it already exists, or creates a new one if it doesn't.
      * @param outputfile is the name of the desired output file.
      */
-     //Method for clearing a text file
+     //Method for creating a text file
     public static boolean createNewText(String outputfile) {
         PrintWriter out = null;
         boolean creationCheck = false;
