@@ -45,7 +45,7 @@ public class OrderForm {
             currentHamper = hamperList.get(i);
             int counter = i + 1;
             appendToText("Hamper " + counter + "Items:\n", "Order_Form" + formCounter);
-            String hamperContents = documentHamper(currentHamper.getFoodCalculator().getHamperFoodCombos());
+            String hamperContents = documentHamper(currentHamper.getFoodCalculator().getHamperFoodCombo());
             appendToText(hamperContents, "Order_Form" + formCounter);
             appendToText("\n\n", "Order_Form" + formCounter);
         }
