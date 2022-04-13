@@ -255,6 +255,7 @@ public class FoodCalculator{
             }
         };
         TreeSet<ArrayList<String[]>> testRemainingCombos = new TreeSet<>(ascendingHamperCalories);
+        testRemainingCombos.addAll(allPossibleCombos(remainingInventory));
         
 
         //What gets added to hamper is the first non negative calorie hamper (differenece)
@@ -322,26 +323,41 @@ public class FoodCalculator{
         + Double.parseDouble(foodItem[4])
         + Double.parseDouble(foodItem[5]);
     }
-    // private method to return all possible combainations of array
-    // essentially all subsets (not including empty set)
-    public ArrayList<ArrayList<String[]>> allPossibleCombos(ArrayList<String[]> array) {
-        
+    /**
+     * Essentially returns the power set of ArrayList provided.
+     * This means all possible combinations, including an empty ArrayList.
+     * @param array the array whose power set will be made
+     * @return the power set of array
+     * @implNote this is a recursive function
+     */
+    public ArrayList<ArrayList<String[]>> allPossibleCombos(ArrayList<String[]> array) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
         ArrayList<ArrayList<String[]>> allCombos = new ArrayList<>();
+        // Recursive function that simulates choosing and not choosing an element to make a set
+        if (array.size() == 1) {
+            ArrayList<String[]> e = new ArrayList<>(1);
+            String[] e1 = array.get(0);
+            e.add(e1);
+            allCombos.add(e);
 
-        for (int x = 0; x < array.size(); x++) {
-            //Starting element/first element
-            for (int n = x; n < array.size(); n++) {
-                //From x, make all sets up to and including element n
-                ArrayList<String[]> combo = new ArrayList<>();
-                for (int i = 0; i <= n-x; i++) {
-                    //i is element offset from x
-                    combo.add(array.get(x+i));
-                }
-                allCombos.add(combo);
-            }
-        } //Not all combos present, for example
-        // first and last element
-        
+            e = new ArrayList<>();
+            allCombos.add(e);
+
+            return allCombos;
+        }
+        // Need to recurse but take out first element
+        ArrayList<String[]> withoutFirstElement = new ArrayList<>(array);
+        String[] firstElement = withoutFirstElement.remove(0);
+        ArrayList<ArrayList<String[]>> returnedSets = allPossibleCombos(withoutFirstElement);
+        Iterator<ArrayList<String[]>> setsIterator = returnedSets.iterator();
+        while (setsIterator.hasNext()) {
+            ArrayList<String[]> set = setsIterator.next();
+            ArrayList<String[]> set2 = new ArrayList<>(set);
+            
+            set.add(firstElement); //possible set 1, element is added
+            allCombos.add(set);
+
+            allCombos.add(set2);   // possible set 2, element is not added
+        }
         return allCombos;
     }
     public static void main(String[] args) {
