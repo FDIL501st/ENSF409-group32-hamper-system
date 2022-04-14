@@ -1,3 +1,12 @@
+/**
+ * <h1>FoodCalculator</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
+ * @version 1.6
+ * @since 1.0
+ */
+
 package edu.ucalgary.ensf409;
 
 import java.util.*;
