@@ -45,12 +45,12 @@ public class OrderForm {
         appendToText("Example Food Bank\nHamper Order Form\n\nName: ", "Order_Form" + formCounter);
         appendToText("Order_Form" + formCounter, "Order_Form" + formCounter);
         appendToText("\nDate: ", "Order_Form" + formCounter);
-        appendToText(LocalDate.now(), "Order_Form" + formCounter);
+        appendToText(LocalDate.now().toString(), "Order_Form" + formCounter);
         appendToText("\n\nOriginal Request\n", "Order_Form" + formCounter);
         formSetup(hamperList); //Print begining of form
         appendToText("\n", "Order_Form" + formCounter);
         appendToText("Shortage detected!!!", "Order_Form" + formCounter);
-        appendToText(FoodInventory.shortageMessage, "Order_Form" + formCounter);
+        appendToText(FoodInventory.getShortageMessage(), "Order_Form" + formCounter);
         this.formCounter++; //Increment form counter so that next form has different name
     }            
         
@@ -73,7 +73,7 @@ public class OrderForm {
         appendToText("Example Food Bank\nHamper Order Form\n\nName: ", "Order_Form" + formCounter);
         appendToText("Order_Form" + formCounter, "Order_Form" + formCounter);
         appendToText("\nDate: ", "Order_Form" + formCounter);
-        appendToText(LocalDate.now(), "Order_Form" + formCounter);
+        appendToText(LocalDate.now().toString(), "Order_Form" + formCounter);
         appendToText("\n\nOriginal Request\n", "Order_Form" + formCounter);
         formSetup(hamperList); //Print begining of form
         

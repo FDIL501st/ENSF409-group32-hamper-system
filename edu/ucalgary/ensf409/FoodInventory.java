@@ -47,6 +47,12 @@ public class FoodInventory {
         }
     }
 
+    public static String getShortageMessage() {
+        return shortageMessage;
+    }
+    public static void setShortageMessage(String message) {
+        shortageMessage = message;
+    }
     /**
      * Reads food inventory from database
      * @return True if read was successfull. False if read failed.
@@ -109,23 +115,23 @@ public class FoodInventory {
      */
     public static boolean checkShortage(double[] neededCalories) {
         if (neededCalories[0] > inventoryGrainCalories) {
-            int defecit = inventoryGrainCalories - neededCalories[0];
-            shortageMessage = "Missing " + defecit + " grain calories";
+            double defecit = inventoryGrainCalories - neededCalories[0];
+            setShortageMessage("Missing " + defecit + " grain calories");
             return true;
         }
         if (neededCalories[1] > inventoryVeggieCalories) {
-            int defecit = inventoryVeggieCalories - neededCalories[1];
-            shortageMessage = "Missing " + defecit + " fruits and veggie calories";
+            double defecit = inventoryVeggieCalories - neededCalories[1];
+            setShortageMessage("Missing " + defecit + " fruits and veggie calories");
             return true;
         }
         if (neededCalories[2] > inventoryProteinCalories) {
-            int defecit = inventoryProteinCalories - neededCalories[2];
-            shortageMessage = "Missing " + defecit + " protein calories";
+            double defecit = inventoryProteinCalories - neededCalories[2];
+            setShortageMessage("Missing " + defecit + " protein calories");
             return true;
         }
         if (neededCalories[3] > inventoryOtherCalories) {
-            int defecit = inventoryOtherCalories - neededCalories[3];
-            shortageMessage = "Missing " + defecit + " other calories";
+            double defecit = inventoryOtherCalories - neededCalories[3];
+            setShortageMessage("Missing " + defecit + " other calories");
             return true;
         }
         return false;
