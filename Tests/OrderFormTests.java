@@ -1,3 +1,12 @@
+/**
+ * <h1>OrderFormTests</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
+ * @version 1.5
+ * @since 1.0
+ */
+
 package Tests;
 
 import edu.ucalgary.ensf409.*;
@@ -39,6 +48,9 @@ public class OrderFormTests {
             hamper2.add(potato);
         }
         
+        /**
+        * Tests that an order form was successfully created using createForm.
+        */
         @Test
         public void testOrderFormCreated() {
             
@@ -50,6 +62,10 @@ public class OrderFormTests {
             assertEquals("File was not successfully created", expected, actual);
         }
         
+        /**
+        * Tests that an order form was successfully created using reportShortage 
+        * when there was a shortgage.
+        */
         @Test
         public void testReportShortage() {
             
