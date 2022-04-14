@@ -1,8 +1,11 @@
 /**
-@author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a>
-@version 1.1
-@since 1.0 
-*/
+ * <h1>GeneralTest</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
+ * @version 1.1
+ * @since 1.0
+ */
 
 package Tests;
 
