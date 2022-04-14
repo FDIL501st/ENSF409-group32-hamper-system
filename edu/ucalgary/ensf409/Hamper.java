@@ -23,6 +23,9 @@ public class Hamper{
 		
 		// Methods.
 		
+		/**
+     		* Constructor. 
+     		*/
 		public Hamper(int numAdultMales, int numAdultFemales, int numChildU8, int numChildO8){
 			
 			this.numAdultMales = numAdultMales;
@@ -33,6 +36,9 @@ public class Hamper{
 			
 		}
 		
+		/**
+     		* Getters. 
+     		*/
 		public FoodCalculator getFoodCalculator(){
 			return foodCalculator;
 		}
