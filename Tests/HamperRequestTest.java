@@ -28,15 +28,19 @@ public class HamperRequestTest{
 		Hamper myHamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
 		
 		// Create a new hamper arraylist with two hamper objects.
-		ArrayList<Hamper> myHamperList = new ArrayList<Hamper>();
-		myHamperList.add(myHamper);
-		myHamperList.add(myHamper);
+		ArrayList<Hamper> expectedHamperList = new ArrayList<Hamper>();
+		expectedHamperList.add(myHamper);
+		expectedHamperList.add(myHamper);
 		
-		// Setup an array of one hamper.
-		Hamper[] hamperArr = { myHamper };
+		// Create a new ArrayList of integer arrays and populate it.
+		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
+		
+		int[] hamperData = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
+		
+		hamperRequests.add(hamperData);
 		
 		// Create HamperRequest object for testing.
-		HamperRequest myRequest = new HamperRequest(hamperArr);
+		HamperRequest myRequest = new HamperRequest(hamperRequests);
 		
 		// Add a new Hamper object with addHamper.
 		myRequest.addHamper(myHamper);
@@ -46,7 +50,7 @@ public class HamperRequestTest{
 		// Use the getHampers() method to retrieve the actual hamper arraylist from the HamperRequest object.
 		ArrayList<Hamper> actualHamperList = myRequest.getHampers();
 		
-		assertEquals("Value of getHampers() did not match what was expected", myHamperList, actualHamperList);
+		assertEquals("Value of getHampers() did not match what was expected", expectedHamperList, actualHamperList);
 		
 	}
 	
@@ -58,21 +62,25 @@ public class HamperRequestTest{
 		Hamper myHamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
 		
 		// Create a new hamper arraylist with one hamper object.
-		ArrayList<Hamper> myHamperList = new ArrayList<Hamper>();
-		myHamperList.add(myHamper);
+		ArrayList<Hamper> expectedHamperList = new ArrayList<Hamper>();
+		expectedHamperList.add(myHamper);
 		
-		// Setup an array of one hamper.
-		Hamper[] hamperArr = { myHamper };
+		// Create a new ArrayList of integer arrays and populate it.
+		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
+		
+		int[] hamperData = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
+		
+		hamperRequests.add(hamperData);
 		
 		// Create HamperRequest object for testing.
-		HamperRequest myRequest = new HamperRequest(hamperArr);
+		HamperRequest myRequest = new HamperRequest(hamperRequests);
 		
 		//// Testing.
 		
 		// Use the getHampers() method to retrieve the actual hamper arraylist from the HamperRequest object.
 		ArrayList<Hamper> actualHamperList = myRequest.getHampers();
 		
-		assertEquals("Value of getHampers() did not match what was expected", myHamperList, actualHamperList);
+		assertEquals("Value of getHampers() did not match what was expected", expectedHamperList, actualHamperList);
 		
 	}
 	
@@ -80,14 +88,15 @@ public class HamperRequestTest{
 		
 		//// Setting up variables for testing.
 		
-		// Create a new hamper object
-		Hamper myHamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
+		// Create a new ArrayList of integer arrays and populate it.
+		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
 		
-		// Setup an array of one hamper.
-		Hamper[] hamperArr = { myHamper };
+		int[] hamperData = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
+		
+		hamperRequests.add(hamperData);
 		
 		// Create HamperRequest object for testing.
-		HamperRequest myRequest = new HamperRequest(hamperArr);
+		HamperRequest myRequest = new HamperRequest(hamperRequests);
 		
 		// Variables for status
         	boolean isNull = false;
