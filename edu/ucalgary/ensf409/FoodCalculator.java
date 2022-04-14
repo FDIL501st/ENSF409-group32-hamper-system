@@ -225,15 +225,24 @@ public class FoodCalculator{
         // return the difference 
         return current - otherCalories;
     }
-    // private method to calculate total calories a food provides
-    //  this is done by summing up calories of each type
-    private double totalFoodItemCalories(String[] foodItem) {
+    /**
+     * Calculates the total calories a food item provides.
+     * This is the sum of all 4 types of calories the food provides.
+     * @param foodItem the food item from available_food database
+     * @return the total calories the food item provides.
+     */
+    public double totalFoodItemCalories(String[] foodItem) {
         return Double.parseDouble(foodItem[2])
         + Double.parseDouble(foodItem[3])
         + Double.parseDouble(foodItem[4])
         + Double.parseDouble(foodItem[5]);
     }
-    // method to calcualte a combos entire calories
+    /**
+     * Calculates the total calories of a combination of food items.
+     * This is the sum of the total caloires of each food item in the combination.
+     * @param combo the food combination whose total calories to find
+     * @return the total calories of the entire food combination
+     */
     public double totalComboCalories(ArrayList<String[]> combo) {
         Iterator<String[]> arrayListIterator = combo.iterator();
             double comboCalories = 0;
