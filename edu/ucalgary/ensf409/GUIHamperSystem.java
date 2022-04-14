@@ -1,3 +1,12 @@
+/**
+ * <h1>GUIHamperSystem</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
+ * @version 1.4
+ * @since 1.0
+ */
+
 package edu.ucalgary.ensf409;
 
 import java.awt.BorderLayout;

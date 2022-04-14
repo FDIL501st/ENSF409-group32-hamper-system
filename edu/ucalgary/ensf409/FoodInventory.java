@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @since 1.0
+ * <h1>FoodInventory</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
  * @version 1.5
+ * @since 1.0
  */
+
 public class FoodInventory {
     private static ArrayList<String[]> inventory = new ArrayList<>();
     private static ArrayList<String[]> toBeRemoved = new ArrayList<>();
@@ -15,6 +20,7 @@ public class FoodInventory {
     private static double inventoryVeggieCalories;
     private static double inventoryGrainCalories;
     private static double inventoryOtherCalories;
+    private static String shortageMessage = "";
 
     /**
      * Constructor causes the class to sync up with the available_food database
@@ -94,6 +100,7 @@ public class FoodInventory {
 
     /**
      * Checks if current inventory has enough food items to fulfil the caloric needs of a hamper.
+     * Reports details on any shortages.
      * @param neededCalories An array which holds information of how much calories is needed by a hamper.
      * First element should be grain calories needed, second should be fruit and veggie calorie, 
      * third should be protein calorie needed and fourth element should be other calorie needed.
@@ -101,19 +108,27 @@ public class FoodInventory {
      * True if there is a food shortage. This means inventory does not have enough food for a hamper.
      */
     public static boolean checkShortage(double[] neededCalories) {
-        if (neededCalories[0] < inventoryGrainCalories) {
-            return false;
+        if (neededCalories[0] > inventoryGrainCalories) {
+            int defecit = inventoryGrainCalories - neededCalories[0];
+            shortageMessage = "Missing " + defecit + " grain calories";
+            return true;
         }
-        if (neededCalories[1] < inventoryVeggieCalories) {
-            return false;
+        if (neededCalories[1] > inventoryVeggieCalories) {
+            int defecit = inventoryVeggieCalories - neededCalories[1];
+            shortageMessage = "Missing " + defecit + " fruits and veggie calories";
+            return true;
         }
-        if (neededCalories[2] < inventoryProteinCalories) {
-            return false;
+        if (neededCalories[2] > inventoryProteinCalories) {
+            int defecit = inventoryProteinCalories - neededCalories[2];
+            shortageMessage = "Missing " + defecit + " protein calories";
+            return true;
         }
-        if (neededCalories[3] < inventoryOtherCalories) {
-            return false;
+        if (neededCalories[3] > inventoryOtherCalories) {
+            int defecit = inventoryOtherCalories - neededCalories[3];
+            shortageMessage = "Missing " + defecit + " other calories";
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
