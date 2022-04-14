@@ -90,7 +90,7 @@ public class HamperRequestTest{
 		HamperRequest myRequest = new HamperRequest(hamperArr);
 		
 		// Variables for status
-        boolean isNull = false;
+        	boolean isNull = false;
 		
 		if(myRequest == null){
 			isNull = true;
