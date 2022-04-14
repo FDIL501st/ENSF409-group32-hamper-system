@@ -20,16 +20,25 @@ public class OrderForm {
     private boolean textCheck; //Used for error checking
     
     
+    /**
+    * Getter for textCheck
+    */
     public boolean getTextCheck () {
         return this.textCheck;
     }
     
     
+    /**
+    * Getter for formCounter
+    */
     public int getFormCounter () {
         return this.formCounter;
     }
     
     
+    /**
+    * Getter for formName
+    */
     public String getFormName () {
         return "Order_Form" + this.formCounter;
     }
@@ -39,7 +48,7 @@ public class OrderForm {
      * The reportShortage method creates the order form in the case of a shortage, 
      * and then writes details on the shortage the the order form.  
      */
-    public void reportShortage () {
+    public void reportShortage (ArrayList<Hamper> hamperList) {
         
         textCheck = createNewText("Order_Form" + formCounter);
         appendToText("Example Food Bank\nHamper Order Form\n\nName: ", "Order_Form" + formCounter);
