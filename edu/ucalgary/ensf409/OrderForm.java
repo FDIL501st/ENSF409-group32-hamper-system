@@ -11,6 +11,7 @@ package edu.ucalgary.ensf409;
 
 import java.util.*;
 import java.io.*;
+import java.time.LocalDate;
 
 
 public class OrderForm {
@@ -29,6 +30,32 @@ public class OrderForm {
     }
     
     
+    public String getFormName () {
+        return "Order_Form" + this.formCounter;
+    }
+    
+    
+    /**
+     * The reportShortage method creates the order form in the case of a shortage, 
+     * and then writes details on the shortage the the order form.  
+     */
+    public void reportShortage () {
+        
+        textCheck = createNewText("Order_Form" + formCounter);
+        appendToText("Example Food Bank\nHamper Order Form\n\nName: ", "Order_Form" + formCounter);
+        appendToText("Order_Form" + formCounter, "Order_Form" + formCounter);
+        appendToText("\nDate: ", "Order_Form" + formCounter);
+        appendToText(LocalDate.now(), "Order_Form" + formCounter);
+        appendToText("\n\nOriginal Request\n", "Order_Form" + formCounter);
+        formSetup(hamperList); //Print begining of form
+        appendToText("\n", "Order_Form" + formCounter);
+        appendToText("Shortage detected!!!", "Order_Form" + formCounter);
+        appendToText(FoodInventory.shortageMessage, "Order_Form" + formCounter);
+        this.formCounter++; //Increment form counter so that next form has different name
+    }            
+        
+    
+    
     /**
      * The createForm method creates the order form, and then calls different 
      * methods in this file to format and complete the printing of form data. It 
@@ -43,9 +70,11 @@ public class OrderForm {
         Hamper currentHamper = null;
         
         textCheck = createNewText("Order_Form" + formCounter);
-        appendToText("Example Food Bank\nHamper Order Form\n\nName:\nDate:\n\nOriginal Request\n",
-            "Order_Form" + formCounter);
-        
+        appendToText("Example Food Bank\nHamper Order Form\n\nName: ", "Order_Form" + formCounter);
+        appendToText("Order_Form" + formCounter, "Order_Form" + formCounter);
+        appendToText("\nDate: ", "Order_Form" + formCounter);
+        appendToText(LocalDate.now(), "Order_Form" + formCounter);
+        appendToText("\n\nOriginal Request\n", "Order_Form" + formCounter);
         formSetup(hamperList); //Print begining of form
         
         appendToText("\n", "Order_Form" + formCounter);
