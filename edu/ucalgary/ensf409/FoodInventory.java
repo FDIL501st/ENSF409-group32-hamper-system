@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @since 1.0
+ * <h1>FoodInventory</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
  * @version 1.5
+ * @since 1.0
  */
+
 public class FoodInventory {
     private static ArrayList<String[]> inventory = new ArrayList<>();
     private static ArrayList<String[]> toBeRemoved = new ArrayList<>();
