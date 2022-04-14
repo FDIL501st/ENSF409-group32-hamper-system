@@ -2,7 +2,10 @@
  * <h1>GUIHamperSystem</h1>
  * Project for ENSF 409
  * <p>
- * @author Group 32
+ * @author Adem
+ * @author Fadil
+ * @author Sam
+ * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
  * @version 1.4
  * @since 1.0
  */
@@ -55,6 +58,9 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
     private JButton createHampers;
     private JButton addHamper;
 
+    /**
+     * Constructor to create the GUI window
+     */
 
     public GUIHamperSystem(){
         super("Create a Hamper Request");
@@ -63,6 +69,9 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Function to set up the graphical user interface and its fields
+     */
     public void setupGUI(){
 
         instructions = new JLabel("Please enter the numbers of the types of people for this hamper as a digit e.g. 2. ");
@@ -113,6 +122,12 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         this.add(submitPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * Function to perform the necessary actions when the user interacts with the buttons 
+     * on the GUI. It will read in the data entered into the GUI, validate the information, 
+     * and either allow them to enter another hamper or submit to create the hampers requested.
+     * @params event parameter is an event created by the user when clicking a button on the GUI
+     */
     public void actionPerformed(ActionEvent event){
         numAdultMales = maleInput.getText();
         numAdultFemales = femaleInput.getText();
@@ -141,11 +156,13 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
 
                 //create the hamper request
                 hamperRequestToCreate = new HamperRequest(hamperRequests);
+
+                //empty the hamperRequests arraylist after hampers are created
+                hamperRequests.clear();
             }
 
             // } else if(event.getSource() == addHamper){
             //     //here we add another hamper to the request but we dont actually need to do anything
-
             // }
         }
     }
@@ -170,14 +187,18 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
 
     }
 
-    // check that input is valid
-
+    /**
+     * Validates the user's input into the GUI. The function tests if a field 
+     * was given a valid non-negative integer, or was left blank in which case 
+     * a zero is assumed. The function provides a message to the user when 
+     * invalid input is provided, prompting them to correct the input.
+     * @return boolean value indicating if the input is valid (true) or not valid (false)
+     */
     public boolean validateInput(){
-
-        //sub in zero where the field was left blank
 
         boolean allInputValid = true;
 
+        //substitute in zero where the field was left blank
         try{
             if (numAdultMales.isEmpty() == true){
                 adultMales = 0;
@@ -209,7 +230,6 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         }
 
         //check if any numbers are negative
-
         if(adultMales < 0 || adultFemales < 0 || childO8 < 0 || childU8 < 0){
             allInputValid = false;
             JOptionPane.showMessageDialog(this, "Please enter positive values only.");
@@ -217,8 +237,6 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
 
         return allInputValid;
     }
-
-
 
     public static void main(String args[]) {
         EventQueue.invokeLater(() -> {
