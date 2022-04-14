@@ -2,6 +2,7 @@ package edu.ucalgary.ensf409;
 
 import java.util.*;
 
+
 public class FoodCalculator{
     private double wholeGrainCalories;
     private double fruitsVeggiesCalories;
@@ -19,16 +20,8 @@ public class FoodCalculator{
     private Comparator<ArrayList<String[]>> ascendingHamperCalories = new Comparator<ArrayList<String[]>>() {
         @Override
         public int compare(ArrayList<String[]> o1, ArrayList<String[]> o2) {
-            Iterator<String[]> arrayListIterator = o1.iterator();
-            double o1Calories = 0;
-            while (arrayListIterator.hasNext()) {
-                o1Calories += totalFoodItemCalories(arrayListIterator.next());
-            }
-            arrayListIterator = o2.iterator();
-            double o2Calories = 0;
-            while (arrayListIterator.hasNext()) {
-                o2Calories += totalFoodItemCalories(arrayListIterator.next());
-            }
+            double o1Calories = totalComboCalories(o1);
+            double o2Calories = totalComboCalories(o2);
             return Double.compare(o1Calories, o2Calories);
         }
     };
@@ -63,7 +56,8 @@ public class FoodCalculator{
     //Getter for Hamper Food Combo
     public ArrayList<String[]> getHamperFoodCombo() { return this.hamperFoodCombo; }
 
-
+    //Getter for comparator
+    public Comparator<ArrayList<String[]>> getComparator() {return ascendingHamperCalories;}
     //Calculate the total number of whole grain calories needed
     public void calculateWholeGrainCalories(){
 
@@ -72,7 +66,7 @@ public class FoodCalculator{
         + numChildrenU8 * ChildUnderEight.getGrains()
         + numChildrenO8 * ChildOverEight.getGrains();
  
-        this.wholeGrainCalories = cals * 7;
+        this.wholeGrainCalories = cals;
     }
 
     //Calculate the total number of fruits/veggies calories needed
@@ -83,7 +77,7 @@ public class FoodCalculator{
         + numChildrenU8 * ChildUnderEight.getVeggies()
         + numChildrenO8 * ChildOverEight.getVeggies();
     
-        this.fruitsVeggiesCalories = cals * 7;
+        this.fruitsVeggiesCalories = cals;
     }
 
     //Calculate the total number of protein calories needed
@@ -94,7 +88,7 @@ public class FoodCalculator{
         + numChildrenU8 * ChildUnderEight.getProteins()
         + numChildrenO8 * ChildOverEight.getProteins();
 
-        this.proteinCalories = cals * 7;
+        this.proteinCalories = cals;
     }
 
     //Calculate the total number of other calories needed
@@ -104,7 +98,7 @@ public class FoodCalculator{
         + numChildrenU8 * ChildUnderEight.getOthers()
         + numChildrenO8 * ChildOverEight.getOthers();
 
-        this.otherCalories = cals * 7;
+        this.otherCalories = cals;
     }
 
     //Calculate the total number of calories needed
@@ -114,7 +108,7 @@ public class FoodCalculator{
         + numChildrenU8 * ChildUnderEight.getCalories()
         + numChildrenO8 * ChildOverEight.getCalories();
 
-        this.totalCalories = cals * 7;
+        this.totalCalories = cals;
     }
 
     // REQUIRES TESTING
@@ -134,24 +128,24 @@ public class FoodCalculator{
         }
         // find all possible combinations of inventory
         ArrayList<String[]> inventory = FoodInventory.getInventory();
-        TreeSet<ArrayList<String[]>> testAllCombos = new TreeSet<>(ascendingHamperCalories);
-        testAllCombos.addAll(allPossibleCombos(inventory));
+        ArrayList<ArrayList<String[]>> testAllCombos = allPossibleCombos(inventory);
         Iterator<ArrayList<String[]>> allCombosIterator = testAllCombos.iterator();
-        // testAllCombos has sorted by least total calories, 
-        // thus when usinng iterator, just need to find first one that meets all needs
-        // as having least total caloreis, probably will have least excess
+        TreeMap<Double, ArrayList<String[]>> workingCombos = new TreeMap<>();
+        // For every one that meets requirements, add to treemap
+        // tree map will sort by total calories used as key, least to greatest
         while (allCombosIterator.hasNext()) {
             ArrayList<String[]> combo = allCombosIterator.next();
             if (meetAllCaloricNeeds(combo)) {
-                hamperFoodCombo = new ArrayList<>(combo);
-                break;
-                // Make sure to stop looping as no longer need to check
+                Double totalCalories = totalComboCalories(combo);
+                workingCombos.put(totalCalories, combo);
             }
         }
+        hamperFoodCombo = new ArrayList<>(workingCombos.ceilingEntry(0.0).getValue());
+        // Returns first one, as that has lowest total calories, thus lowest waste
     }
     //Below are 4 private methods that returns the difference in calories needed to fulful request and
     // current hamper contents
-    private double checkRemainingGrain(TreeSet<String[]> hamper) {
+    public double checkRemainingGrain(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
         //Sum up all grain calories currently in hamper
@@ -159,10 +153,11 @@ public class FoodCalculator{
             current += Double.parseDouble(foodIterator.next()[2]);
         }
         // return the difference 
-        return wholeGrainCalories - current;
+        double difference = current - wholeGrainCalories;
+        return difference;
     }
 
-    private double checkRemainingVeggie(TreeSet<String[]> hamper) {
+    public double checkRemainingVeggie(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
         //Sum up all grain calories currently in hamper
@@ -170,10 +165,10 @@ public class FoodCalculator{
             current += Double.parseDouble(foodIterator.next()[3]);
         }
         // return the difference 
-        return fruitsVeggiesCalories - current;
+        return current - fruitsVeggiesCalories;
     }
 
-    private double checkRemainingProtein(TreeSet<String[]> hamper) {
+    public double checkRemainingProtein(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
         //Sum up all grain calories currently in hamper
@@ -181,10 +176,10 @@ public class FoodCalculator{
             current += Double.parseDouble(foodIterator.next()[4]);
         }
         // return the difference 
-        return proteinCalories - current;
+        return current - proteinCalories;
     }
 
-    private double checkRemainingOther(TreeSet<String[]> hamper) {
+    public double checkRemainingOther(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
         //Sum up all grain calories currently in hamper
@@ -192,7 +187,7 @@ public class FoodCalculator{
             current += Double.parseDouble(foodIterator.next()[5]);
         }
         // return the difference 
-        return otherCalories - current;
+        return current - otherCalories;
     }
     // private method to calculate total calories a food provides
     //  this is done by summing up calories of each type
@@ -201,6 +196,15 @@ public class FoodCalculator{
         + Double.parseDouble(foodItem[3])
         + Double.parseDouble(foodItem[4])
         + Double.parseDouble(foodItem[5]);
+    }
+    // method to calcualte a combos entire calories
+    public double totalComboCalories(ArrayList<String[]> combo) {
+        Iterator<String[]> arrayListIterator = combo.iterator();
+            double comboCalories = 0;
+            while (arrayListIterator.hasNext()) {
+                comboCalories += totalFoodItemCalories(arrayListIterator.next());
+            }
+        return comboCalories;
     }
     /**
      * Essentially returns the power set of ArrayList provided.
@@ -247,45 +251,42 @@ public class FoodCalculator{
      * @return true if the test hamper meets all needs. False otherwise.
      */
     public boolean meetAllCaloricNeeds(ArrayList<String[]> foodCombo) {
-        TreeSet<String[]> testHamper = new TreeSet<>(foodCombo);
+        if (foodCombo.isEmpty()) {
+            return false;
+        }
         // Now check if not meet any requirements, if not meeting, return false
-        if (checkRemainingGrain(testHamper) < 0) {
+        if (checkRemainingGrain(foodCombo) < 0) {
             return false;
         }
-        if (checkRemainingVeggie(testHamper) < 0) {
+        if (checkRemainingVeggie(foodCombo) < 0) {
             return false;
         }
-        if (checkRemainingProtein(testHamper) < 0) {
+        if (checkRemainingProtein(foodCombo) < 0) {
             return false;
         }
-        if (checkRemainingOther(testHamper) < 0) {
+        if (checkRemainingOther(foodCombo) < 0) {
             return false;
         }
         return true;
     }
+    
     public static void main(String[] args) {
         DatabaseReader.initializeConnection();
         FoodInventory foodInventory = new FoodInventory();
-        FoodCalculator foodCalculator = new FoodCalculator(1, 1, 1, 1);
-        //foodCalculator.calculateFoodCombos();
-        DatabaseReader.close();
-        ArrayList<String[]> array = new ArrayList<>(4);
-        String[] e1 = {"hi"};
-        String[] e2 = {"Fly"};
-        String[] e3 = {"Kite"};
-        String[] e4 = {"Night"};
-        array.add(e1);
-        array.add(e2);
-        array.add(e3);
-        array.add(e4);
-
-        ArrayList<ArrayList<String[]>> c = foodCalculator.allPossibleCombos(array);
-        for (int i = 0; i < c.size(); i++) {
-            for (int j = 0; j < c.get(i).size(); j++) {
-                System.out.print(c.get(i).get(j)[0] + "\t");
+        ChildUnderEight cUnderEight = new ChildUnderEight(25, 25, 25, 25, 1000);
+        FoodCalculator foodCalculator = new FoodCalculator(0, 0, 0, 1);
+        foodCalculator.calculateFoodCombos();
+        
+        Iterator<String[]> hamperIterator = foodCalculator.getHamperFoodCombo().iterator();
+        while (hamperIterator.hasNext()) {
+            String[] food = hamperIterator.next();
+            for (String s : food) {
+                System.out.print(s);
+                System.out.print("\t");
             }
             System.out.println();
         }
+        DatabaseReader.close();
     }
 
 }
