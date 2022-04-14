@@ -43,123 +43,55 @@ public class FoodCalculator{
 
     //Calculate the total number of whole grain calories needed
     public void calculateWholeGrainCalories(){
-        double cals = 0;
 
-        for(int i = 0; i < numAdultMales; i++){
-            cals += AdultMale.getGrains();
-        }
-
-        for(int i = 0; i < numAdultFemales; i++){
-            cals += AdultFemale.getGrains();
-        }
-
-        for(int i = 0; i < numChildrenU8; i++){
-            cals += ChildUnderEight.getGrains();
-        }
-
-        for(int i = 0; i < numChildrenO8; i++){
-            cals += ChildOverEight.getGrains();
-        }
-
-        this.wholeGrainCalories = cals;
-
-        //Calculations can be written as such
-        // this.wholeGrainCalories = numAdultMales*AdultMale.getGrains
-        // + numAdultFemales*AdultFemale.getGrains()
-        // + numChildrenU8*ChildUnderEight.getGrains()
-        // + numChildrenO8*ChildOverEight.getGrains();
+        double cals = numAdultMales * AdultMale.getGrains()
+        + numAdultFemales * AdultFemale.getGrains()
+        + numChildrenU8 * ChildUnderEight.getGrains()
+        + numChildrenO8 * ChildOverEight.getGrains();
+ 
+        this.wholeGrainCalories = cals * 7;
     }
 
     //Calculate the total number of fruits/veggies calories needed
     public void calculateFruitsVeggiesCalories(){
-        double cals = 0;
 
-        for(int i = 0; i < numAdultMales; i++){
-            cals += AdultMale.getVeggies();
-        }
-
-        for(int i = 0; i < numAdultFemales; i++){
-            cals += AdultFemale.getVeggies();
-        }
-
-        for(int i = 0; i < numChildrenU8; i++){
-            cals += ChildUnderEight.getVeggies();
-        }
-
-        for(int i = 0; i < numChildrenO8; i++){
-            cals += ChildOverEight.getVeggies();
-        }
-
-        this.fruitsVeggiesCalories = cals;
+        double cals = numAdultMales * AdultMale.getVeggies()
+        + numAdultFemales*AdultFemale.getVeggies()
+        + numChildrenU8 * ChildUnderEight.getVeggies()
+        + numChildrenO8 * ChildOverEight.getVeggies();
+    
+        this.fruitsVeggiesCalories = cals * 7;
     }
 
     //Calculate the total number of protein calories needed
     public void calculateProteinCalories(){
-        double cals = 0;
 
-        for(int i = 0; i < numAdultMales; i++){
-            cals += AdultMale.getProteins();
-        }
+        double cals = numAdultMales*AdultMale.getProteins()
+        + numAdultFemales * AdultFemale.getProteins()
+        + numChildrenU8 * ChildUnderEight.getProteins()
+        + numChildrenO8 * ChildOverEight.getProteins();
 
-        for(int i = 0; i < numAdultFemales; i++){
-            cals += AdultFemale.getProteins();
-        }
-
-        for(int i = 0; i < numChildrenU8; i++){
-            cals += ChildUnderEight.getProteins();
-        }
-
-        for(int i = 0; i < numChildrenO8; i++){
-            cals += ChildOverEight.getProteins();
-        }
-
-        this.proteinCalories = cals;
+        this.proteinCalories = cals * 7;
     }
 
     //Calculate the total number of other calories needed
     public void calculateOtherCalories(){
-        double cals = 0;
+        double cals = numAdultMales*AdultMale.getOthers()
+        + numAdultFemales * AdultFemale.getOthers()
+        + numChildrenU8 * ChildUnderEight.getOthers()
+        + numChildrenO8 * ChildOverEight.getOthers();
 
-        for(int i = 0; i < numAdultMales; i++){
-            cals += AdultMale.getOthers();
-        }
-
-        for(int i = 0; i < numAdultFemales; i++){
-            cals += AdultFemale.getOthers();
-        }
-
-        for(int i = 0; i < numChildrenU8; i++){
-            cals += ChildUnderEight.getOthers();
-        }
-
-        for(int i = 0; i < numChildrenO8; i++){
-            cals += ChildOverEight.getOthers();
-        }
-
-        this.otherCalories = cals;
+        this.otherCalories = cals * 7;
     }
 
     //Calculate the total number of calories needed
     public void calculateTotalCalories(){
-        double cals = 0;
+        double cals = numAdultMales * AdultMale.getCalories()
+        + numAdultFemales * AdultFemale.getCalories()
+        + numChildrenU8 * ChildUnderEight.getCalories()
+        + numChildrenO8 * ChildOverEight.getCalories();
 
-        for(int i = 0; i < numAdultMales; i++){
-            cals += AdultMale.getCalories();
-        }
-
-        for(int i = 0; i < numAdultFemales; i++){
-            cals += AdultFemale.getCalories();
-        }
-
-        for(int i = 0; i < numChildrenU8; i++){
-            cals += ChildUnderEight.getCalories();
-        }
-
-        for(int i = 0; i < numChildrenO8; i++){
-            cals += ChildOverEight.getCalories();
-        }
-
-        this.totalCalories = cals;
+        this.totalCalories = cals * 7;
     }
 
         // MISSING METHOD

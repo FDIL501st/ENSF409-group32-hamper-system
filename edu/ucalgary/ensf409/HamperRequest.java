@@ -18,14 +18,23 @@ public class HamperRequest{
 	
 	// Methods.
 	
-	public HamperRequest(Hamper[] hamper){
+	public HamperRequest(ArrayList<int[]> hamperRequests){
 		hampers = new ArrayList<Hamper>();
-		for(int i = 0; i < hamper.length; i++){
-			hampers.add(hamper[i]);
+
+		// adding in new hamper
+		for(int[] hamperData : hamperRequests){
+			Hamper newHamper = new Hamper(hamperData[0], hamperData[1], hamperData[2], hamperData[3]);
+			hampers.add(newHamper);
 			numHampers++;
 		}
+
+		// for(int i = 0; i < hamper.length; i++){
+		// 	hampers.add(hamper[i]);
+		// 	numHampers++;
+		// }
 	}
 	
+	// I think we dont need this one(?)
 	public void addHamper(Hamper hamper){
 		hampers.add(hamper);
 		numHampers++;
