@@ -20,6 +20,10 @@ public class HamperRequestTest{
 	final int CHILDU8 = 1;
 	final int CHILDO8 = 1;
 	
+	/**
+     	* Testing that the getHampers method properly returns the hampers data structure in the HamperRequest object after using the addHamper method. 
+     	*/
+	
 	public void testGetAddHampers(){
 		
 		//// Setting up variables for testing.
@@ -54,6 +58,10 @@ public class HamperRequestTest{
 		
 	}
 	
+	/**
+     	* Testing that the getHampers method properly returns the hampers data structure in the HamperRequest object.
+     	*/
+	
 	public void testGetHampers(){
 		
 		//// Setting up variables for testing.
@@ -83,6 +91,10 @@ public class HamperRequestTest{
 		assertEquals("Value of getHampers() did not match what was expected", expectedHamperList, actualHamperList);
 		
 	}
+	
+	/**
+     	* Testing that the constructor of the HamperRequest class properly creates a non null instance of the object.
+     	*/
 	
 	public void testHamperRequestConstructor(){
 		
