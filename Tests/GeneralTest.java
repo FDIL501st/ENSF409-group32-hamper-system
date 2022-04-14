@@ -4,9 +4,12 @@
 @since 1.0 
 */
 
-package edu.ucalgary.ensf409;
+package Tests;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 import org.junit.*;
 
@@ -14,7 +17,12 @@ import edu.ucalgary.ensf409.*;
 
 public class GeneralTest{
 	
-	
+	@BeforeClass public static void login() {
+		DatabaseReader.initializeConnection();
+	}
+	@AfterClass public static void logout() {
+		DatabaseReader.close();
+	}
 	// @Before
 	// Expected calorie values for each type of person.
 	final double ADULTMALE_GRAIN_CALORIES = 4;
@@ -75,11 +83,12 @@ public class GeneralTest{
 	sampleDatabase.add(add8);
 	String[] add9 = {"9", "Gum", "30", "30", "30", "10", "100"};
 	sampleDatabase.add(add9);
-
+	
 	FoodInventory inventory = new FoodInventory();
 	FoodInventory.setInventory(sampleDatabase);
 	}
-
+	
+	
 	@Test
 	public void oneHamperTest(){
 
@@ -108,7 +117,7 @@ public class GeneralTest{
 		// Calculate the food combos.
 		foodCalcReference.calculateFoodCombos();
 
-		ArrayList<String[]> actualFoodCombos = foodCalcReference.getHamperFoodCombos();
+		ArrayList<String[]> actualFoodCombos = foodCalcReference.getHamperFoodCombo();
 
 		assertEquals("The hamper created with only one hamper in the request was not as expected", expectedFoodCombos, actualFoodCombos);
 	}
@@ -146,8 +155,8 @@ public class GeneralTest{
 		foodCalcReferenceHamp1.calculateFoodCombos();
 		foodCalcReferenceHamp2.calculateFoodCombos();
 
-		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombos();
-		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombos();
+		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombo();
+		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombo();
 
 		assertEquals("The first duplicate hamper was not as expected", expectedFoodCombos, actualFoodCombosHamp1);
 
@@ -198,13 +207,12 @@ public class GeneralTest{
 		foodCalcReferenceHamp1.calculateFoodCombos();
 		foodCalcReferenceHamp2.calculateFoodCombos();
 
-		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombos();
-		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombos();
+		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombo();
+		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombo();
 
 		assertEquals("The first hamper was not as expected", expectedFoodCombosHamp1, actualFoodCombosHamp1);
 
 		assertEquals("The second duplicate hamper was not as expected", expectedFoodCombosHamp2, actualFoodCombosHamp2);
 	}
 
-		
 }

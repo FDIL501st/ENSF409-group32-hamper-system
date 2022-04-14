@@ -9,7 +9,7 @@ import java.util.Iterator;
  * Project for ENSF 409
  * <p>
  * @author Group 32
- * @version 1.3
+ * @version 1.4
  * @since 1.0
  */
 public class DatabaseReader {
@@ -47,25 +47,24 @@ public class DatabaseReader {
     /**
      * Reads the daily client needs from the data base and returns the weekly client needs.
      * This means multiply the Calories column by 7. The other numerical fields as kept as percents.
-     * @return An ArrayList<String[]> in which each each String[] contains all the info 
+     * @return An ArrayList<Double[]> in which each each Double[] contains all the info 
      * for the weekly needs of a client type
      * @throws SQLException During accessing of database, SQLException may be thrown
      */
-    public static ArrayList<String[]> readWeeklyClientNeeds() throws SQLException{
-        ArrayList<String[]> weeklyClientNeeds = new ArrayList<>();
+    public static ArrayList<Double[]> readWeeklyClientNeeds() throws SQLException{
+        ArrayList<Double[]> weeklyClientNeeds = new ArrayList<>();
         Statement readClientNeeds = connection.createStatement();
         ResultSet dailyClientNeeds = readClientNeeds.executeQuery("SELECT * FROM daily_client_needs");
         while (dailyClientNeeds.next()) {
             // Code assumes column index of values are correct
             // Moving columns around will break the code
-            String clientType =  dailyClientNeeds.getString(2);
-            String dailyGrain = dailyClientNeeds.getString(3);
-            String dailyVeggie = dailyClientNeeds.getString(4);
-            String dailyProtein = dailyClientNeeds.getString(5);
-            String dailyOther = dailyClientNeeds.getString(6);
+            double dailyGrain = dailyClientNeeds.getDouble(3);
+            double dailyVeggie = dailyClientNeeds.getDouble(4);
+            double dailyProtein = dailyClientNeeds.getDouble(5);
+            double dailyOther = dailyClientNeeds.getDouble(6);
             double dailyCalorie = dailyClientNeeds.getDouble(7);
-            String[] weeklyNeed = {clientType, dailyGrain, dailyVeggie, dailyProtein, 
-            dailyOther, Double.toString(dailyCalorie*7)};
+            Double[] weeklyNeed = {dailyGrain, dailyVeggie, dailyProtein, 
+            dailyOther, dailyCalorie*7};
             // Multiply calories by 7 as calories given is a per day
             // other values not multiplied as those are percents
             weeklyClientNeeds.add(weeklyNeed);
@@ -132,8 +131,9 @@ public class DatabaseReader {
 
     // Below a main to test the static methods of this class
     public static void main(String[] args) throws SQLException{
-        DatabaseReader.initializeConnection();
         /*
+        DatabaseReader.initializeConnection();
+        
         ArrayList<String[]> needs = DatabaseReader.readWeeklyClientNeeds();
         Iterator<String[]> needsIterator= needs.iterator();
         while (needsIterator.hasNext()) {

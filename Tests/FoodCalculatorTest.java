@@ -4,13 +4,13 @@
 @since 1.0 
 */
 
-package edu.ucalgary.ensf409;
-
+package Tests;
+import edu.ucalgary.ensf409.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
 
-public class FoodCalculatorTest{
+public class FoodCalculatorTest{	
 	
 	final int ADULTMALES = 1;
 	final int ADULTFEMALES = 1;
@@ -42,7 +42,34 @@ public class FoodCalculatorTest{
 	final double CHILDO8_OTHER_CALORIES = 2310.0;
 	final double CHILDO8_TOTAL_CALORIES = 15400.0;
 	
-	
+	@Test 
+	public void testAllPossibleCombos() {
+		FoodCalculator foodCalculator = new FoodCalculator(0, 0, 0, 0);
+		ArrayList<String[]> sampleDatabase = new ArrayList<String[]>();
+		String[] add1 = {"1", "Apples", "0", "60", "10", "30", "10"};
+		sampleDatabase.add(add1);
+		String[] add2 = {"2", "Chicken", "10", "0", "50", "40", "10"};
+		sampleDatabase.add(add2);
+		String[] add3 = {"3", "Pie", "30", "40", "10", "20", "10"};
+		sampleDatabase.add(add3);
+		String[] add4 = {"4", "Yam", "40", "50", "10", "0", "10"};
+		sampleDatabase.add(add4);
+		String[] add5 = {"5", "Apples", "0", "60", "10", "30", "10"};
+		sampleDatabase.add(add5);
+		String[] add6 = {"6", "Chicken", "10", "0", "50", "40", "10"};
+		sampleDatabase.add(add6);
+		String[] add7 = {"7", "Pie", "30", "40", "10", "20", "10"}; 
+		sampleDatabase.add(add7);
+		String[] add8 = {"8", "Yam", "40", "50", "10", "0", "10"};
+		sampleDatabase.add(add8);
+		String[] add9 = {"9", "Gum", "30", "30", "30", "10", "100"};
+		sampleDatabase.add(add9);
+		ArrayList<ArrayList<String[]>> allCombos = foodCalculator.allPossibleCombos(sampleDatabase);
+		int expectedSize = 512;
+		int actualSize = allCombos.size();
+
+		assertEquals(expectedSize, actualSize);
+	}
 	@Test
 	public void testFoodCalculatorGettersSam(){
 		

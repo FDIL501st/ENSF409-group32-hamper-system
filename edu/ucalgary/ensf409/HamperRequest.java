@@ -20,8 +20,16 @@ public class HamperRequest{
 	private int numHampers = 0;
 	
 	// Methods.
+	public HamperRequest(Hamper[] hamperRequests) {
+		hampers = new ArrayList<>();
+		for (Hamper hamper : hamperRequests) {
+			hampers.add(hamper);
+		}
+
 	
+	/*
 	public HamperRequest(ArrayList<int[]> hamperRequests){
+	
 		hampers = new ArrayList<Hamper>();
 
 		// adding in new hamper
@@ -30,7 +38,8 @@ public class HamperRequest{
 			hampers.add(newHamper);
 			numHampers++;
 		}
-
+	*/
+		
 		// for(int i = 0; i < hamper.length; i++){
 		// 	hampers.add(hamper[i]);
 		// 	numHampers++;
