@@ -1,3 +1,12 @@
+/**
+ * <h1>HamperTest</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
+ * @version 1.5
+ * @since 1.0
+ */
+
 package edu.ucalgary.ensf409;
 
 import org.junit.*;
@@ -6,7 +15,7 @@ import java.util.*;
 
 /* Tests for the Hamper Class */
 
-public class Tests{
+public class HamperTest{
 
     // Test that the hamper is constructed appropriately with the right numbers of people
     @Test
