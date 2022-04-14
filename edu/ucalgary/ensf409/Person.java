@@ -1,9 +1,14 @@
 package edu.ucalgary.ensf409;
 
 /**
- * @since 1.0
+ * <h1>Person</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
  * @version 1.5
+ * @since 1.0
  */
+
 public abstract class Person {
     protected double grain;
     protected double veggie;
