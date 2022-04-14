@@ -20,7 +20,11 @@ public class HamperRequest{
 	private int numHampers = 0;
 	
 	
-	
+	/**
+     	* The Constructor takes in an ArrayList of integer arrays.
+	* Each integer array contains the hamper data for the number of people requested.
+	* The loop uses the hamper constructor with the information in each array to construct and add a new hamper to the data structure.
+     	*/
 	public HamperRequest(ArrayList<int[]> hamperRequests){
 	
 		hampers = new ArrayList<Hamper>();
@@ -39,12 +43,20 @@ public class HamperRequest{
 		// }
 	}
 	
+	/**
+     	* The addHamper method adds a new Hamper object to the hampers member.
+     	*/
+	
 	// I think we dont need this one(?)
 	public void addHamper(Hamper hamper){
 		hampers.add(hamper);
 		numHampers++;
 	}
 	
+	
+	/**
+     	* Getter method for hampers member. 
+     	*/
 	public ArrayList<Hamper> getHampers(){
 		return hampers;
 	}
