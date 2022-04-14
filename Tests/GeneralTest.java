@@ -4,9 +4,12 @@
 @since 1.0 
 */
 
-package edu.ucalgary.ensf409;
+package Tests;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 import org.junit.*;
 
@@ -35,6 +38,26 @@ public class GeneralTest{
 	final double CHILDO8_OTHER_CALORIES = 10;
 	final double CHILDO8_TOTAL_CALORIES = 100;
 
+	@BeforeClass
+	public static void login() {
+		DatabaseReader.initializeConnection();
+		ArrayList<Double[]> weeklyClientNeeds = new ArrayList<>(1);
+		try {
+			weeklyClientNeeds = DatabaseReader.readWeeklyClientNeeds();
+		} catch (SQLException e) {}
+		Double[] adultM = weeklyClientNeeds.get(0);
+		Double[] adultF = weeklyClientNeeds.get(1);
+		Double[] childO8 = weeklyClientNeeds.get(2);
+		Double[] childU8 = weeklyClientNeeds.get(3);
+
+		AdultMale adultMale = new AdultMale(adultM[0], adultM[1], adultM[2], adultM[3], adultM[4]);
+		AdultFemale adultFemale = new AdultFemale(adultF[0], adultF[1], adultF[2], adultF[3], adultF[4]);
+		ChildOverEight childOverEight= new ChildOverEight(childO8[0], childO8[1], childO8[2], childO8[3], childO8[4]);
+		ChildUnderEight childUnderEight= new ChildUnderEight(childU8[0], childU8[1], childU8[2], childU8[3], childU8[4]);
+
+		FoodInventory foodInventory = new FoodInventory();
+	}
+	/*
 	@Before
 	public void setUp() {
 	AdultMale.setGrains(ADULTMALE_GRAIN_CALORIES);
@@ -75,11 +98,12 @@ public class GeneralTest{
 	sampleDatabase.add(add8);
 	String[] add9 = {"9", "Gum", "30", "30", "30", "10", "100"};
 	sampleDatabase.add(add9);
-
+	
 	FoodInventory inventory = new FoodInventory();
 	FoodInventory.setInventory(sampleDatabase);
 	}
-
+	*/
+	
 	@Test
 	public void oneHamperTest(){
 
@@ -108,7 +132,7 @@ public class GeneralTest{
 		// Calculate the food combos.
 		foodCalcReference.calculateFoodCombos();
 
-		ArrayList<String[]> actualFoodCombos = foodCalcReference.getHamperFoodCombos();
+		ArrayList<String[]> actualFoodCombos = foodCalcReference.getHamperFoodCombo();
 
 		assertEquals("The hamper created with only one hamper in the request was not as expected", expectedFoodCombos, actualFoodCombos);
 	}
@@ -146,8 +170,8 @@ public class GeneralTest{
 		foodCalcReferenceHamp1.calculateFoodCombos();
 		foodCalcReferenceHamp2.calculateFoodCombos();
 
-		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombos();
-		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombos();
+		ArrayList<String[]> actualFoodCombosHamp1 = foodCalcReferenceHamp1.getHamperFoodCombo();
+		ArrayList<String[]> actualFoodCombosHamp2 = foodCalcReferenceHamp2.getHamperFoodCombo();
 
 		assertEquals("The first duplicate hamper was not as expected", expectedFoodCombos, actualFoodCombosHamp1);
 
@@ -206,5 +230,8 @@ public class GeneralTest{
 		assertEquals("The second duplicate hamper was not as expected", expectedFoodCombosHamp2, actualFoodCombosHamp2);
 	}
 
-		
+	@AfterClass
+	public static void logout() {
+		DatabaseReader.close();
+	}
 }

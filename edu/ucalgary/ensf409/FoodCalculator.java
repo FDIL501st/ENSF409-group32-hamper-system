@@ -15,18 +15,23 @@ public class FoodCalculator{
     private int numChildrenO8;
 
     private ArrayList<String[]> hamperFoodCombo = new ArrayList<String[]>();
-    private Comparator<String[]> decsendingTotalCalories = new Comparator<String[]>() {
-        @Override
-        public int compare(String[] o1, String[] o2) {
-            //Compare total calories provided by each food
-            // Sort so that greater one comes first (returns negative)
-            double o1Calories = totalFoodItemCalories(o1);
-            double o2Calories = totalFoodItemCalories(o2);
 
-            return Double.compare(o2Calories, o1Calories);
-            //Does help to order from greatest to least total calories
+    private Comparator<ArrayList<String[]>> ascendingHamperCalories = new Comparator<ArrayList<String[]>>() {
+        @Override
+        public int compare(ArrayList<String[]> o1, ArrayList<String[]> o2) {
+            Iterator<String[]> arrayListIterator = o1.iterator();
+            double o1Calories = 0;
+            while (arrayListIterator.hasNext()) {
+                o1Calories += totalFoodItemCalories(arrayListIterator.next());
+            }
+            arrayListIterator = o2.iterator();
+            double o2Calories = 0;
+            while (arrayListIterator.hasNext()) {
+                o2Calories += totalFoodItemCalories(arrayListIterator.next());
+            }
+            return Double.compare(o1Calories, o2Calories);
         }
-     };
+    };
 
     // Constructor
     public FoodCalculator(int numAdultMales, int numAdultFemales, int numChildrenU8, int numChildrenO8){
@@ -181,99 +186,36 @@ public class FoodCalculator{
     }
 
     // REQUIRES TESTING
-
+    /**
+     * Calculates the food combo for the hamper. 
+     * Food combo calculated is the one with smallest excess.
+     */
     public void calculateFoodCombos() {
+        
         double[] neededCalories = {wholeGrainCalories, fruitsVeggiesCalories,
         proteinCalories, otherCalories};
         if (FoodInventory.checkShortage(neededCalories)) {
             // there is a shortage, so need to end here
-            hamperFoodCombo = null;
+            hamperFoodCombo = new ArrayList<>();
+            // make hamperFoodCombo an empty arraylist
             return;
         }
-
-        TreeSet<String[]> inventory = new TreeSet<>(decsendingTotalCalories);
-        Iterator<String[]> inventoryIterator = inventory.iterator();
-        inventory.addAll(FoodInventory.getInventory());
-        // Stored inventory in descending order of total calories a food provides
-        TreeSet<String[]> hamper = new TreeSet<>(decsendingTotalCalories);
-
-        //Loop through inventory from start to end
-        // adding 1 item at a time then checking for surplus.
-        //Quit loop when surplus in even one is detected
-        while (inventoryIterator.hasNext()) {
-            String[] foodItem = inventoryIterator.next();
-            hamper.add(foodItem);
-            double grainDifference = checkRemainingGrain(hamper);
-            double veggieDifference = checkRemainingVeggie(hamper);
-            double proteinDifference = checkRemainingProtein(hamper);
-            double otherDifference = checkRemainingOther(hamper);
-            if (grainDifference > 0) {
+        // find all possible combinations of inventory
+        ArrayList<String[]> inventory = FoodInventory.getInventory();
+        TreeSet<ArrayList<String[]>> testAllCombos = new TreeSet<>(ascendingHamperCalories);
+        testAllCombos.addAll(allPossibleCombos(inventory));
+        Iterator<ArrayList<String[]>> allCombosIterator = testAllCombos.iterator();
+        // testAllCombos has sorted by least total calories, 
+        // thus when usinng iterator, just need to find first one that meets all needs
+        // as having least total caloreis, probably will have least excess
+        while (allCombosIterator.hasNext()) {
+            ArrayList<String[]> combo = allCombosIterator.next();
+            if (meetAllCaloricNeeds(combo)) {
+                hamperFoodCombo = new ArrayList<>(combo);
                 break;
-            }
-            if (veggieDifference > 0) {
-                break;
-            }
-            if (proteinDifference > 0) {
-                break;
-            }
-            if (otherDifference > 0) {
-                break;
+                // Make sure to stop looping as no longer need to check
             }
         }
-        
-        // Then remove last item from hamper
-        // Check all remainings and see which food item would meet all needs
-        hamper.pollLast();
-        //double[] calorieRemain = new double[4];
-        //calorieRemain[0] = checkRemainingGrain(hamper);
-        //calorieRemain[1] = checkRemainingVeggie(hamper);
-        //calorieRemain[2] = checkRemainingProtein(hamper);
-        //calorieRemain[3] = checkRemainingOther(hamper);
-        //Brute force less efficient option (time consuming)
-        // Make all possible combination of food items from remaining inventory
-        // Then check for each calorie type provided and match needed
-        // Then make descicion of which to choose based off of lowest total calorie
-        inventory.removeAll(hamper);    // remove all stuff from inventory that is in hamper
-        ArrayList<String[]> remainingInventory = new ArrayList<>(inventory);
-        // How to store test hampers? Best in a TreeSet with ascending calories of test hamper
-        Comparator<ArrayList<String[]>> ascendingHamperCalories = new Comparator<ArrayList<String[]>>() {
-            @Override
-            public int compare(ArrayList<String[]> o1, ArrayList<String[]> o2) {
-                Iterator<String[]> arrayListIterator = o1.iterator();
-                double o1Calories = 0;
-                while (arrayListIterator.hasNext()) {
-                    o1Calories += totalFoodItemCalories(arrayListIterator.next());
-                }
-                arrayListIterator = o2.iterator();
-                double o2Calories = 0;
-                while (arrayListIterator.hasNext()) {
-                    o2Calories += totalFoodItemCalories(arrayListIterator.next());
-                }
-                return Double.compare(o1Calories, o2Calories);
-            }
-        };
-        TreeSet<ArrayList<String[]>> testRemainingCombos = new TreeSet<>(ascendingHamperCalories);
-        
-        testRemainingCombos.addAll(allPossibleCombos(remainingInventory));
-        Iterator<ArrayList<String[]>> testCombosIterator = testRemainingCombos.iterator();
-        while (testCombosIterator.hasNext()) {
-            ArrayList<String[]> combo = testCombosIterator.next();
-            // Because already ordered by lowest to highest total calorie, 
-            // just need to find first combo that meets all requirements
-            if (meetAllCaloricNeeds(hamper, combo)) {
-                hamper.addAll(combo);
-                //What gets added to hamper is the first one that meets all requirements
-            }
-        }
-        hamperFoodCombo = new ArrayList<>(hamper);
-        /*
-        Iterator<String[]> foodsIterator= inventory.iterator();
-        while (foodsIterator.hasNext()) {
-            String[] info = foodsIterator.next();
-            double x = totalFoodItemCalories(info);
-            System.out.println(x);
-        }
-        */
     }
     //Below are 4 private methods that returns the difference in calories needed to fulful request and
     // current hamper contents
@@ -372,10 +314,8 @@ public class FoodCalculator{
      * to test if it meets all needs.
      * @return true if the test hamper meets all needs. False otherwise.
      */
-    public boolean meetAllCaloricNeeds(TreeSet<String[]> currentHamper, ArrayList<String[]> foodCombo) {
-        TreeSet<String[]> testHamper = new TreeSet<>(decsendingTotalCalories);
-        testHamper.addAll(currentHamper);
-        testHamper.addAll(foodCombo);
+    public boolean meetAllCaloricNeeds(ArrayList<String[]> foodCombo) {
+        TreeSet<String[]> testHamper = new TreeSet<>(foodCombo);
         // Now check if not meet any requirements, if not meeting, return false
         if (checkRemainingGrain(testHamper) < 0) {
             return false;

@@ -125,7 +125,7 @@ public class FoodInventory {
      * Another reason is all elemenents of hamperContents weren't removed from inventory
      */
     public static boolean removeHamper(ArrayList<String[]> hamperContents) {
-        toBeRemoved = hamperContents;
+        toBeRemoved = new ArrayList<>(hamperContents);
         // Check if all elements of hamperContents are in inventory
         if (!inventory.containsAll(hamperContents)) {
             return false;
