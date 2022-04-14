@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @since 1.0
+ * <h1>DatabaseReader</h1>
+ * Project for ENSF 409
+ * <p>
+ * @author Group 32
  * @version 1.3
+ * @since 1.0
  */
 public class DatabaseReader {
     private static Connection connection = null;
