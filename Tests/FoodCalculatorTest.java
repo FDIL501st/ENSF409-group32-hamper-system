@@ -73,6 +73,11 @@ public class FoodCalculatorTest{
 
 		assertEquals(expectedSize, actualSize);
 	}
+	
+	/**
+     	* Testing that the getters in the FoodCalculator class all return the correct values after being initialized in the constructor.
+     	*/
+	
 	@Test
 	public void testFoodCalculatorGettersSam(){
 		
@@ -144,7 +149,11 @@ public class FoodCalculatorTest{
 		assertEquals("Constructor did not properly set NumChildrenU8", expectedChildrenU8, actualChildrenU8);
 		assertEquals("Constructor did not properly set NumChildrenO8", expectedChildrenO8, actualChildrenO8);
     	}
-    
+    	
+	/**
+     	* Testing that the calculated calorie values match what is expected.
+     	*/
+	
     	@Test 
     	public void CalculateCaloriesTest() {
 
