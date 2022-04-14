@@ -29,6 +29,9 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
     // store each hamper request as an array in this arraylist (order of array: adultMales, adultFemales, childO8, childU8)
     ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
 
+    // hamper request variable
+    private HamperRequest hamperRequestToCreate;
+
     private JLabel instructions;
     private JLabel maleLabel;
     private JLabel femaleLabel;
@@ -111,27 +114,30 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         if(validateInput()){
 
             // add data to the hamper request ArrayList
-            int[] hamper = {adultMales, adultFemales, childO8, childU8};
+            int[] hamper = {adultMales, adultFemales, childU8, childO8};
             hamperRequests.add(hamper);
 
             //check which button was pressed
             if (event.getSource() == createHampers){
                 JOptionPane.showMessageDialog(this, "Your hamper request is being created.");
-                //start the calculation process here
            
                 // testing storage of elements
-                for(int[] arr : hamperRequests){
-                    for (int num : arr){
-                        System.out.print(num);
-                        System.out.print("\\");
-                    }
-                    System.out.println();
-                }
+                // for(int[] arr : hamperRequests){
+                //     for (int num : arr){
+                //         System.out.print(num);
+                //         System.out.print("\\");
+                //     }
+                //     System.out.println();
+                // }
 
-            } else if(event.getSource() == addHamper){
-                //here we add another hamper to the request
-
+                //create the hamper request
+                hamperRequestToCreate = new HamperRequest(hamperRequests);
             }
+
+            // } else if(event.getSource() == addHamper){
+            //     //here we add another hamper to the request but we dont actually need to do anything
+
+            // }
         }
     }
 

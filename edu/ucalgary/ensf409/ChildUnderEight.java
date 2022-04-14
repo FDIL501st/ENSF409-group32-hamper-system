@@ -6,19 +6,19 @@ package edu.ucalgary.ensf409;
 public class ChildUnderEight extends Person{
     private static double grains;
     private static double veggies;
-    private static double protiens;
+    private static double proteins;
     private static double others;
     private static double calories;
 
     public ChildUnderEight(double percentGrain, double percentVeggies, 
-    double percentProtiens, double percentOther, double Calories) 
+    double percentProteins, double percentOther, double Calories) 
     throws IllegalArgumentException {
         //Call the Person constructor
-        super(percentGrain, percentVeggies, percentProtiens, percentOther, Calories);
+        super(percentGrain, percentVeggies, percentProteins, percentOther, Calories);
         //Using getters, copy values from the Person object
         setGrains(grain);
         setVeggies(veggie);
-        setProteins(protien);
+        setProteins(protein);
         setOthers(other);
         setCalories(calorie);
     }
@@ -42,12 +42,12 @@ public class ChildUnderEight extends Person{
     }
 
     public static double getProteins() {
-        return protiens;
+        return proteins;
     }
 
-    public static void setProteins(double protiens) throws IllegalArgumentException{
-        checkNotNegative(protiens);
-        ChildUnderEight.protiens = protiens;
+    public static void setProteins(double proteins) throws IllegalArgumentException{
+        checkNotNegative(proteins);
+        ChildUnderEight.proteins = proteins;
     }
 
     public static double getOthers() {
