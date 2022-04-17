@@ -173,7 +173,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
 
                 hamperRequestToCreate.createHampers();
 
-                JOptionPane.showMessageDialog(this, "The hamper request has been processed. Please review the text file output. Press OK. If you wish to add another hamper request, please do so. Otherwise, close the Hamper Request window to terminate the program.");
+                JOptionPane.showMessageDialog(this, "The hamper request has been processed. Please review the text file output. If you wish to add another hamper request, please do so. Otherwise, close the Hamper Request window to terminate the program.");
                 this.setVisible(true);
             }
 
