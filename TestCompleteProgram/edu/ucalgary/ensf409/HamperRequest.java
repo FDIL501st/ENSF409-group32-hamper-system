@@ -100,7 +100,6 @@ public class HamperRequest{
 			if (shortage == true){
 				break;
 			}
-		
 		}
 
 		DatabaseReader.close();
@@ -110,6 +109,11 @@ public class HamperRequest{
 			orderForm.reportShortage(hampers);
 		} else{
 			orderForm.createForm(hampers);
+			for(Hamper hamper : hampers) {
+				FoodInventory.removeHamper(hamper.getFoodCalculator().getHamperFoodCombo());
+				FoodInventory.updateDatabase();
+			}
 		}
+	
 	}
 }
