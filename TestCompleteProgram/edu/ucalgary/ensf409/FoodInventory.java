@@ -163,7 +163,7 @@ public class FoodInventory {
      * Another reason is all elemenents of hamperContents weren't removed from inventory
      */
     public static boolean removeHamper(ArrayList<String[]> hamperContents) {
-        toBeRemoved = new ArrayList<>(hamperContents);
+        toBeRemoved.addAll(hamperContents);
         // Check if all elements of hamperContents are in inventory
         if (!inventory.containsAll(hamperContents)) {
             return false;
@@ -181,7 +181,20 @@ public class FoodInventory {
         }
         return true;
     }
-
+    /**
+     * Restores food items that were removed in inventory.
+     * @return True if all food items were restored. False if not.
+     * @implSpec This should be called in case of a shortage before updating database.
+     * Ensure no food items not used are lost.
+     */
+    public static boolean restoreInventory() {
+        inventory.addAll(toBeRemoved);
+        if (inventory.containsAll(toBeRemoved)) {
+            toBeRemoved.clear();
+            return true;
+        }
+        return false;
+    }
     //Getters and Setters
 
     public static ArrayList<String[]> getInventory() {

@@ -92,14 +92,15 @@ public class HamperRequest{
 
 			
 			double[] neededCalories = {wholeGrainCalories, fruitsVeggiesCalories, proteinCalories, otherCalories};
-
-			hamper.getFoodCalculator().calculateFoodCombos();
-
 			shortage = FoodInventory.checkShortage(neededCalories);
 	
 			if (shortage == true){
 				break;
 			}
+
+			hamper.getFoodCalculator().calculateFoodCombos();
+
+			FoodInventory.removeHamper(hamper.getFoodCalculator().getHamperFoodCombo());
 		}
 
 		DatabaseReader.close();
@@ -107,12 +108,10 @@ public class HamperRequest{
 
 		if (shortage == true){
 			orderForm.reportShortage(hampers);
+			FoodInventory.restoreInventory();
 		} else{
 			orderForm.createForm(hampers);
-			for(Hamper hamper : hampers) {
-				FoodInventory.removeHamper(hamper.getFoodCalculator().getHamperFoodCombo());
-				FoodInventory.updateDatabase();
-			}
+			FoodInventory.updateDatabase();
 		}
 	
 	}
