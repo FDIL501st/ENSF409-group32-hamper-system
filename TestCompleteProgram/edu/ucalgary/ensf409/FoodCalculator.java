@@ -165,7 +165,8 @@ public class FoodCalculator{
         // Returns combo with that has calories nearest to 0
         // nearest to 0 calories means combo with least calories overall
     }
-    //Below are 4 private methods that returns the difference in calories needed to fulful request and
+
+    //Below are 4 methods that returns the difference in calories needed to fulfill request and
     // current hamper contents
     public double checkRemainingGrain(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
