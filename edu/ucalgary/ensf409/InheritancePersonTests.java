@@ -1,9 +1,9 @@
-package Tests;
-
-import edu.ucalgary.ensf409.*;
+package edu.ucalgary.ensf409;
 
 import static org.junit.Assert.*;
 import org.junit.*;
+
+import Tests.edu.ucalgary.ensf409.*;
 
 public class InheritancePersonTests {
     //All the tests also check if the functions can be statically called

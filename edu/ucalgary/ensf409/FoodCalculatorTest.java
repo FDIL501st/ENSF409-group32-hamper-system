@@ -7,9 +7,9 @@
  * @since 1.0
  */
 
-package Tests;
-import edu.ucalgary.ensf409.*;
+package edu.ucalgary.ensf409;
 import org.junit.*;
+
 import static org.junit.Assert.*;
 import java.util.*;
 

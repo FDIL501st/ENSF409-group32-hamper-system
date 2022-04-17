@@ -7,7 +7,7 @@
  * @since 1.0
  */
 
-package Tests;
+package edu.ucalgary.ensf409;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import edu.ucalgary.ensf409.*;
+import Tests.edu.ucalgary.ensf409.*;
 
 public class GeneralTest{
 	
