@@ -170,11 +170,17 @@ public class OrderForm {
     //Method for creating String representation of each hamper
     public String documentHamper(ArrayList<String[]> hamper) { 
         StringBuilder myString = new StringBuilder(""); //will eventually return this
-
-        for (int j = 0; j < hamper.size(); j++) { //For every hamper in the order
-            myString.append(hamper.get(j)[0] + '\t' + hamper.get(j)[1]); //Get ID and name
-            myString.append('\n'); //Formatting 
+        Iterator<String[]> hamperIterator = hamper.iterator();
+        while (hamperIterator.hasNext()) {
+            String[] foodItem = hamperIterator.next();
+            String toAppend = String.format("%s\t%s\n", 
+            foodItem[0], foodItem[1]);
+            myString.append(toAppend);
         }
+        //for (int j = 0; j < hamper.size(); j++) { //For every hamper in the order
+            //myString.append(hamper.get(j)[0] + '\t' + hamper.get(j)[1]); //Get ID and name
+            //myString.append('\n'); //Formatting 
+        //}
         return myString.toString();
     }    
     

@@ -183,6 +183,7 @@ public class FoodInventory {
     }
     /**
      * Restores food items that were removed in inventory.
+     * Also clears out toBeRemoved
      * @return True if all food items were restored. False if not.
      * @implSpec This should be called in case of a shortage before updating database.
      * Ensure no food items not used are lost.
