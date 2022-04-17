@@ -16,7 +16,6 @@ import java.util.Iterator;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import Tests.edu.ucalgary.ensf409.*;
 
 public class GeneralTest{
 	

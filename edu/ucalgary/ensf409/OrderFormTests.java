@@ -12,7 +12,6 @@ package edu.ucalgary.ensf409;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import Tests.edu.ucalgary.ensf409.*;
 
 import java.util.ArrayList;
 
