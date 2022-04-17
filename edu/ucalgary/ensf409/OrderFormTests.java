@@ -33,6 +33,11 @@ public class OrderFormTests {
         String[] cake = {"6", "Cake", "10", "20", "20", "50", "10"};
         String[] potato = {"5", "Potato", "20", "60", "10", "10", "10"};
         
+        ArrayList<Hamper> hampers;
+        
+        Hamper hamperOne;
+        Hamper hamperTwo;
+        
         @Before
         public void setUp() {
             hamper1 = new ArrayList<>();
@@ -46,6 +51,15 @@ public class OrderFormTests {
             hamper2.add(beef);
             hamper2.add(cake);
             hamper2.add(potato);
+            
+            hamperOne = new Hamper(0,0,0,0); //We don't care about the values given to the hamper
+            hamperTwo = new Hamper(0,0,0,0); //constructor for the purposes of these tests.
+            hamperOne.getFoodCalculator().setHamperFoodCombo(hamper1);
+            hamperTwo.getFoodCalculator().setHamperFoodCombo(hamper2);
+            
+            hampers = new ArrayList<>();
+            hampers.add(hamperOne);
+            hampers.add(hamperTwo);
         }
         
         /**
@@ -54,7 +68,7 @@ public class OrderFormTests {
         @Test
         public void testOrderFormCreated() {
             
-            form.createForm(hamper1, hamper2);
+            form.createForm(hampers);
 
             boolean expected = true;
             boolean actual = form.getTextCheck();
@@ -68,12 +82,11 @@ public class OrderFormTests {
         */
         @Test
         public void testReportShortage() {
-            ArrayList<Hamper> hampers = new ArrayList<>();
             
             form.reportShortage(hampers);
             
             boolean expected = true;
-            boolean actual = form.reportShortage();
+            boolean actual = form.getTextCheck();
 
             assertEquals("File was not successfully created", expected, actual);
         }
