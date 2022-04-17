@@ -2,9 +2,9 @@
  * <h1>FoodCalculator</h1>
  * Project for ENSF 409
  * <p>
- * @author Adem Soufi <a href="mailto:adem.soufi@ucalgary.ca">adem.soufi@ucalgary.ca</a> | UCID: 30101252
- * @author Fadil Husain <a href="mailto:fadil.husain@ucalgary.ca">fadil.husain@ucalgary.ca</a> | UCID: 30113409
- * @author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a> | UCID: 30092208
+ * @author Adem
+ * @author Fadil
+ * @author Sam
  * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
  * @version 1.6
  * @since 1.0
@@ -165,8 +165,7 @@ public class FoodCalculator{
         // Returns combo with that has calories nearest to 0
         // nearest to 0 calories means combo with least calories overall
     }
-
-    //Below are 4 methods that returns the difference in calories needed to fulfill request and
+    //Below are 4 private methods that returns the difference in calories needed to fulful request and
     // current hamper contents
     public double checkRemainingGrain(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
@@ -306,37 +305,38 @@ public class FoodCalculator{
     
     public static void main(String[] args) {
         if (!DatabaseReader.initializeConnection()) {
-             System.out.println("Unable to initialize connection.");
-             System.exit(0);
-         }
-         FoodInventory foodInventory = new FoodInventory();
-         Iterator<String[]> inventoryIterator = FoodInventory.getInventory().iterator();
-         while (inventoryIterator.hasNext()) {
+            System.out.println("Unable to initialize connection.");
+            System.exit(0);
+        }
+        FoodInventory foodInventory = new FoodInventory();
+        Iterator<String[]> inventoryIterator = FoodInventory.getInventory().iterator();
+        while (inventoryIterator.hasNext()) {
             String[] food = inventoryIterator.next();
-             for (String s : food) {
-                 System.out.print(s);
-                System.out.print("\t");
-             }
-            System.out.println();
-         }
-         
-        Hamper hamper = new Hamper(0, 0, 0, 1);
-        FoodCalculator foodCalculator = hamper.getFoodCalculator();
-         foodCalculator.calculateFoodCombos();
-         System.out.println("Hamper combo:");
-         ArrayList<String[]> hamperCombo = foodCalculator.getHamperFoodCombo();
-        Iterator<String[]> hamperIterator = hamperCombo.iterator();
-         while (hamperIterator.hasNext()) {
-             String[] food = hamperIterator.next();
-             for (String s : food) {
-                 System.out.print(s);
+            for (String s : food) {
+                System.out.print(s);
                 System.out.print("\t");
             }
-             System.out.println();
-         }
-        
-        FoodInventory.removeHamper(hamperCombo);
-        FoodInventory.updateDatabase();
+            System.out.println();
+        }
+        ChildUnderEight childUnderEight = new ChildUnderEight(25,25,25,25,2000);
+        FoodCalculator foodCalculator = new FoodCalculator(0, 0, 1, 0);
+        /*
+        System.out.println(foodCalculator.getWholeGrainCalories());
+        System.out.println(foodCalculator.getFruitsVeggiesCalories());
+        System.out.println(foodCalculator.getProteinCalories());
+        System.out.println(foodCalculator.getOtherCalories());
+        */
+        foodCalculator.calculateFoodCombos();
+        System.out.println("Hamper combo:");
+        Iterator<String[]> hamperIterator = foodCalculator.getHamperFoodCombo().iterator();
+        while (hamperIterator.hasNext()) {
+            String[] food = hamperIterator.next();
+            for (String s : food) {
+                System.out.print(s);
+                System.out.print("\t");
+            }
+            System.out.println();
+        }
         DatabaseReader.close();
     }
 

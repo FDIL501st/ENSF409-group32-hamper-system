@@ -2,9 +2,9 @@
  * <h1>GUIHamperSystem</h1>
  * Project for ENSF 409
  * <p>
- * @author Adem Soufi <a href="mailto:adem.soufi@ucalgary.ca">adem.soufi@ucalgary.ca</a> | UCID: 30101252
- * @author Fadil Husain <a href="mailto:fadil.husain@ucalgary.ca">fadil.husain@ucalgary.ca</a> | UCID: 30113409
- * @author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a> | UCID: 30092208
+ * @author Adem
+ * @author Fadil
+ * @author Sam
  * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
  * @version 1.4
  * @since 1.0
@@ -44,8 +44,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
     // hamper request variable
     private HamperRequest hamperRequestToCreate;
 
-    private JLabel instructions1;
-   // private JLabel instructions2;
+    private JLabel instructions;
     private JLabel maleLabel;
     private JLabel femaleLabel;
     private JLabel childO8Label;
@@ -66,7 +65,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
     public GUIHamperSystem(){
         super("Create a Hamper Request");
         setupGUI();
-        setSize(1000,300);
+        setSize(600,300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -75,8 +74,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
      */
     public void setupGUI(){
 
-        instructions1 = new JLabel("Please enter the numbers of the types of people for this hamper as a digit (e.g. 2) up to a maximum of 10 family members per hamper.");
-     //   instructions2 = new JLabel("Press 'Add Another Hamper Request' to add another hamper or 'Create Hampers' to create the hampers");
+        instructions = new JLabel("Please enter the numbers of the types of people for this hamper as a digit e.g. 2. ");
         maleLabel = new JLabel("Number of Adult Males:");
         femaleLabel = new JLabel("Number of Adult Females:");
         childO8Label = new JLabel("Number of Children Over 8:");
@@ -92,7 +90,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         childO8Input.addMouseListener(this);
         childU8Input.addMouseListener(this);
 
-        addHamper = new JButton("Add Another Hamper Request");
+        addHamper = new JButton("Add another Hamper Request");
         addHamper.addActionListener(this);
 
         createHampers = new JButton("Create Hampers");
@@ -101,17 +99,13 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout());
 
-        // JPanel instructionsPanel = new JPanel();
-        // headerPanel.setLayout(new FlowLayout());
-
         JPanel hamperPanel = new JPanel();
         hamperPanel.setLayout(new FlowLayout());
 
         JPanel submitPanel = new JPanel();
         submitPanel.setLayout(new FlowLayout());
 
-        headerPanel.add(instructions1);
-    //    instructionsPanel.add(instructions2);
+        headerPanel.add(instructions);
         hamperPanel.add(maleLabel);
         hamperPanel.add(maleInput);
         hamperPanel.add(femaleLabel);
@@ -123,8 +117,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         submitPanel.add(addHamper);
         submitPanel.add(createHampers);
 
-        this.add(headerPanel, BorderLayout.PAGE_START);
-       // this.add(instructionsPanel, BorderLayout.WEST);
+        this.add(headerPanel, BorderLayout.NORTH);
         this.add(hamperPanel, BorderLayout.CENTER);
         this.add(submitPanel, BorderLayout.PAGE_END);
     }
@@ -151,7 +144,6 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
             //check which button was pressed
             if (event.getSource() == createHampers){
                 JOptionPane.showMessageDialog(this, "Your hamper request is being created.");
-                //this.setVisible(false);
            
                 // testing storage of elements
                 // for(int[] arr : hamperRequests){
@@ -163,18 +155,10 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
                 // }
 
                 //create the hamper request
-                if (hamperRequestToCreate == null){
-                    hamperRequestToCreate = new HamperRequest(hamperRequests);
-                    hamperRequests.clear();
-                } else{
-                    hamperRequestToCreate.addHampers(hamperRequests);
-                    hamperRequests.clear();
-                }
+                hamperRequestToCreate = new HamperRequest(hamperRequests);
 
-                hamperRequestToCreate.createHampers();
-
-                JOptionPane.showMessageDialog(this, "The hamper request has been processed. Please review the text file output. If you wish to add another hamper request, please do so. Otherwise, close the Hamper Request window to terminate the program.");
-                //this.setVisible(true);
+                //empty the hamperRequests arraylist after hampers are created
+                hamperRequests.clear();
             }
 
             // } else if(event.getSource() == addHamper){
@@ -245,32 +229,17 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
             JOptionPane.showMessageDialog(this, "Please enter integer values for all fields.");
         }
 
-        //Check if all numbers in input are 0
-        if(adultMales == 0 && adultFemales == 0 && childO8 == 0 && childU8 == 0){
-            allInputValid = false;
-            JOptionPane.showMessageDialog(this, "Please enter at least 1 person for the hamper.");
-        }
-
         //check if any numbers are negative
         if(adultMales < 0 || adultFemales < 0 || childO8 < 0 || childU8 < 0){
             allInputValid = false;
             JOptionPane.showMessageDialog(this, "Please enter positive values only.");
         }
 
-        //check that there is a max of 10 family members in the hamper
-        if((adultMales + adultFemales + childO8 + childU8) > 10){
-            allInputValid = false;
-            JOptionPane.showMessageDialog(this, "Please enter no more than 10 family members per hamper.");
-        }
-
         return allInputValid;
     }
 
     public static void main(String args[]) {
-        if (!DatabaseReader.initializeConnection()) {
-            System.out.println("Connection failed.");
-            System.exit(0);
-        }
+        DatabaseReader.initializeConnection();
         EventQueue.invokeLater(() -> {
         new GUIHamperSystem().setVisible(true);
         });

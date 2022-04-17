@@ -8,10 +8,7 @@ import java.util.Iterator;
  * <h1>DatabaseReader</h1>
  * Project for ENSF 409
  * <p>
- * @author Adem Soufi <a href="mailto:adem.soufi@ucalgary.ca">adem.soufi@ucalgary.ca</a> | UCID: 30101252
- * @author Fadil Husain <a href="mailto:fadil.husain@ucalgary.ca">fadil.husain@ucalgary.ca</a> | UCID: 30113409
- * @author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a> | UCID: 30092208
- * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
+ * @author Group 32
  * @version 1.4
  * @since 1.0
  */
@@ -24,7 +21,7 @@ public class DatabaseReader {
      */
     public static boolean initializeConnection() {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/food_inventory","student","ensf");  // changed from student
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/food_inventory","student","ensf");
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -134,35 +131,36 @@ public class DatabaseReader {
     }
 
     // Below a main to test the static methods of this class
-    // public static void main(String[] args) throws SQLException{
-    //     /*
-    //     DatabaseReader.initializeConnection();
+    public static void main(String[] args) throws SQLException{
+        /*
+        DatabaseReader.initializeConnection();
         
-    //     ArrayList<String[]> needs = DatabaseReader.readWeeklyClientNeeds();
-    //     Iterator<String[]> needsIterator= needs.iterator();
-    //     while (needsIterator.hasNext()) {
-    //         String[] info = needsIterator.next();
-    //         for (String s : info) {
-    //             System.out.print(s + '\t');
-    //         }
-    //         System.out.println();
-    //     }
-    //     // readWeeklyClientNeeds() works as intended.
+        ArrayList<String[]> needs = DatabaseReader.readWeeklyClientNeeds();
+        Iterator<String[]> needsIterator= needs.iterator();
+        while (needsIterator.hasNext()) {
+            String[] info = needsIterator.next();
+            for (String s : info) {
+                System.out.print(s + '\t');
+            }
+            System.out.println();
+        }
+        // readWeeklyClientNeeds() works as intended.
+
         
-    //     ArrayList<String[]> foods = DatabaseReader.readInventory();
-    //     Iterator<String[]> foodsIterator= foods.iterator();
-    //     while (foodsIterator.hasNext()) {
-    //         String[] info = foodsIterator.next();
-    //         for (String s : info) {
-    //             System.out.print(s + '\t');
-    //         }
-    //         System.out.println();
-    //     }
-    //     // readInventory() works as intended.
+        ArrayList<String[]> foods = DatabaseReader.readInventory();
+        Iterator<String[]> foodsIterator= foods.iterator();
+        while (foodsIterator.hasNext()) {
+            String[] info = foodsIterator.next();
+            for (String s : info) {
+                System.out.print(s + '\t');
+            }
+            System.out.println();
+        }
+        // readInventory() works as intended.
         
-    //     DatabaseReader.deleteFoodItem(1000);
-    //     //deleteFoodItem() works as intended
-    //     */
-    //     DatabaseReader.close();
-    // }
+        DatabaseReader.deleteFoodItem(1000);
+        //deleteFoodItem() works as intended
+        */
+        DatabaseReader.close();
+    }
 }
