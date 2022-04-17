@@ -82,24 +82,47 @@ public class FoodCalculatorTest{
 		sampleDatabase.add(add2);
 		String[] add3 = {"3", "Pie", "30", "40", "10", "20", "10"};
 		sampleDatabase.add(add3);
-		String[] add4 = {"4", "Yam", "40", "50", "10", "0", "10"};
-		sampleDatabase.add(add4);
-		String[] add5 = {"5", "Apples", "0", "60", "10", "30", "10"};
-		sampleDatabase.add(add5);
-		String[] add6 = {"6", "Chicken", "10", "0", "50", "40", "10"};
-		sampleDatabase.add(add6);
-		String[] add7 = {"7", "Pie", "30", "40", "10", "20", "10"}; 
-		sampleDatabase.add(add7);
-		String[] add8 = {"8", "Yam", "40", "50", "10", "0", "10"};
-		sampleDatabase.add(add8);
-		String[] add9 = {"9", "Gum", "30", "30", "30", "10", "100"};
-		sampleDatabase.add(add9);
-		ArrayList<ArrayList<String[]>> allCombos = foodCalculator.allPossibleCombos(sampleDatabase);
-		int expectedSize = 512;
-		int actualSize = allCombos.size();
-		// weak test only tests if correct number of combinations made,
-		// not if all the combinations are different
-		assertEquals(expectedSize, actualSize);
+		FoodInventory.setInventory(sampleDatabase);
+		// All 8 possible combos
+		ArrayList<String[]> combo1 = new ArrayList<>(1);
+		ArrayList<String[]> combo2 = new ArrayList<>(1);
+		combo2.add(add1);
+		ArrayList<String[]> combo3 = new ArrayList<>(1);
+		combo3.add(add2);
+		ArrayList<String[]> combo4 = new ArrayList<>(1);
+		combo4.add(add3);
+		ArrayList<String[]> combo5 = new ArrayList<>(2);
+		combo5.add(add2);
+		combo5.add(add1);
+		ArrayList<String[]> combo6 = new ArrayList<>(2);
+		combo6.add(add2);
+		combo6.add(add1);
+		ArrayList<String[]> combo7 = new ArrayList<>(2);
+		combo7.add(add3);
+		combo7.add(add2);
+		ArrayList<String[]> combo8 = new ArrayList<>(3);
+		combo8.add(add3);
+		combo8.add(add2);
+		combo8.add(add1);
+		ArrayList<ArrayList<String[]>> allCombos = new ArrayList<>(8);
+		allCombos.add(combo1);
+		allCombos.add(combo2);
+		allCombos.add(combo3);
+		allCombos.add(combo4);
+		allCombos.add(combo5);
+		allCombos.add(combo6);
+		allCombos.add(combo7);
+		allCombos.add(combo8);
+
+		ArrayList<ArrayList<String[]>> actualArray = foodCalculator.allPossibleCombos(sampleDatabase);
+	
+		// If both allCombos and actual have same combos, then if remove all of actual in allCombos, 
+		// allCombos should end up as empty
+		
+		//Issue found is that different ordering of String[] elements can cause the combo to be "different"
+		allCombos.removeAll(actualArray);
+		assertTrue("allCombos should be empty as removed all elements from actual, which should be all of allCombos",
+		allCombos.isEmpty());
 	}
 	
 	/**

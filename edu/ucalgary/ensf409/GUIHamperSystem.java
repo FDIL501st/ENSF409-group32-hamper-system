@@ -239,8 +239,10 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
     }
 
     public static void main(String args[]) {
+        DatabaseReader.initializeConnection();
         EventQueue.invokeLater(() -> {
         new GUIHamperSystem().setVisible(true);
         });
+        DatabaseReader.close();
     }
 }

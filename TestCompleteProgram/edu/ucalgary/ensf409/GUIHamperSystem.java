@@ -267,8 +267,13 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
     }
 
     public static void main(String args[]) {
+        if (!DatabaseReader.initializeConnection()) {
+            System.out.println("Connection failed.");
+            System.exit(0);
+        }
         EventQueue.invokeLater(() -> {
         new GUIHamperSystem().setVisible(true);
         });
+        DatabaseReader.close();
     }
 }
