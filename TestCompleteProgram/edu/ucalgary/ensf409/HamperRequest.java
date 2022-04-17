@@ -38,12 +38,11 @@ public class HamperRequest{
 			hampers.add(newHamper);
 			numHampers++;
 		}
-
 		DatabaseReader.initializeConnection();
+
 		foodInventory = new FoodInventory();
 		orderForm = new OrderForm();
 		DatabaseReader.close();
-
 		
 		// for(int i = 0; i < hamper.length; i++){
 		// 	hampers.add(hamper[i]);
@@ -76,10 +75,13 @@ public class HamperRequest{
 
 		DatabaseReader.initializeConnection();
 
+
 		double wholeGrainCalories;
 		double fruitsVeggiesCalories;
 		double proteinCalories;
 		double otherCalories;
+
+		boolean shortage = false;
 
 		for(Hamper hamper : hampers){
 
@@ -93,16 +95,21 @@ public class HamperRequest{
 
 			hamper.getFoodCalculator().calculateFoodCombos();
 
-			boolean shortage = FoodInventory.checkShortage(neededCalories);
+			shortage = FoodInventory.checkShortage(neededCalories);
 	
-			if(shortage == true){
-				orderForm.reportShortage(hampers);
-			} else{
-				orderForm.createForm(hampers);
+			if (shortage == true){
+				break;
 			}
+		
 		}
 
-        DatabaseReader.close();
-	}
+		DatabaseReader.close();
 
+
+		if (shortage == true){
+			orderForm.reportShortage(hampers);
+		} else{
+			orderForm.createForm(hampers);
+		}
+	}
 }
