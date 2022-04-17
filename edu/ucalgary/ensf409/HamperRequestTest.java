@@ -19,7 +19,12 @@ public class HamperRequestTest{
 	final int ADULTFEMALES = 1;
 	final int CHILDU8 = 1;
 	final int CHILDO8 = 1;
-	
+	@BeforeClass public static void connect() {
+		DatabaseReader.initializeConnection();
+	}
+	@AfterClass public static void close() {
+		DatabaseReader.close();
+	}
 	/**
      	* Testing that the getHampers method properly returns the hampers data structure in the HamperRequest object after using the addHamper method. 
      	*/

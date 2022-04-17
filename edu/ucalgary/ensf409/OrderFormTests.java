@@ -68,8 +68,9 @@ public class OrderFormTests {
         */
         @Test
         public void testReportShortage() {
+            ArrayList<Hamper> hampers = new ArrayList<>();
             
-            form.reportShortage();
+            form.reportShortage(hampers);
             
             boolean expected = true;
             boolean actual = form.reportShortage();
