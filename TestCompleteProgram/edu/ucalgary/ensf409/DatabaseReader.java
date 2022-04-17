@@ -21,7 +21,7 @@ public class DatabaseReader {
      */
     public static boolean initializeConnection() {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/food_inventory","user1","ensf");  // changed from student
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/food_inventory","student","ensf");  // changed from student
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

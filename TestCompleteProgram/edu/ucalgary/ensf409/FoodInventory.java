@@ -28,7 +28,7 @@ public class FoodInventory {
     public FoodInventory() {
         // Constructor is like a reset, used to first set up the FoodInventory class
         // or reset it
-
+        
         // Initialize inventory
         readDatabaseInventory();
         // Initialize inventory calories to 0
@@ -45,6 +45,23 @@ public class FoodInventory {
             inventoryProteinCalories += Double.parseDouble(foodItem[4]);
             inventoryOtherCalories += Double.parseDouble(foodItem[5]);
         }
+        //Also initialize client info
+        ArrayList<Double[]> clientNeeds = new ArrayList<>();
+        try {
+            clientNeeds = DatabaseReader.readWeeklyClientNeeds();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+        Double[] aMInfo = clientNeeds.get(0);
+        Double[] aFInfo = clientNeeds.get(1);
+        Double[] cO8Info = clientNeeds.get(2);
+        Double[] cU8Info = clientNeeds.get(3);
+        AdultMale adultMale = new AdultMale(aMInfo[0], aMInfo[1], aMInfo[2], aMInfo[3], aMInfo[4]);
+        AdultFemale adultFemale = new AdultFemale(aFInfo[0], aFInfo[1], aFInfo[2], aFInfo[3], aFInfo[4]);
+        ChildOverEight childOverEight = new ChildOverEight(cO8Info[0], cO8Info[1], cO8Info[2], cO8Info[3], cO8Info[4]);
+        ChildUnderEight childUnderEight = new ChildUnderEight(cU8Info[0], cU8Info[1], cU8Info[2], cU8Info[3], cU8Info[4]);
+         
     }
 
     public static String getShortageMessage() {

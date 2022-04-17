@@ -88,7 +88,7 @@ public class HamperRequest{
 			proteinCalories = hamper.getFoodCalculator().getProteinCalories();
 			otherCalories = hamper.getFoodCalculator().getOtherCalories();
 
-
+			
 			double[] neededCalories = {wholeGrainCalories, fruitsVeggiesCalories, proteinCalories, otherCalories};
 
 			hamper.getFoodCalculator().calculateFoodCombos();
