@@ -45,6 +45,13 @@ public class FoodCalculator{
         calculateOtherCalories();
         calculateTotalCalories();
     }
+    
+    /**
+     * Setter for hamperFoodCombo
+     */
+    public void setHamperFoodCombo (ArrayList<String[]> combo) {
+        this.hamperFoodCombo = combo;
+    }
 
     /**
      * Getters for numbers of adult males, adult females, children over 8, and children under 8 in the hamper
