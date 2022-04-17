@@ -29,7 +29,9 @@ public class HamperRequest{
 	* The loop uses the hamper constructor with the information in each array to construct and add a new hamper to the data structure.
      	*/
 	public HamperRequest(ArrayList<int[]> hamperRequests){
-	
+		DatabaseReader.initializeConnection();
+		foodInventory = new FoodInventory();
+
 		hampers = new ArrayList<Hamper>();
 				
 		// adding in new hamper
@@ -38,9 +40,7 @@ public class HamperRequest{
 			hampers.add(newHamper);
 			numHampers++;
 		}
-		DatabaseReader.initializeConnection();
-
-		foodInventory = new FoodInventory();
+		
 		orderForm = new OrderForm();
 		DatabaseReader.close();
 		
