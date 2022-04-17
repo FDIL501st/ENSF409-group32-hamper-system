@@ -23,6 +23,7 @@ public class DatabaseReader {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/food_inventory","student","ensf");
         } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
         return true;

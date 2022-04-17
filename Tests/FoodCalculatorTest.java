@@ -44,7 +44,34 @@ public class FoodCalculatorTest{
 	final double CHILDO8_PROTEIN_CALORIES = 4774.0;
 	final double CHILDO8_OTHER_CALORIES = 2310.0;
 	final double CHILDO8_TOTAL_CALORIES = 15400.0;
+
+	@Before
+	public void setUp() {
+		AdultMale.setGrains(ADULTMALE_GRAIN_CALORIES);
+		AdultMale.setVeggies(ADULTMALE_VEGGIE_CALORIES);
+		AdultMale.setProteins(ADULTMALE_PROTEIN_CALORIES);
+		AdultMale.setOthers(ADULTMALE_OTHER_CALORIES);
+		AdultMale.setCalories(ADULTMALE_TOTAL_CALORIES);
+
+		AdultFemale.setGrains(ADULTFEMALE_GRAIN_CALORIES);
+		AdultFemale.setVeggies(ADULTFEMALE_VEGGIE_CALORIES);
+		AdultFemale.setProteins(ADULTFEMALE_PROTEIN_CALORIES);
+		AdultFemale.setOthers(ADULTFEMALE_OTHER_CALORIES);
+		AdultFemale.setCalories(ADULTFEMALE_TOTAL_CALORIES);
+		
+		ChildUnderEight.setGrains(CHILDU8_GRAIN_CALORIES);
+		ChildUnderEight.setVeggies(CHILDU8_VEGGIE_CALORIES);
+		ChildUnderEight.setProteins(CHILDU8_PROTEIN_CALORIES);
+		ChildUnderEight.setOthers(CHILDU8_OTHER_CALORIES);
+		ChildUnderEight.setCalories(CHILDU8_TOTAL_CALORIES);
+		
+		ChildOverEight.setGrains(CHILDO8_GRAIN_CALORIES);
+		ChildOverEight.setVeggies(CHILDO8_VEGGIE_CALORIES);
+		ChildOverEight.setProteins(CHILDO8_PROTEIN_CALORIES);
+		ChildOverEight.setOthers(CHILDO8_OTHER_CALORIES);
+		ChildOverEight.setCalories(CHILDO8_TOTAL_CALORIES);
 	
+	}
 	@Test 
 	public void testAllPossibleCombos() {
 		FoodCalculator foodCalculator = new FoodCalculator(0, 0, 0, 0);
@@ -70,7 +97,8 @@ public class FoodCalculatorTest{
 		ArrayList<ArrayList<String[]>> allCombos = foodCalculator.allPossibleCombos(sampleDatabase);
 		int expectedSize = 512;
 		int actualSize = allCombos.size();
-
+		// weak test only tests if correct number of combinations made,
+		// not if all the combinations are different
 		assertEquals(expectedSize, actualSize);
 	}
 	
@@ -83,13 +111,10 @@ public class FoodCalculatorTest{
 		
 		//// Setting up variables for testing.
 		
-		// Create a new hamper object
-		Hamper myHamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
-		
-		// Setup an array of one hamper.
-		Hamper[] hamperArr = { myHamper };
-		
-		// Create HamperRequest object for testing. Is this even necessary?
+		int[] myHamper = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
+		ArrayList<int[]> hamperArr = new ArrayList<>(1);
+		hamperArr.add(myHamper);
+		// Create HamperRequest object for testing. 
 		HamperRequest myRequest = new HamperRequest(hamperArr);
 		
 		// Grab the FoodCalculator reference for testing.
@@ -117,11 +142,11 @@ public class FoodCalculatorTest{
 		int actualChildU8 = foodCalcReference.getNumChildrenU8();
 		int actualChildO8 = foodCalcReference.getNumChildrenO8();
 		
-		assertEquals("Value of Whole Grain Calories did not match what was expected", expectedWholeGrainCalories, actualWholeGrainCalories);
-		assertEquals("Value of Fruits Veggies Calories did not match what was expected", expectedFruitsVeggiesCalories, actualFruitsVeggiesCalories);
-		assertEquals("Value of Protein Calories did not match what was expected", expectedProteinCalories, actualProteinCalories);
-		assertEquals("Value of Other Calories did not match what was expected", expectedOtherCalories, actualOtherCalories);
-		assertEquals("Value of Total Calories did not match what was expected", expectedTotalCalories, actualTotalCalories);
+		assertEquals("Value of Whole Grain Calories did not match what was expected", expectedWholeGrainCalories, actualWholeGrainCalories, 0.001);
+		assertEquals("Value of Fruits Veggies Calories did not match what was expected", expectedFruitsVeggiesCalories, actualFruitsVeggiesCalories, 0.001);
+		assertEquals("Value of Protein Calories did not match what was expected", expectedProteinCalories, actualProteinCalories, 0.001);
+		assertEquals("Value of Other Calories did not match what was expected", expectedOtherCalories, actualOtherCalories, 0.001);
+		assertEquals("Value of Total Calories did not match what was expected", expectedTotalCalories, actualTotalCalories, 0.001);
 		assertEquals("Value of Adult Males did not match what was expected", ADULTMALES, actualAdultMales);
 		assertEquals("Value of Adult Females did not match what was expected", ADULTFEMALES, actualAdultFemales);
 		assertEquals("Value of Child Under 8 did not match what was expected", CHILDU8, actualChildU8);
@@ -158,12 +183,12 @@ public class FoodCalculatorTest{
     	public void CalculateCaloriesTest() {
 
 		FoodCalculator food = new FoodCalculator(1, 0, 1, 1);
-
-		double expectedTotalCalories = 42700; //Calculated by hand from data base info
-		double expectedWholeGrainCalories = 8092;
-		double expectedFruitsVeggiesCalories = 13216;
-		double expectedProteinCalories = 12362;
-		double expectedOtherCalories = 9030;
+		// wrong values as should not be from database but from data above
+		double expectedTotalCalories = ADULTMALE_TOTAL_CALORIES + CHILDO8_TOTAL_CALORIES + CHILDU8_TOTAL_CALORIES; //Calculated by hand from data base info
+		double expectedWholeGrainCalories = ADULTMALE_GRAIN_CALORIES + CHILDO8_GRAIN_CALORIES + CHILDU8_GRAIN_CALORIES;
+		double expectedFruitsVeggiesCalories = ADULTMALE_VEGGIE_CALORIES + CHILDO8_VEGGIE_CALORIES + CHILDU8_VEGGIE_CALORIES;
+		double expectedProteinCalories = ADULTMALE_PROTEIN_CALORIES + CHILDO8_PROTEIN_CALORIES + CHILDU8_PROTEIN_CALORIES;
+		double expectedOtherCalories = ADULTMALE_OTHER_CALORIES + CHILDO8_OTHER_CALORIES + CHILDU8_OTHER_CALORIES;
 
 		double actualTotalCalories = food.getTotalCalories();
 		double actualWholeGrainCalories = food.getWholeGrainCalories();

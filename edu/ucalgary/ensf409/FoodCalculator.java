@@ -29,17 +29,6 @@ public class FoodCalculator{
 
     private ArrayList<String[]> hamperFoodCombo = new ArrayList<String[]>(); // optimum hamper combo storage variable
 
-
-
-    private Comparator<ArrayList<String[]>> ascendingHamperCalories = new Comparator<ArrayList<String[]>>() {
-        @Override
-        public int compare(ArrayList<String[]> o1, ArrayList<String[]> o2) {
-            double o1Calories = totalComboCalories(o1);
-            double o2Calories = totalComboCalories(o2);
-            return Double.compare(o1Calories, o2Calories);
-        }
-    };
-
     /**
      * Constructor to set the numbers of types of people 
      * and calculate the numbers of calories needed for the hamper
@@ -78,11 +67,6 @@ public class FoodCalculator{
      * Getter for optimum Hamper Food Combo
      */
     public ArrayList<String[]> getHamperFoodCombo() { return this.hamperFoodCombo; }
-
-    /**
-     * Getter for comparator
-     */
-    public Comparator<ArrayList<String[]>> getComparator() {return ascendingHamperCalories;}
     
     /**
      * Calculates the total number of whole grain calories needed for the hamper per day
@@ -168,16 +152,18 @@ public class FoodCalculator{
         Iterator<ArrayList<String[]>> allCombosIterator = testAllCombos.iterator();
         TreeMap<Double, ArrayList<String[]>> workingCombos = new TreeMap<>();
         // For every one that meets requirements, add to treemap
-        // tree map will sort by total calories used as key, least to greatest
+        // tree map will sort by total calories of a food item,used as key
         while (allCombosIterator.hasNext()) {
             ArrayList<String[]> combo = allCombosIterator.next();
             if (meetAllCaloricNeeds(combo)) {
+                // Only add to working combos if meets all caloric requirements
                 Double totalCalories = totalComboCalories(combo);
                 workingCombos.put(totalCalories, combo);
             }
         }
         hamperFoodCombo = new ArrayList<>(workingCombos.ceilingEntry(0.0).getValue());
-        // Returns first one, as that has lowest total calories, thus lowest waste
+        // Returns combo with that has calories nearest to 0
+        // nearest to 0 calories means combo with least calories overall
     }
     //Below are 4 private methods that returns the difference in calories needed to fulful request and
     // current hamper contents
@@ -263,16 +249,18 @@ public class FoodCalculator{
         // Recursive function that simulates choosing and not choosing an element to make a set
         if (array.size() == 1) {
             ArrayList<String[]> e = new ArrayList<>(1);
+            // Possible set 1, has the element
             String[] e1 = array.get(0);
             e.add(e1);
             allCombos.add(e);
-
+            // Possible set 2, does not have the element
             e = new ArrayList<>();
             allCombos.add(e);
 
             return allCombos;
         }
         // Need to recurse but take out first element
+        // So can later decide to make 2 more sets, having it and not having it
         ArrayList<String[]> withoutFirstElement = new ArrayList<>(array);
         String[] firstElement = withoutFirstElement.remove(0);
         ArrayList<ArrayList<String[]>> returnedSets = allPossibleCombos(withoutFirstElement);
@@ -281,10 +269,10 @@ public class FoodCalculator{
             ArrayList<String[]> set = setsIterator.next();
             ArrayList<String[]> set2 = new ArrayList<>(set);
             
-            set.add(firstElement); //possible set 1, element is added
+            set.add(firstElement); //possible set 1, element removed is added
             allCombos.add(set);
 
-            allCombos.add(set2);   // possible set 2, element is not added
+            allCombos.add(set2);   // possible set 2, element removed is not added
         }
         return allCombos;
     }
@@ -316,12 +304,30 @@ public class FoodCalculator{
     }
     
     public static void main(String[] args) {
-        DatabaseReader.initializeConnection();
+        if (!DatabaseReader.initializeConnection()) {
+            System.out.println("Unable to initialize connection.");
+            System.exit(0);
+        }
         FoodInventory foodInventory = new FoodInventory();
-        ChildUnderEight cUnderEight = new ChildUnderEight(25, 25, 25, 25, 1000);
-        FoodCalculator foodCalculator = new FoodCalculator(0, 0, 0, 1);
+        Iterator<String[]> inventoryIterator = FoodInventory.getInventory().iterator();
+        while (inventoryIterator.hasNext()) {
+            String[] food = inventoryIterator.next();
+            for (String s : food) {
+                System.out.print(s);
+                System.out.print("\t");
+            }
+            System.out.println();
+        }
+        ChildUnderEight childUnderEight = new ChildUnderEight(25,25,25,25,2000);
+        FoodCalculator foodCalculator = new FoodCalculator(0, 0, 1, 0);
+        /*
+        System.out.println(foodCalculator.getWholeGrainCalories());
+        System.out.println(foodCalculator.getFruitsVeggiesCalories());
+        System.out.println(foodCalculator.getProteinCalories());
+        System.out.println(foodCalculator.getOtherCalories());
+        */
         foodCalculator.calculateFoodCombos();
-        
+        System.out.println("Hamper combo:");
         Iterator<String[]> hamperIterator = foodCalculator.getHamperFoodCombo().iterator();
         while (hamperIterator.hasNext()) {
             String[] food = hamperIterator.next();
