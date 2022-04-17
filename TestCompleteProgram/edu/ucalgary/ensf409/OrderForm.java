@@ -91,7 +91,7 @@ public class OrderForm {
         for (int i = 0; i < hamperList.size(); i++) { //Print each hamper
             currentHamper = hamperList.get(i);
             int counter = i + 1;
-            appendToText("Hamper " + counter + "Items:\n", "Order_Form" + formCounter);
+            appendToText("Hamper " + counter + " Items:\n", "Order_Form" + formCounter);
             String hamperContents = documentHamper(currentHamper.getFoodCalculator().getHamperFoodCombo());
             appendToText(hamperContents, "Order_Form" + formCounter);
             appendToText("\n\n", "Order_Form" + formCounter);
@@ -134,10 +134,11 @@ public class OrderForm {
                 childU8String = numChildU8 + " Child under 8, ";
             }
             if (numChildO8 != 0) {
-                childO8String = numChildO8 + " Child over 8";
+                childO8String = numChildO8 + " Child over 8, ";
             }
-            appendToText("Hamper " + counter + ": " + adultFemaleString + adultMaleString + 
-                childU8String + childO8String + "\n", "Order_Form" + formCounter);
+            String toAppend =  "Hamper " + counter + ": " + adultFemaleString + adultMaleString + childU8String + childO8String;
+            toAppend = toAppend.substring(0,toAppend.length() - 2) + "\n";
+            appendToText(toAppend, "Order_Form" + formCounter);
         }
     }
     
