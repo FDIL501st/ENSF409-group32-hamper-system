@@ -5,7 +5,14 @@ Name: Order_Form1
 Date: 2022-04-17
 
 Original Request
-Hamper 1: 1 Adult Female, 1 Adult Male, 2 Child over 8
-Hamper 2: 1 Child under 8
+Hamper 1: 1 Adult Female, 1 Child over 8
 
-Shortage detected!!!Missing 839.7 protein calories
+Hamper 1 Items:
+19	Pasta, dry, pound
+16	Eggs, dozen
+10	Broccoli, 3 bunches
+9	Broccoli, 3 bunches
+7	Chicken broth, can
+2	Tomato Sauce, jar
+
+
