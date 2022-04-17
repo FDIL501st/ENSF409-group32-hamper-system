@@ -2,10 +2,7 @@
  * <h1>OrderForm</h1>
  * Project for ENSF 409
  * <p>
- * @author Adem Soufi <a href="mailto:adem.soufi@ucalgary.ca">adem.soufi@ucalgary.ca</a> | UCID: 30101252
- * @author Fadil Husain <a href="mailto:fadil.husain@ucalgary.ca">fadil.husain@ucalgary.ca</a> | UCID: 30113409
- * @author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a> | UCID: 30092208
- * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
+ * @author Group 32
  * @version 1.7
  * @since 1.0
  */
@@ -49,8 +46,7 @@ public class OrderForm {
     
     /**
      * The reportShortage method creates the order form in the case of a shortage, 
-     * and then writes details on the shortage the the order form.
-     * @param hamperList the the list of hampers for the order form.
+     * and then writes details on the shortage the the order form.  
      */
     public void reportShortage (ArrayList<Hamper> hamperList) {
         
@@ -95,7 +91,7 @@ public class OrderForm {
         for (int i = 0; i < hamperList.size(); i++) { //Print each hamper
             currentHamper = hamperList.get(i);
             int counter = i + 1;
-            appendToText("Hamper " + counter + " Items:\n", "Order_Form" + formCounter);
+            appendToText("Hamper " + counter + "Items:\n", "Order_Form" + formCounter);
             String hamperContents = documentHamper(currentHamper.getFoodCalculator().getHamperFoodCombo());
             appendToText(hamperContents, "Order_Form" + formCounter);
             appendToText("\n\n", "Order_Form" + formCounter);
@@ -122,41 +118,26 @@ public class OrderForm {
         String childO8String = "";
         
         for (int i = 0; i < hamperList.size(); i++) { //Go through each hamper
-
-            numAdultFemale = 0;
-            numAdultMale = 0;
-            numChildU8 = 0;
-            numChildO8 = 0;
-
             currentHamper = hamperList.get(i); //Set currentHamper to the current hamper
             int counter = i+1;
             numAdultFemale = currentHamper.getNumAdultFemales(); //Set data from current hamper
             numAdultMale = currentHamper.getNumAdultMales();
-            numChildU8 = currentHamper.getNumChildrenU8();
-            numChildO8 = currentHamper.getNumChildrenO8();
+            numChildU8 = currentHamper.getNumChildrenO8();
+            numChildO8 = currentHamper.getNumChildrenU8();
             if (numAdultFemale != 0) {
-                adultFemaleString = numAdultFemale + " Adult Female, ";
-            } else{
-                adultFemaleString = "";
+                adultFemaleString = numAdultFemale + "Adult Female, ";
             }
             if (numAdultMale != 0) {
-                adultMaleString = numAdultMale + " Adult Male, ";
-            } else{
-                adultMaleString = "";
+                adultMaleString = numAdultMale + "Adult Male, ";
             }
             if (numChildU8 != 0) {
-                childU8String = numChildU8 + " Child under 8, ";
-            } else{
-                childU8String = "";
+                childU8String = numChildU8 + "Child under 8, ";
             }
             if (numChildO8 != 0) {
-                childO8String = numChildO8 + " Child over 8, ";
-            } else{
-                childO8String = "";
+                childO8String = numChildO8 + "Child over 8";
             }
-            String toAppend =  "Hamper " + counter + ": " + adultFemaleString + adultMaleString + childU8String + childO8String;
-            toAppend = toAppend.substring(0,toAppend.length() - 2) + "\n";
-            appendToText(toAppend, "Order_Form" + formCounter);
+            appendToText("Hamper " + counter + ": " + adultFemaleString + adultMaleString + 
+                childU8String + childO8String + "\n", "Order_Form" + formCounter);
         }
     }
     
@@ -171,12 +152,10 @@ public class OrderForm {
     //Method for creating String representation of each hamper
     public String documentHamper(ArrayList<String[]> hamper) { 
         StringBuilder myString = new StringBuilder(""); //will eventually return this
-        Iterator<String[]> hamperIterator = hamper.iterator();
-        while (hamperIterator.hasNext()) { //For every item in hamper
-            String[] foodItem = hamperIterator.next();
-            String toAppend = String.format("%s\t%s\n", 
-            foodItem[0], foodItem[1]);
-            myString.append(toAppend);
+
+        for (int j = 0; j < hamper.size(); j++) { //For every hamper in the order
+            myString.append(hamper.get(j)[0] + '\t' + hamper.get(j)[1]); //Get ID and name
+            myString.append('\n'); //Formatting 
         }
         return myString.toString();
     }    
@@ -220,7 +199,6 @@ public class OrderForm {
      * The createNewText method clears any data currently in a specified 
      * text file if it already exists, or creates a new one if it doesn't.
      * @param outputfile is the name of the desired output file.
-     * @return is used to check that the text file was created successfully.
      */
      //Method for creating a text file
     public static boolean createNewText(String outputfile) {
