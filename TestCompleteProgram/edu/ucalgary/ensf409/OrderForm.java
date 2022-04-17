@@ -2,7 +2,10 @@
  * <h1>OrderForm</h1>
  * Project for ENSF 409
  * <p>
- * @author Group 32
+ * @author Adem Soufi <a href="mailto:adem.soufi@ucalgary.ca">adem.soufi@ucalgary.ca</a> | UCID: 30101252
+ * @author Fadil Husain <a href="mailto:fadil.husain@ucalgary.ca">fadil.husain@ucalgary.ca</a> | UCID: 30113409
+ * @author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a> | UCID: 30092208
+ * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
  * @version 1.7
  * @since 1.0
  */
@@ -118,23 +121,37 @@ public class OrderForm {
         String childO8String = "";
         
         for (int i = 0; i < hamperList.size(); i++) { //Go through each hamper
+
+            numAdultFemale = 0;
+            numAdultMale = 0;
+            numChildU8 = 0;
+            numChildO8 = 0;
+
             currentHamper = hamperList.get(i); //Set currentHamper to the current hamper
             int counter = i+1;
             numAdultFemale = currentHamper.getNumAdultFemales(); //Set data from current hamper
             numAdultMale = currentHamper.getNumAdultMales();
-            numChildU8 = currentHamper.getNumChildrenO8();
-            numChildO8 = currentHamper.getNumChildrenU8();
+            numChildU8 = currentHamper.getNumChildrenU8();
+            numChildO8 = currentHamper.getNumChildrenO8();
             if (numAdultFemale != 0) {
                 adultFemaleString = numAdultFemale + " Adult Female, ";
+            } else{
+                adultFemaleString = "";
             }
             if (numAdultMale != 0) {
                 adultMaleString = numAdultMale + " Adult Male, ";
+            } else{
+                adultMaleString = "";
             }
             if (numChildU8 != 0) {
                 childU8String = numChildU8 + " Child under 8, ";
+            } else{
+                childU8String = "";
             }
             if (numChildO8 != 0) {
                 childO8String = numChildO8 + " Child over 8, ";
+            } else{
+                childO8String = "";
             }
             String toAppend =  "Hamper " + counter + ": " + adultFemaleString + adultMaleString + childU8String + childO8String;
             toAppend = toAppend.substring(0,toAppend.length() - 2) + "\n";
