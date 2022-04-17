@@ -49,7 +49,8 @@ public class OrderForm {
     
     /**
      * The reportShortage method creates the order form in the case of a shortage, 
-     * and then writes details on the shortage the the order form.  
+     * and then writes details on the shortage the the order form.
+     * @param hamperList the the list of hampers for the order form.
      */
     public void reportShortage (ArrayList<Hamper> hamperList) {
         
@@ -223,6 +224,7 @@ public class OrderForm {
      * The createNewText method clears any data currently in a specified 
      * text file if it already exists, or creates a new one if it doesn't.
      * @param outputfile is the name of the desired output file.
+     * @return is used to check that the text file was created successfully.
      */
      //Method for creating a text file
     public static boolean createNewText(String outputfile) {
