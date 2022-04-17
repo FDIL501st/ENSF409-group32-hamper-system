@@ -56,6 +56,8 @@ public class HamperRequest{
     */
 	public void addHampers(ArrayList<int[]> hamperRequests){
 
+		hampers.clear();
+
 		for(int[] hamperData : hamperRequests){
 			Hamper newHamper = new Hamper(hamperData[0], hamperData[1], hamperData[2], hamperData[3]);
 			hampers.add(newHamper);
