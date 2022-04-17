@@ -125,16 +125,16 @@ public class OrderForm {
             numChildU8 = currentHamper.getNumChildrenO8();
             numChildO8 = currentHamper.getNumChildrenU8();
             if (numAdultFemale != 0) {
-                adultFemaleString = numAdultFemale + "Adult Female, ";
+                adultFemaleString = numAdultFemale + " Adult Female, ";
             }
             if (numAdultMale != 0) {
-                adultMaleString = numAdultMale + "Adult Male, ";
+                adultMaleString = numAdultMale + " Adult Male, ";
             }
             if (numChildU8 != 0) {
-                childU8String = numChildU8 + "Child under 8, ";
+                childU8String = numChildU8 + " Child under 8, ";
             }
             if (numChildO8 != 0) {
-                childO8String = numChildO8 + "Child over 8";
+                childO8String = numChildO8 + " Child over 8";
             }
             appendToText("Hamper " + counter + ": " + adultFemaleString + adultMaleString + 
                 childU8String + childO8String + "\n", "Order_Form" + formCounter);

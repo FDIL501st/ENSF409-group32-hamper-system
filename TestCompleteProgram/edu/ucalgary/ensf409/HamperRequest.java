@@ -42,6 +42,7 @@ public class HamperRequest{
 		DatabaseReader.initializeConnection();
 		foodInventory = new FoodInventory();
 		orderForm = new OrderForm();
+		DatabaseReader.close();
 
 		
 		// for(int i = 0; i < hamper.length; i++){
@@ -50,7 +51,28 @@ public class HamperRequest{
 		// }
 	}
 
+	/**
+    * The addHampers method adds a new Hamper object to the hampers member.
+    */
+	public void addHampers(ArrayList<int[]> hamperRequests){
+
+		for(int[] hamperData : hamperRequests){
+			Hamper newHamper = new Hamper(hamperData[0], hamperData[1], hamperData[2], hamperData[3]);
+			hampers.add(newHamper);
+			numHampers++;
+		}
+	}
+	
+	/**
+     	* Getter method for hampers member. 
+     	*/
+	public ArrayList<Hamper> getHampers(){
+		return hampers;
+	}
+	
 	public void createHampers(){
+
+		DatabaseReader.initializeConnection();
 
 		double wholeGrainCalories;
 		double fruitsVeggiesCalories;
@@ -80,23 +102,5 @@ public class HamperRequest{
 
         DatabaseReader.close();
 	}
-	
-	/**
-     	* The addHamper method adds a new Hamper object to the hampers member.
-     	*/
-	
-	// I think we dont need this one(?)
-	// public void addHamper(Hamper hamper){
-	// 	hampers.add(hamper);
-	// 	numHampers++;
-	// }
-	
-	
-	/**
-     	* Getter method for hampers member. 
-     	*/
-	public ArrayList<Hamper> getHampers(){
-		return hampers;
-	}
-	
+
 }
