@@ -9,7 +9,7 @@ import java.util.Iterator;
  * Project for ENSF 409
  * <p>
  * @author Group 32
- * @version 1.6
+ * @version 1.7
  * @since 1.0
  */
 
@@ -31,20 +31,8 @@ public class FoodInventory {
         
         // Initialize inventory
         readDatabaseInventory();
-        // Initialize inventory calories to 0
-        setInventoryGrainCalories(0);
-        setInventoryVeggieCalories(0);
-        setInventoryProteinCalories(0);
-        setInventoryOtherCalories(0);
         // Calculate inventory calories from inventory
-        Iterator<String[]> inventoryIterator = inventory.iterator();
-        while (inventoryIterator.hasNext()) {
-            String[] foodItem = inventoryIterator.next();
-            inventoryGrainCalories += Double.parseDouble(foodItem[2]);
-            inventoryVeggieCalories += Double.parseDouble(foodItem[3]);
-            inventoryProteinCalories += Double.parseDouble(foodItem[4]);
-            inventoryOtherCalories += Double.parseDouble(foodItem[5]);
-        }
+        calculateInventoryCalories();
         //Also initialize client info
         ArrayList<Double[]> clientNeeds = new ArrayList<>();
         try {
@@ -62,6 +50,26 @@ public class FoodInventory {
         ChildOverEight childOverEight = new ChildOverEight(cO8Info[0], cO8Info[1], cO8Info[2], cO8Info[3], cO8Info[4]);
         ChildUnderEight childUnderEight = new ChildUnderEight(cU8Info[0], cU8Info[1], cU8Info[2], cU8Info[3], cU8Info[4]);
          
+    }
+
+    /**
+     * Calculates inventory calories
+     */
+    private static void calculateInventoryCalories() {
+        // Initialize inventory calories to 0
+        setInventoryGrainCalories(0);
+        setInventoryVeggieCalories(0);
+        setInventoryProteinCalories(0);
+        setInventoryOtherCalories(0);
+        // Start adding up 
+        Iterator<String[]> inventoryIterator = inventory.iterator();
+        while (inventoryIterator.hasNext()) {
+            String[] foodItem = inventoryIterator.next();
+            inventoryGrainCalories += Double.parseDouble(foodItem[2]);
+            inventoryVeggieCalories += Double.parseDouble(foodItem[3]);
+            inventoryProteinCalories += Double.parseDouble(foodItem[4]);
+            inventoryOtherCalories += Double.parseDouble(foodItem[5]);
+        }
     }
 
     public static String getShortageMessage() {
@@ -114,10 +122,11 @@ public class FoodInventory {
         // don't want to accidently try to use it again to remove items from database
         // that already has been removed
         toBeRemoved.clear();
-
+        
         if (numDeleted != toBeRemoved.size()) {
             return false;
         }
+        
         return true;
     }
 
@@ -179,6 +188,8 @@ public class FoodInventory {
                 return false;
             }
         }
+        calculateInventoryCalories();
+        // recalculate calories of inventory
         return true;
     }
     /**
@@ -186,12 +197,17 @@ public class FoodInventory {
      * Also clears out toBeRemoved
      * @return True if all food items were restored. False if not.
      * @implSpec This should be called in case of a shortage before updating database.
-     * Ensure no food items not used are lost.
+     * Ensure no food items not used are lost. 
+     * Alternate function to use from updateDatabase().
      */
     public static boolean restoreInventory() {
         inventory.addAll(toBeRemoved);
         if (inventory.containsAll(toBeRemoved)) {
+            // clear toBeRemoved as no longer needed
             toBeRemoved.clear();
+
+            calculateInventoryCalories();
+            // recalculate calories of inventory
             return true;
         }
         return false;
