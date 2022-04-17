@@ -120,6 +120,7 @@ public class FoodCalculatorTest{
 		// allCombos should end up as empty
 		
 		//Issue found is that different ordering of String[] elements can cause the combo to be "different"
+		// So made sure that allCombos followed same ordering as code
 		allCombos.removeAll(actualArray);
 		assertTrue("allCombos should be empty as removed all elements from actual, which should be all of allCombos",
 		allCombos.isEmpty());
