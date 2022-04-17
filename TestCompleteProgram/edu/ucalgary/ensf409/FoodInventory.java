@@ -144,22 +144,22 @@ public class FoodInventory {
      */
     public static boolean checkShortage(double[] neededCalories) {
         if (neededCalories[0] > inventoryGrainCalories) {
-            double defecit = inventoryGrainCalories - neededCalories[0];
+            double defecit = neededCalories[0] - inventoryGrainCalories;
             setShortageMessage("Missing " + defecit + " grain calories");
             return true;
         }
         if (neededCalories[1] > inventoryVeggieCalories) {
-            double defecit = inventoryVeggieCalories - neededCalories[1];
+            double defecit = neededCalories[1] - inventoryVeggieCalories;
             setShortageMessage("Missing " + defecit + " fruits and veggie calories");
             return true;
         }
         if (neededCalories[2] > inventoryProteinCalories) {
-            double defecit = inventoryProteinCalories - neededCalories[2];
+            double defecit = neededCalories[2] - inventoryProteinCalories;
             setShortageMessage("Missing " + defecit + " protein calories");
             return true;
         }
         if (neededCalories[3] > inventoryOtherCalories) {
-            double defecit = inventoryOtherCalories - neededCalories[3];
+            double defecit = neededCalories[3] - inventoryOtherCalories;
             setShortageMessage("Missing " + defecit + " other calories");
             return true;
         }
