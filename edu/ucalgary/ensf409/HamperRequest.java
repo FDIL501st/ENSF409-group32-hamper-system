@@ -30,7 +30,7 @@ public class HamperRequest{
 	 */
 	public HamperRequest(ArrayList<int[]> hamperRequests){
 
-		//DatabaseReader.initializeConnection();
+		DatabaseReader.initializeConnection();
 
 		foodInventory = new FoodInventory();
 		orderForm = new OrderForm();
@@ -43,7 +43,7 @@ public class HamperRequest{
 			hampers.add(newHamper);
 		}
 
-		//DatabaseReader.close();
+		DatabaseReader.close();
 
 	}
 
@@ -116,7 +116,7 @@ public class HamperRequest{
 	 */
 	public void createHampers(){
 
-		//DatabaseReader.initializeConnection();
+		DatabaseReader.initializeConnection();
 
 		double wholeGrainCalories;
 		double fruitsVeggiesCalories;
@@ -157,7 +157,7 @@ public class HamperRequest{
 			FoodInventory.updateDatabase();
 		}
 
-		//DatabaseReader.close();
+		DatabaseReader.close();
 
 	}
 }
