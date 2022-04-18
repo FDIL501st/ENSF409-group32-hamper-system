@@ -21,8 +21,8 @@ import java.util.*;
 public class HamperRequestTest{
 
     /**
-    * Testing HamperRequest constructor to ensure it creates a non null instance of the hamper ArrayList object.
-    */
+     * Testing HamperRequest constructor to ensure it creates a non null instance of the hamper ArrayList object.
+     */
 	@Test
 	public void testHamperRequestConstructor(){
 		
@@ -51,8 +51,8 @@ public class HamperRequestTest{
 	}
 	
 	/**
-    * Test the HamperRequest constructor and the getHampers() method
-    */
+     * Test the HamperRequest constructor and the getHampers() method
+     */
 	@Test
 	public void getHamperTest(){
 		
@@ -94,8 +94,8 @@ public class HamperRequestTest{
 	}
 	
 	/**
-    * Testi the overwriteHampers() function in HamperRequest
-    */
+     * Test the overwriteHampers() function in HamperRequest
+     */
 	@Test
 	public void overwriteHampersTest(){
 		
@@ -169,10 +169,5 @@ public class HamperRequestTest{
 		OrderForm actualOrderForm = myRequest.getOrderForm();
 
 		assertNotNull("HamperRequest constructor did not create an OrderForm object.", actualOrderForm);
-
-
-
 	}
-
-
 }
