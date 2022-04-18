@@ -26,7 +26,7 @@ public class HamperRequest{
 	 * This constructor for HamperRequest was created explicitly for the purpose of testing to
 	 * get around the database access required for the primary constructor
 	 * @param hamperRequests an ArrayList of int arrays containing data regarding each hamper. 
-	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childO8, childU8
+	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childU8, childO8
 	 */
 	public HamperRequest(ArrayList<int[]> hamperRequests){
 
@@ -51,7 +51,7 @@ public class HamperRequest{
 	 * This constructor for HamperRequest was created explicitly for the purpose of testing to
 	 * get around the database access required for the primary constructor
 	 * @param hamperRequests an ArrayList of int arrays containing data regarding each hamper. 
-	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childO8, childU8
+	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childU8, childO8
 	 * @param i is an integer passed in from the tests to indicate that the 'testing' constructor should be used
 	 */
 
@@ -70,7 +70,7 @@ public class HamperRequest{
 	 * overwriteHampers is utilized for overwriting the hamperRequests ArrayList. It is utilized when the 
 	 * program has already created a hamper request and the user is requesting another set of hampers.
 	 * @param hamperRequests an ArrayList of int arrays containing data regarding each hamper. 
-	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childO8, childU8
+	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childU8, childO8
 	 */
 	public void overwriteHampers(ArrayList<int[]> hamperRequests){
 
