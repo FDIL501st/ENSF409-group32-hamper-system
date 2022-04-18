@@ -23,7 +23,7 @@ public class HamperRequest{
 	private FoodInventory foodInventory;
 	
 	/**
-	 * Th constructor for HamperRequest.
+	 * The constructor for HamperRequest.
 	 * Requires database access.
 	 * @param hamperRequests an ArrayList of int arrays containing data regarding each hamper. 
 	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childO8, childU8
