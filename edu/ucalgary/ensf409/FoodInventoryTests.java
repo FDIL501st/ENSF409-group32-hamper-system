@@ -60,15 +60,14 @@ public class FoodInventoryTests{
         foodItem[2] = "20";
         foodItem[3] = "13";
         foodItem[4] = "50";
-        foodItem[5] = "9";
-        foodItem[6] = "50";
+        foodItem[5] = "50";
+        foodItem[6] = "100";
         expectedFoods.add(foodItem);
         FoodInventory.setInventory(expectedFoods);
         double[] neededCalories = {10.1, 11, 23, 45, 56};
-        boolean expected = true;
         boolean actual = FoodInventory.checkShortage(neededCalories);
     
-        assertEquals("checkShortageTest did not return the correct boolean value", expected, actual);
+        assertTrue("checkShortageTest did not return true.",actual);
     }
     
     // Test the getters and setters of FoodInventory
