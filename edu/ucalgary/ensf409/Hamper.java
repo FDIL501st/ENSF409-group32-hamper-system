@@ -25,10 +25,14 @@ public class Hamper{
 		private int numChildO8;
 		
 		// Methods.
-		
-		/**
-     		* Constructor. 
-     		*/
+
+		 /**
+		  * Constructor for the hamper class
+		  * @param numAdultMales is the number of adult males in the hamper
+		  * @param numAdultFemales is the number of adult females in the hamper
+		  * @param numChildU8 is the number of children under 8 in the hamper
+		  * @param numChildO8 is the number of children over 8 in the hamper
+		  */
 		public Hamper(int numAdultMales, int numAdultFemales, int numChildU8, int numChildO8){
 			
 			this.numAdultMales = numAdultMales;
@@ -39,24 +43,41 @@ public class Hamper{
 		}
 		
 		/**
-     		* Getters. 
-     		*/
+		 * Getter for FoodCalculator
+		 * @return a FoodCalulator object
+		 */
 		public FoodCalculator getFoodCalculator(){
 			return foodCalculator;
 		}
 		
+		/**
+		 * Getter for number of adult males in the hamper
+		 * @return number of adult males in the hamper
+		 */
 		public int getNumAdultMales(){
 			return numAdultMales;
 		}
 		
+		/**
+		 * Getter for number of adult females in the hamper
+		 * @return number of adult females in the hamper
+		 */
 		public int getNumAdultFemales(){
 			return numAdultFemales;
 		}
 		
+		/**
+		 * Getter for number of children under 8 in the hamper
+		 * @return number of children under 8 in the hamper
+		 */
 		public int getNumChildrenU8(){
 			return numChildU8;
 		}
-		
+
+		/**
+		 * Getter for number of children over 8 in the hamper
+		 * @return number of children over 8 in the hamper
+		 */
 		public int getNumChildrenO8(){
 			return numChildO8;
 		}
