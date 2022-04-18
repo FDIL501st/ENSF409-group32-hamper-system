@@ -23,10 +23,10 @@ public class HamperRequest{
 	private FoodInventory foodInventory;
 	
 	/**
-	 * This constructor for HamperRequest was created explicitly for the purpose of testing to
-	 * get around the database access required for the primary constructor
+	 * Th constructor for HamperRequest.
+	 * Requires database access.
 	 * @param hamperRequests an ArrayList of int arrays containing data regarding each hamper. 
-	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childU8, childO8
+	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childO8, childU8
 	 */
 	public HamperRequest(ArrayList<int[]> hamperRequests){
 
@@ -51,12 +51,14 @@ public class HamperRequest{
 	 * This constructor for HamperRequest was created explicitly for the purpose of testing to
 	 * get around the database access required for the primary constructor
 	 * @param hamperRequests an ArrayList of int arrays containing data regarding each hamper. 
-	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childU8, childO8
+	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childO8, childU8
 	 * @param i is an integer passed in from the tests to indicate that the 'testing' constructor should be used
 	 */
 
 	public HamperRequest(ArrayList<int[]> hamperRequests, int i){
 	
+		orderForm = new OrderForm();
+
 		hampers = new ArrayList<Hamper>();
 				
 		// adding in new hamper
@@ -70,7 +72,7 @@ public class HamperRequest{
 	 * overwriteHampers is utilized for overwriting the hamperRequests ArrayList. It is utilized when the 
 	 * program has already created a hamper request and the user is requesting another set of hampers.
 	 * @param hamperRequests an ArrayList of int arrays containing data regarding each hamper. 
-	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childU8, childO8
+	 * The data in each array for each hamper is formatted as: adultMales, adultFemales, childO8, childU8
 	 */
 	public void overwriteHampers(ArrayList<int[]> hamperRequests){
 
@@ -83,17 +85,34 @@ public class HamperRequest{
 	}
 	
 	/**
-    	* Getter method for hampers member. 
-	* @return an ArrayList of hampers
-    	*/
+     * Getter method for hampers member. 
+	 * @return an ArrayList of hampers
+    */
 	public ArrayList<Hamper> getHampers(){
 		return hampers;
+	}
+
+	/**
+	 * Getter for orderForm
+	 * @return an OrderForm object
+	 */
+	public OrderForm getOrderForm(){
+		return orderForm;
+	}
+
+	/**
+	 * Getter for foodInventory
+	 * @return a FoodInventory object
+	 */
+	public FoodInventory getFoodInventory(){
+		return foodInventory;
 	}
 	
 	/**
 	 * createHampers is the function called to perform the calculation of the best food combos 
 	 * for each hamper in turn. It checks for any shortages and either creates the order form and 
 	 * updates the inventory, or reports a shortage.
+	 * Requires database access.
 	 */
 	public void createHampers(){
 
@@ -140,6 +159,5 @@ public class HamperRequest{
 
 		//DatabaseReader.close();
 
-	
 	}
 }

@@ -14,6 +14,8 @@ package edu.ucalgary.ensf409;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+
+import java.beans.Transient;
 import java.util.*;
 
 public class HamperRequestTest{
@@ -143,4 +145,34 @@ public class HamperRequestTest{
 		assertEquals("Values set for the number of children under 8 in overwriteHampers for the hamper for the first hamper did not match what was expected", expectedNumChildU8, actualNumChildU8);
 		assertEquals("Values set for the number of children over 8 in overwriteHampers for the hamper for the first hamper did not match what was expected", expectedNumChildO8, actualNumChildO8);
 	}
+
+	/**
+	 * Test for getOrderForm
+	 */
+	@Test
+	public void getOrderFormTest(){
+
+		//// Setting up variables for testing.
+
+		// Create a new ArrayList of integer arrays and populate it.
+		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
+		
+		int[] hamperData1 = {1, 0, 3, 2};
+		hamperRequests.add(hamperData1);
+
+		// Create HamperRequest object for testing.
+		HamperRequest myRequest = new HamperRequest(hamperRequests, 1);
+
+		//// Testing.
+
+		// Use getOrderForm() to get the form object
+		OrderForm actualOrderForm = myRequest.getOrderForm();
+
+		assertNotNull("HamperRequest constructor did not create an OrderForm object.", actualOrderForm);
+
+
+
+	}
+
+
 }
