@@ -133,7 +133,6 @@ public class FoodCalculatorTest{
 	@Test
 	public void testFoodCalculatorGettersSam(){
 		
-		
 		// Create Hamper object for testing. 
 		Hamper hamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
 	

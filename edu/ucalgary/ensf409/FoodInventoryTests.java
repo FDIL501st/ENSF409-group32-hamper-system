@@ -52,7 +52,17 @@ public class FoodInventoryTests{
     // Test that checkShortageTest returns true when there is a shortage
     @Test
     public void checkShortageTest(){
+        // Create a foodCombo of one item
         ArrayList<String[]> expectedFoods = new ArrayList<>();
+        String[] foodItem = new String[7];
+        foodItem[0] = "10";
+        foodItem[1] = "testFood";
+        foodItem[2] = "20";
+        foodItem[3] = "13";
+        foodItem[4] = "50";
+        foodItem[5] = "9";
+        foodItem[6] = "50";
+        expectedFoods.add(foodItem);
         FoodInventory.setInventory(expectedFoods);
         double[] neededCalories = {10.1, 11, 23, 45, 56};
         boolean expected = true;
