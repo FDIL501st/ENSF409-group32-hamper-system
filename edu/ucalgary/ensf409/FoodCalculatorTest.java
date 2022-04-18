@@ -2,8 +2,11 @@
  * <h1>FoodCalculatorTest</h1>
  * Project for ENSF 409
  * <p>
- * @author Group 32
- * @version 1.3
+ * @author Adem Soufi <a href="mailto:adem.soufi@ucalgary.ca">adem.soufi@ucalgary.ca</a> | UCID: 30101252
+ * @author Fadil Husain <a href="mailto:fadil.husain@ucalgary.ca">fadil.husain@ucalgary.ca</a> | UCID: 30113409
+ * @author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a> | UCID: 30092208
+ * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
+ * @version 1.5
  * @since 1.0
  */
 
@@ -72,6 +75,10 @@ public class FoodCalculatorTest{
 		ChildOverEight.setCalories(CHILDO8_TOTAL_CALORIES);
 	
 	}
+
+	/**
+	 * Test that the allPossibleCombos function does indeed generate every possible combination
+	 */
 	@Test 
 	public void testAllPossibleCombos() {
 		FoodCalculator foodCalculator = new FoodCalculator(0, 0, 0, 0);
@@ -119,7 +126,7 @@ public class FoodCalculatorTest{
 		// If both allCombos and actual have same combos, then if remove all of actual in allCombos, 
 		// allCombos should end up as empty
 		
-		//Issue found is that different ordering of String[] elements can cause the combo to be "different"
+		// Issue found is that different ordering of String[] elements can cause the combo to be "different"
 		// So made sure that allCombos followed same ordering as code
 		allCombos.removeAll(actualArray);
 		assertTrue("allCombos should be empty as removed all elements from actual, which should be all of allCombos",
@@ -127,9 +134,8 @@ public class FoodCalculatorTest{
 	}
 	
 	/**
-     	* Testing that the getters in the FoodCalculator class all return the correct values after being initialized in the constructor.
-     	*/
-	
+    * Test that the getters in the FoodCalculator class all return the correct values after being initialized in the constructor.
+    */
 	@Test
 	public void testFoodCalculatorGettersSam(){
 		
@@ -149,7 +155,6 @@ public class FoodCalculatorTest{
 		double expectedTotalCalories = ((double)ADULTMALES)* ADULTMALE_TOTAL_CALORIES + ((double)ADULTFEMALES)* ADULTFEMALE_TOTAL_CALORIES + ((double)CHILDU8)* CHILDU8_TOTAL_CALORIES + ((double)CHILDO8)* CHILDO8_TOTAL_CALORIES;
 		
 		//// Testing Getters.
-		
 		
 		double actualWholeGrainCalories = foodCalcReference.getWholeGrainCalories();
 		double actualFruitsVeggiesCalories = foodCalcReference.getFruitsVeggiesCalories();
@@ -173,8 +178,11 @@ public class FoodCalculatorTest{
 		
 	}
 	
+	/**
+	 * Test that the FoodCalculator constructor properly initalizes values
+	 */
 	@Test
-    	public void foodCalculatorConstructorTest() {
+    public void foodCalculatorConstructorTest() {
 
 		FoodCalculator food = new FoodCalculator(1, 1, 2, 1);
 
@@ -194,10 +202,9 @@ public class FoodCalculatorTest{
 		assertEquals("Constructor did not properly set NumChildrenO8", expectedChildrenO8, actualChildrenO8);
     	}
     	
-	/**
-     	* Testing that the calculated calorie values match what is expected.
+		/**
+     	* Test that the calculated calorie values match what is expected.
      	*/
-	
     	@Test 
     	public void CalculateCaloriesTest() {
 
@@ -220,6 +227,6 @@ public class FoodCalculatorTest{
 		assertEquals("Number of calories from fruits and veggies was not calculated successfully", expectedFruitsVeggiesCalories, actualFruitsVeggiesCalories, 0.001);
 		assertEquals("Number of calories from proteins was not calculated successfully", expectedProteinCalories, actualProteinCalories, 0.001);
 		assertEquals("Number of calories from other calorie sources was not calculated successfully", expectedOtherCalories, actualOtherCalories, 0.001);
-    	}
+    }
 	
 }
