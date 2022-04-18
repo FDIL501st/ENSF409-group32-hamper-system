@@ -17,6 +17,8 @@ import java.util.Iterator;
  */
 
 public class FoodInventory {
+
+    // Member Variables
     private static ArrayList<String[]> inventory = new ArrayList<>();
     private static ArrayList<String[]> toBeRemoved = new ArrayList<>();
     private static double inventoryProteinCalories;
@@ -75,12 +77,22 @@ public class FoodInventory {
         }
     }
 
+    /**
+     * Getter for any shortage message
+     * @return is a String of the shortage message
+     */
     public static String getShortageMessage() {
         return shortageMessage;
     }
+
+    /**
+     * Setter for any shortage message
+     * @param message is the shortage message
+     */
     public static void setShortageMessage(String message) {
         shortageMessage = message;
     }
+
     /**
      * Reads food inventory from database
      * @return True if read was successfull. False if read failed.
@@ -145,22 +157,22 @@ public class FoodInventory {
     public static boolean checkShortage(double[] neededCalories) {
         if (neededCalories[0] > inventoryGrainCalories) {
             double defecit = neededCalories[0] - inventoryGrainCalories;
-            setShortageMessage("Missing " + defecit + " grain calories");
+            setShortageMessage("Missing " + String.format("%.0f", defecit) + " grain calories.");
             return true;
         }
         if (neededCalories[1] > inventoryVeggieCalories) {
             double defecit = neededCalories[1] - inventoryVeggieCalories;
-            setShortageMessage("Missing " + defecit + " fruits and veggie calories");
+            setShortageMessage("Missing " + String.format("%.0f", defecit) + " fruits and veggie calories.");
             return true;
         }
         if (neededCalories[2] > inventoryProteinCalories) {
             double defecit = neededCalories[2] - inventoryProteinCalories;
-            setShortageMessage("Missing " + defecit + " protein calories");
+            setShortageMessage("Missing " + String.format("%.0f", defecit) + " protein calories.");
             return true;
         }
         if (neededCalories[3] > inventoryOtherCalories) {
             double defecit = neededCalories[3] - inventoryOtherCalories;
-            setShortageMessage("Missing " + defecit + " other calories");
+            setShortageMessage("Missing " + String.format("%.0f", defecit) + " other calories.");
             return true;
         }
         return false;
@@ -195,6 +207,7 @@ public class FoodInventory {
         // recalculate calories of inventory
         return true;
     }
+
     /**
      * Restores food items that were removed in inventory.
      * Also clears out toBeRemoved
@@ -215,45 +228,86 @@ public class FoodInventory {
         }
         return false;
     }
+
     //Getters and Setters
 
+    /**
+     * Getter for the current food inventory
+     * @return an ArrayList of String arrays containinig the current inventory
+     */
     public static ArrayList<String[]> getInventory() {
         return inventory;
     }
 
+    /**
+     * Setter for the food inventory
+     * @param inventory is the current food inventory available
+     */
     public static void setInventory(ArrayList<String[]> inventory) {
         FoodInventory.inventory = inventory;
         calculateInventoryCalories();
     }
 
+    /**
+     * Getter for the protein calories in the inventory
+     * @return double value of the protein calories in the inventory
+     */
     public static double getInventoryProteinCalories() {
         return inventoryProteinCalories;
     }
 
+    /**
+     * Setter for the inventory protein calories
+     * @param inventoryProteinCalories is the protein calories available in the inventory
+     */
     public static void setInventoryProteinCalories(double inventoryProteinCalories) {
         FoodInventory.inventoryProteinCalories = inventoryProteinCalories;
     }
 
+    /**
+     * Getter for the fruits and veggie calories in the inventory
+     * @return double value of the fruits and veggies calories in the inventory
+     */
     public static double getInventoryVeggieCalories() {
         return inventoryVeggieCalories;
     }
 
+    /**
+     * Setter for the inventory fruits and veggies calories
+     * @param inventoryVeggieCalories is the fruits and veggies calories available in the inventory
+     */
     public static void setInventoryVeggieCalories(double inventoryVeggieCalories) {
         FoodInventory.inventoryVeggieCalories = inventoryVeggieCalories;
     }
 
+    /**
+     * Getter for the grain calories in the inventory
+     * @return double value of the grain calories in the inventory
+     */
     public static double getInventoryGrainCalories() {
         return inventoryGrainCalories;
     }
 
+    /**
+     * Setter for the inventory grain calories
+     * @param inventoryGrainCalories is the grain calories available in the inventory
+     */
     public static void setInventoryGrainCalories(double inventoryGrainCalories) {
         FoodInventory.inventoryGrainCalories = inventoryGrainCalories;
     }
 
+    /**
+     * Getter for the other calories in the inventory
+     * @return double value of the other calories in the inventory
+     */
     public static double getInventoryOtherCalories() {
         return inventoryOtherCalories;
     }
 
+    /**
+     * Setter for the inventory other calories
+     * @param inventoryOtherCalories is the other calories available in the inventory
+     */
     public static void setInventoryOtherCalories(double inventoryOtherCalories) {
         FoodInventory.inventoryOtherCalories = inventoryOtherCalories;
     }    
