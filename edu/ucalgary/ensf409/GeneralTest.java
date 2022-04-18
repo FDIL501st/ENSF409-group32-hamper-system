@@ -104,14 +104,12 @@ public class GeneralTest{
 		expectedFoodCombos.add(add3);
 		expectedFoodCombos.add(add4);
 
-		// Create a new hamper object
-		Hamper myHamper = new Hamper(1,1,0,0);
-				
-		// Setup an array of one hamper.
-		Hamper[] hamperArr = { myHamper };
-				
+		// Create ArrayList<int[]>
+		int[] peoples = {1,1,0,0};
+		ArrayList<int[]> list = new ArrayList<>(1);
+		list.add(peoples);
 		// Create HamperRequest object for testing. 
-		HamperRequest myRequest = new HamperRequest(hamperArr);
+		HamperRequest myRequest = new HamperRequest(list);
 
 		// Grab the FoodCalculator reference for testing.		
 		FoodCalculator foodCalcReference = myRequest.getHampers().get(0).getFoodCalculator();
@@ -139,16 +137,14 @@ public class GeneralTest{
 		expectedFoodCombos.add(add3);
 		expectedFoodCombos.add(add4);
 		
-		// Create a new hamper object
-		Hamper myHamper = new Hamper(1,1,0,0);
-
-		Hamper myHamper2 = new Hamper(1,1,0,0);
-
-		// Setup an array of two hampers.
-		Hamper[] hamperArr = { myHamper, myHamper2 };
+		// Create int[] for numer of peoples in Hamper
+		int[] peoples = {1,1,0,0};
+		ArrayList<int[]> list = new ArrayList<>(2);
+		list.add(peoples);
+		list.add(peoples);
 
 		// Create HamperRequest object for testing. 
-		HamperRequest myRequest = new HamperRequest(hamperArr);
+		HamperRequest myRequest = new HamperRequest(list);
 
 		// Grab the FoodCalculator reference for testing.		
 		FoodCalculator foodCalcReferenceHamp1 = myRequest.getHampers().get(0).getFoodCalculator();
@@ -191,16 +187,14 @@ public class GeneralTest{
 		expectedFoodCombosHamp2.add(add9);
 
 
-		// Create a new hamper object
-		Hamper myHamper = new Hamper(1, 1, 0, 0);
-
-		Hamper myHamper2 = new Hamper(1,1,0,1);
-				
-		// Setup an array of two hampers.
-		Hamper[] hamperArr = { myHamper, myHamper2 };
+		int[] p1 = {1,1,0,0};
+		int[] p2 = {1,1,0,1};
+		ArrayList<int[]> list = new ArrayList<>(2);
+		list.add(p1);
+		list.add(p2);
 				
 		// Create HamperRequest object for testing. 
-		HamperRequest myRequest = new HamperRequest(hamperArr);
+		HamperRequest myRequest = new HamperRequest(list);
 
 		// Grab the FoodCalculator reference for testing.		
 		FoodCalculator foodCalcReferenceHamp1 = myRequest.getHampers().get(0).getFoodCalculator();

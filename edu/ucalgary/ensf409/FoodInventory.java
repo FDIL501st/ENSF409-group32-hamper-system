@@ -223,6 +223,7 @@ public class FoodInventory {
 
     public static void setInventory(ArrayList<String[]> inventory) {
         FoodInventory.inventory = inventory;
+        calculateInventoryCalories();
     }
 
     public static double getInventoryProteinCalories() {
