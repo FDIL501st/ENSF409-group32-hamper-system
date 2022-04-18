@@ -20,7 +20,9 @@ import java.util.*;
 
 public class HamperTest{
 
-    // Test that the hamper is constructed appropriately with the right numbers of people
+    /**
+    * Test that the hamper is constructed appropriately with the right numbers of people
+    */
     @Test
     public void hamperConstructorTest(){
         int expectedNumAdultMales = 3;
@@ -41,7 +43,9 @@ public class HamperTest{
         assertEquals("Incorrect number of Children Over 8", expectedNumChildrenO8, actualNumChildrenO8);
     }
 
-    // Test that a hamper returns a non null Food Calculator object
+    /**
+    * Test that a hamper returns a non null Food Calculator object
+    */
     @Test
     public void hamperFoodCalculatorGetterTest() {
         Hamper hamp = new Hamper(1,1,1,1);
