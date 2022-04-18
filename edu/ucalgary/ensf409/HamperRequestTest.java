@@ -2,8 +2,11 @@
  * <h1>HamperRequestTest</h1>
  * Project for ENSF 409
  * <p>
- * @author Group 32
- * @version 1.3
+ * @author Adem Soufi <a href="mailto:adem.soufi@ucalgary.ca">adem.soufi@ucalgary.ca</a> | UCID: 30101252
+ * @author Fadil Husain <a href="mailto:fadil.husain@ucalgary.ca">fadil.husain@ucalgary.ca</a> | UCID: 30113409
+ * @author Saman Hosseini <a href="mailto:saman.hosseini@ucalgary.ca">saman.hosseini@ucalgary.ca</a> | UCID: 30092208
+ * @author Tanvir Haer <a href="mailto:tanvir.haer@ucalgary.ca">tanvir.haer@ucalgary.ca</a> | UCID: 30039188
+ * @version 2.1
  * @since 1.0
  */
 
@@ -14,93 +17,11 @@ import static org.junit.Assert.*;
 import java.util.*;
 
 public class HamperRequestTest{
-	
-	final int ADULTMALES = 1;
-	final int ADULTFEMALES = 1;
-	final int CHILDU8 = 1;
-	final int CHILDO8 = 1;
-	@BeforeClass public static void connect() {
-		DatabaseReader.initializeConnection();
-	}
-	@AfterClass public static void close() {
-		DatabaseReader.close();
-	}
-	/**
-     	* Testing that the getHampers method properly returns the hampers data structure in the HamperRequest object after using the addHamper method. 
-     	*/
-	
-	public void testGetAddHampers(){
-		
-		//// Setting up variables for testing.
-		
-		// Create a new hamper object
-		Hamper myHamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
-		
-		// Create a new hamper arraylist with two hamper objects.
-		ArrayList<Hamper> expectedHamperList = new ArrayList<Hamper>();
-		expectedHamperList.add(myHamper);
-		expectedHamperList.add(myHamper);
-		
-		// Create a new ArrayList of integer arrays and populate it.
-		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
-		
-		int[] hamperData = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
-		
-		hamperRequests.add(hamperData);
-		
-		// Create HamperRequest object for testing.
-		HamperRequest myRequest = new HamperRequest(hamperRequests);
-		
-		// Add a new Hamper object with addHamper.
-		myRequest.addHamper(myHamper);
-		
-		//// Testing.
-		
-		// Use the getHampers() method to retrieve the actual hamper arraylist from the HamperRequest object.
-		ArrayList<Hamper> actualHamperList = myRequest.getHampers();
-		
-		assertEquals("Value of getHampers() did not match what was expected", expectedHamperList, actualHamperList);
-		
-	}
-	
-	/**
-     	* Testing that the getHampers method properly returns the hampers data structure in the HamperRequest object.
-     	*/
-	
-	public void testGetHampers(){
-		
-		//// Setting up variables for testing.
-		
-		// Create a new hamper object
-		Hamper myHamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
-		
-		// Create a new hamper arraylist with one hamper object.
-		ArrayList<Hamper> expectedHamperList = new ArrayList<Hamper>();
-		expectedHamperList.add(myHamper);
-		
-		// Create a new ArrayList of integer arrays and populate it.
-		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
-		
-		int[] hamperData = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
-		
-		hamperRequests.add(hamperData);
-		
-		// Create HamperRequest object for testing.
-		HamperRequest myRequest = new HamperRequest(hamperRequests);
-		
-		//// Testing.
-		
-		// Use the getHampers() method to retrieve the actual hamper arraylist from the HamperRequest object.
-		ArrayList<Hamper> actualHamperList = myRequest.getHampers();
-		
-		assertEquals("Value of getHampers() did not match what was expected", expectedHamperList, actualHamperList);
-		
-	}
-	
-	/**
-     	* Testing that the constructor of the HamperRequest class properly creates a non null instance of the object.
-     	*/
-	
+
+    /**
+    * Testing HamperRequest constructor to ensure it creates a non null instance of the hamper ArrayList object.
+    */
+	@Test
 	public void testHamperRequestConstructor(){
 		
 		//// Setting up variables for testing.
@@ -108,15 +29,15 @@ public class HamperRequestTest{
 		// Create a new ArrayList of integer arrays and populate it.
 		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
 		
-		int[] hamperData = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
+		int[] hamperData = {1, 0, 3, 2};
 		
 		hamperRequests.add(hamperData);
 		
 		// Create HamperRequest object for testing.
-		HamperRequest myRequest = new HamperRequest(hamperRequests);
+		HamperRequest myRequest = new HamperRequest(hamperRequests, 1);
 		
 		// Variables for status
-        	boolean isNull = false;
+        boolean isNull = false;
 		
 		if(myRequest == null){
 			isNull = true;
@@ -124,8 +45,102 @@ public class HamperRequestTest{
 		
 		//// Testing.
 		
-		assertFalse("The HamperRequest object initialized to null.", isNull);
-		
+		assertFalse("The constructor of HamperRequest initialized the hampers to null.", isNull);
 	}
 	
+	/**
+    * Test the HamperRequest constructor and the getHampers() method
+    */
+	@Test
+	public void getHamperTest(){
+		
+		// Setting up variables for testing.
+		
+		// Create a new hamper objects
+		Hamper myHamper1 = new Hamper(1, 0, 3, 2);
+
+		// Expected values
+		int expectedNumAdultMales = 1;
+		int expectedNumAdultFemales = 0;
+		int expectedNumChildU8 = 3;
+		int expectedNumChildO8 = 2;
+		
+		// Create a new ArrayList of integer arrays and populate it.
+		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
+		
+		int[] hamperData1 = {1, 0, 3, 2};
+		hamperRequests.add(hamperData1);
+		
+		// Create HamperRequest object for testing.
+		HamperRequest myRequest = new HamperRequest(hamperRequests, 1);
+		
+		//// Testing.
+		
+		// Use the getHampers() method to retrieve the actual hamper arraylist from the HamperRequest object.
+		ArrayList<Hamper> actualHamperList = myRequest.getHampers();
+
+		int actualNumAdultMales = actualHamperList.get(0).getNumAdultMales();
+		int actualNumAdultFemales = actualHamperList.get(0).getNumAdultFemales();
+		int actualNumChildU8 = actualHamperList.get(0).getNumChildrenU8();
+		int actualNumChildO8 = actualHamperList.get(0).getNumChildrenO8();
+		
+		assertEquals("Values set for the number of adult males in the hamperRequest constructor for the first hamper did not match what was expected", expectedNumAdultMales, actualNumAdultMales);
+		assertEquals("Values set for the number of adult females in the hamperRequest constructor for the first hamper did not match what was expected", expectedNumAdultFemales, actualNumAdultFemales);
+		assertEquals("Values set for the number of children under 8 in the hamperRequest constructor for the first hamper did not match what was expected", expectedNumChildU8, actualNumChildU8);
+		assertEquals("Values set for the number of children over 8 in the hamperRequest constructor for the first hamper did not match what was expected", expectedNumChildO8, actualNumChildO8);
+
+	}
+	
+	/**
+    * Testi the overwriteHampers() function in HamperRequest
+    */
+	@Test
+	public void overwriteHampersTest(){
+		
+		//// Setting up variables for testing.
+
+		// Create new hamper objects to test the overwrite function
+		Hamper myHamper = new Hamper(3, 1, 2, 1);
+
+		// Expected values
+		int expectedNumAdultMales = 3;
+		int expectedNumAdultFemales = 1;
+		int expectedNumChildU8 = 2;
+		int expectedNumChildO8 = 1;
+		
+		// Create a new ArrayList of integer arrays and populate it.
+		ArrayList<int[]> hamperRequests = new ArrayList<int[]>();
+		
+		int[] hamperData1 = {1, 0, 3, 2};
+		hamperRequests.add(hamperData1);
+
+		// Create HamperRequest object for testing.
+		HamperRequest myRequest = new HamperRequest(hamperRequests, 1);
+
+		// Clear the initial request ArrayList
+		hamperRequests.clear();
+
+		// Add new hampers to the request
+        int[] hamperData2 = {3, 1, 2, 1};
+
+		hamperRequests.add(hamperData2);
+		
+		//// Testing.
+		
+		// Test the overwrite function
+		myRequest.overwriteHampers(hamperRequests);
+
+		// Use the getHampers() method to retrieve the actual hamper arraylist from the HamperRequest object.
+		ArrayList<Hamper> actualHamperList = myRequest.getHampers();
+
+		int actualNumAdultMales = actualHamperList.get(0).getNumAdultMales();
+		int actualNumAdultFemales = actualHamperList.get(0).getNumAdultFemales();
+		int actualNumChildU8 = actualHamperList.get(0).getNumChildrenU8();
+		int actualNumChildO8 = actualHamperList.get(0).getNumChildrenO8();
+		
+		assertEquals("Values set for the number of adult males in overwriteHampers for the hamper did not match what was expected", expectedNumAdultMales, actualNumAdultMales);
+		assertEquals("Values set for the number of adult females in overwriteHampers for the hamper for the first hamper did not match what was expected", expectedNumAdultFemales, actualNumAdultFemales);
+		assertEquals("Values set for the number of children under 8 in overwriteHampers for the hamper for the first hamper did not match what was expected", expectedNumChildU8, actualNumChildU8);
+		assertEquals("Values set for the number of children over 8 in overwriteHampers for the hamper for the first hamper did not match what was expected", expectedNumChildO8, actualNumChildO8);
+	}
 }
