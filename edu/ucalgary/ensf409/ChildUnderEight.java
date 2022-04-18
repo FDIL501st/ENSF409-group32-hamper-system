@@ -13,6 +13,8 @@
 package edu.ucalgary.ensf409;
 
 public class ChildUnderEight extends Person{
+    
+    // Member Variables
     private static double grains;
     private static double veggies;
     private static double proteins;
