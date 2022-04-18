@@ -6,6 +6,7 @@ This program allows a Food Bank to generate the optimum combinations of food ite
 - - - - - - - - - - - - - - - - - - - - - - - -
 
 To Run the Program:
+
 Download the ENSF409_FinalProject zip file from D2L. Unzip the file and navigate to the working directory in your computer through your terminal.
 
 Ensure that the MySQL connector jar file is present in your lib folder in the directory. Then compile the files using the following command (Note that this is the command for the Terminal in Mac, it may vary in a different operating system or terminal program.):
