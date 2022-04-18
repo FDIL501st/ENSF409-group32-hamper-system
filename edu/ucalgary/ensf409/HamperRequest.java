@@ -83,9 +83,9 @@ public class HamperRequest{
 	}
 	
 	/**
-    * Getter method for hampers member. 
+    	* Getter method for hampers member. 
 	* @return an ArrayList of hampers
-    */
+    	*/
 	public ArrayList<Hamper> getHampers(){
 		return hampers;
 	}
