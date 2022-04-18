@@ -60,20 +60,57 @@ public class FoodCalculator{
     }
 
     /**
-     * Getters for numbers of adult males, adult females, children over 8, and children under 8 in the hamper
+     * Getter for number of adult males in the hamper
+     * @return the number of adult males in the hamper
      */
     public int getNumAdultMales() { return this.numAdultMales; }
+
+    /**
+     * Getter for number of adult females in the hamper
+     * @return the number of adult females in the hamper
+     */  
     public int getNumAdultFemales() { return this.numAdultFemales; }
+ 
+    /**
+     * Getter for number of children under 8 in the hamper
+     * @return the number of children under 8 in the hamper
+     */     
     public int getNumChildrenU8() { return this.numChildrenU8; }
+     
+    /**
+     * Getter for number of children over 8 in the hamper
+     * @return the number of children over 8 in the hamper
+     */  
     public int getNumChildrenO8() { return this.numChildrenO8; }
 
     /**
-     * Getters for different types of calories needed for the hamper
+     * Getter for the number of whole grain calories needed for the hamper
+     * @return number of whole grain calories needed for the hamper
      */
     public double getWholeGrainCalories() { return this.wholeGrainCalories; }
+    
+    /**
+     * Getter for the number of fruits and veggies calories needed for the hamper
+     * @return number of fruits and veggies calories needed for the hamper
+     */
     public double getFruitsVeggiesCalories() { return this.fruitsVeggiesCalories; }
+    
+    /**
+     * Getter for the number of protein calories needed for the hamper
+     * @return number of protein calories needed for the hamper
+     */
     public double getProteinCalories() { return this.proteinCalories; }
+
+    /**
+     * Getter for the number of other calories needed for the hamper
+     * @return number of other calories needed for the hamper
+     */
     public double getOtherCalories() { return this.otherCalories; }
+
+    /**
+     * Getter for the number of total calories needed for the hamper
+     * @return number of total calories needed for the hamper
+     */
     public double getTotalCalories() { return this.totalCalories; }
 
     /**
@@ -348,41 +385,4 @@ public class FoodCalculator{
         }
         return true;
     }
-    
-    // public static void main(String[] args) {
-    //     if (!DatabaseReader.initializeConnection()) {
-    //          System.out.println("Unable to initialize connection.");
-    //          System.exit(0);
-    //      }
-    //      FoodInventory foodInventory = new FoodInventory();
-    //      Iterator<String[]> inventoryIterator = FoodInventory.getInventory().iterator();
-    //      while (inventoryIterator.hasNext()) {
-    //         String[] food = inventoryIterator.next();
-    //          for (String s : food) {
-    //              System.out.print(s);
-    //             System.out.print("\t");
-    //          }
-    //         System.out.println();
-    //      }
-         
-    //     Hamper hamper = new Hamper(0, 0, 0, 1);
-    //     FoodCalculator foodCalculator = hamper.getFoodCalculator();
-    //      foodCalculator.calculateFoodCombos();
-    //      System.out.println("Hamper combo:");
-    //      ArrayList<String[]> hamperCombo = foodCalculator.getHamperFoodCombo();
-    //     Iterator<String[]> hamperIterator = hamperCombo.iterator();
-    //      while (hamperIterator.hasNext()) {
-    //          String[] food = hamperIterator.next();
-    //          for (String s : food) {
-    //              System.out.print(s);
-    //             System.out.print("\t");
-    //         }
-    //          System.out.println();
-    //      }
-        
-    //     FoodInventory.removeHamper(hamperCombo);
-    //     FoodInventory.updateDatabase();
-    //     DatabaseReader.close();
-    // }
-
 }
