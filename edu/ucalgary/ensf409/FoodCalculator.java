@@ -14,8 +14,9 @@ package edu.ucalgary.ensf409;
 
 import java.util.*;
 
-
 public class FoodCalculator{
+
+    // Member Variables
     private double wholeGrainCalories;
     private double fruitsVeggiesCalories;
     private double proteinCalories;
@@ -32,6 +33,10 @@ public class FoodCalculator{
     /**
      * Constructor to set the numbers of types of people 
      * and calculate the numbers of calories needed for the hamper
+     * @param numAdultMales is the number of adult males in the hamper
+     * @param numAdultFemales is the number of adult females in the hamper
+     * @param numChildrenU8 is the number of children under 8 in the hamper
+     * @param numChildrenO8 is the number of children over 8 in the hamper
      */
     public FoodCalculator(int numAdultMales, int numAdultFemales, int numChildrenU8, int numChildrenO8){
         this.numAdultMales = numAdultMales;
@@ -45,9 +50,10 @@ public class FoodCalculator{
         calculateOtherCalories();
         calculateTotalCalories();
     }
-    
+
     /**
      * Setter for hamperFoodCombo
+     * @param combo is the optimum combination of foods for the hmaper
      */
     public void setHamperFoodCombo (ArrayList<String[]> combo) {
         this.hamperFoodCombo = combo;
@@ -72,6 +78,7 @@ public class FoodCalculator{
 
     /**
      * Getter for optimum Hamper Food Combo
+     * @return is the optimum Hamper Food Combo
      */
     public ArrayList<String[]> getHamperFoodCombo() { return this.hamperFoodCombo; }
     
@@ -138,7 +145,6 @@ public class FoodCalculator{
         this.totalCalories = cals;
     }
 
-    // REQUIRES TESTING
     /**
      * Calculates the food combo for the hamper. 
      * Food combo calculated is the one with smallest excess.
@@ -173,8 +179,16 @@ public class FoodCalculator{
         // nearest to 0 calories means combo with least calories overall
     }
 
-    //Below are 4 methods that returns the difference in calories needed to fulfill request and
+    // Below are 4 methods that returns the difference in calories needed to fulfill request and
     // current hamper contents
+
+    /**
+     * Function to check the difference in the grain calories needed to fulfill 
+     * the request and the current hamper contents
+     * @param hamper is the food combo to add to the currentHamper to make a test hamper 
+     * to test if it meets all needs.
+     * @return the difference in grain calories between what is needed and what is present in the inventory
+     */
     public double checkRemainingGrain(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
@@ -187,6 +201,13 @@ public class FoodCalculator{
         return difference;
     }
 
+    /**
+     * Function to check the difference in the fruits and veggies calories needed to fulfill 
+     * the request and the current hamper contents
+     * @param hamper is the food combo to add to the currentHamper to make a test hamper 
+     * to test if it meets all needs.
+     * @return the difference in fruits and veggies calories between what is needed and what is present in the inventory
+     */
     public double checkRemainingVeggie(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
@@ -198,6 +219,13 @@ public class FoodCalculator{
         return current - fruitsVeggiesCalories;
     }
 
+    /**
+     * Function to check the difference in the protein calories needed to fulfill 
+     * the request and the current hamper contents
+     * @param hamper is the food combo to add to the currentHamper to make a test hamper 
+     * to test if it meets all needs.
+     * @return the difference in protein calories between what is needed and what is present in the inventory
+     */
     public double checkRemainingProtein(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
@@ -209,6 +237,13 @@ public class FoodCalculator{
         return current - proteinCalories;
     }
 
+    /**
+     * Function to check the difference in the other calories needed to fulfill 
+     * the request and the current hamper contents
+     * @param hamper is the food combo to add to the currentHamper to make a test hamper 
+     * to test if it meets all needs.
+     * @return the difference in other calories between what is needed and what is present in the inventory
+     */
     public double checkRemainingOther(ArrayList<String[]> hamper) {
         Iterator<String[]> foodIterator = hamper.iterator();
         double current = 0;
@@ -219,6 +254,7 @@ public class FoodCalculator{
         // return the difference 
         return current - otherCalories;
     }
+
     /**
      * Calculates the total calories a food item provides.
      * This is the sum of all 4 types of calories the food provides.
@@ -231,6 +267,7 @@ public class FoodCalculator{
         + Double.parseDouble(foodItem[4])
         + Double.parseDouble(foodItem[5]);
     }
+
     /**
      * Calculates the total calories of a combination of food items.
      * This is the sum of the total caloires of each food item in the combination.
@@ -245,6 +282,7 @@ public class FoodCalculator{
             }
         return comboCalories;
     }
+
     /**
      * Essentially returns the power set of ArrayList provided.
      * This means all possible combinations, including an empty ArrayList.
@@ -284,9 +322,9 @@ public class FoodCalculator{
         }
         return allCombos;
     }
+
     /**
      * Checks to see if a hamper meets all requirements
-     * @param currentHamper the current contents in the hamper
      * @param foodCombo the food combo to add to the currentHamper to make a test hamper 
      * to test if it meets all needs.
      * @return true if the test hamper meets all needs. False otherwise.
@@ -311,40 +349,40 @@ public class FoodCalculator{
         return true;
     }
     
-    public static void main(String[] args) {
-        if (!DatabaseReader.initializeConnection()) {
-             System.out.println("Unable to initialize connection.");
-             System.exit(0);
-         }
-         FoodInventory foodInventory = new FoodInventory();
-         Iterator<String[]> inventoryIterator = FoodInventory.getInventory().iterator();
-         while (inventoryIterator.hasNext()) {
-            String[] food = inventoryIterator.next();
-             for (String s : food) {
-                 System.out.print(s);
-                System.out.print("\t");
-             }
-            System.out.println();
-         }
+    // public static void main(String[] args) {
+    //     if (!DatabaseReader.initializeConnection()) {
+    //          System.out.println("Unable to initialize connection.");
+    //          System.exit(0);
+    //      }
+    //      FoodInventory foodInventory = new FoodInventory();
+    //      Iterator<String[]> inventoryIterator = FoodInventory.getInventory().iterator();
+    //      while (inventoryIterator.hasNext()) {
+    //         String[] food = inventoryIterator.next();
+    //          for (String s : food) {
+    //              System.out.print(s);
+    //             System.out.print("\t");
+    //          }
+    //         System.out.println();
+    //      }
          
-        Hamper hamper = new Hamper(0, 0, 0, 1);
-        FoodCalculator foodCalculator = hamper.getFoodCalculator();
-         foodCalculator.calculateFoodCombos();
-         System.out.println("Hamper combo:");
-         ArrayList<String[]> hamperCombo = foodCalculator.getHamperFoodCombo();
-        Iterator<String[]> hamperIterator = hamperCombo.iterator();
-         while (hamperIterator.hasNext()) {
-             String[] food = hamperIterator.next();
-             for (String s : food) {
-                 System.out.print(s);
-                System.out.print("\t");
-            }
-             System.out.println();
-         }
+    //     Hamper hamper = new Hamper(0, 0, 0, 1);
+    //     FoodCalculator foodCalculator = hamper.getFoodCalculator();
+    //      foodCalculator.calculateFoodCombos();
+    //      System.out.println("Hamper combo:");
+    //      ArrayList<String[]> hamperCombo = foodCalculator.getHamperFoodCombo();
+    //     Iterator<String[]> hamperIterator = hamperCombo.iterator();
+    //      while (hamperIterator.hasNext()) {
+    //          String[] food = hamperIterator.next();
+    //          for (String s : food) {
+    //              System.out.print(s);
+    //             System.out.print("\t");
+    //         }
+    //          System.out.println();
+    //      }
         
-        FoodInventory.removeHamper(hamperCombo);
-        FoodInventory.updateDatabase();
-        DatabaseReader.close();
-    }
+    //     FoodInventory.removeHamper(hamperCombo);
+    //     FoodInventory.updateDatabase();
+    //     DatabaseReader.close();
+    // }
 
 }
