@@ -92,10 +92,10 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
         childO8Input.addMouseListener(this);
         childU8Input.addMouseListener(this);
 
-        addHamper = new JButton("Add Another Hamper Request");
+        addHamper = new JButton("Add Another Hamper to this Request");
         addHamper.addActionListener(this);
 
-        createHampers = new JButton("Create Hampers");
+        createHampers = new JButton("Process Hamper Request");
         createHampers.addActionListener(this);
 
         JPanel headerPanel = new JPanel();
@@ -150,7 +150,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
 
             //check which button was pressed
             if (event.getSource() == createHampers){
-                JOptionPane.showMessageDialog(this, "Your hamper request is being created.");
+                JOptionPane.showMessageDialog(this, "Your hamper request is being processed.");
                 //this.setVisible(false);
            
                 // testing storage of elements
@@ -167,7 +167,7 @@ public class GUIHamperSystem extends JFrame implements ActionListener, MouseList
                     hamperRequestToCreate = new HamperRequest(hamperRequests);
                     hamperRequests.clear();
                 } else{
-                    hamperRequestToCreate.addHampers(hamperRequests);
+                    hamperRequestToCreate.overwriteHampers(hamperRequests);
                     hamperRequests.clear();
                 }
 
