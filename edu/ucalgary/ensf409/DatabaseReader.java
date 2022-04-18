@@ -1,9 +1,3 @@
-package edu.ucalgary.ensf409;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-
 /**
  * <h1>DatabaseReader</h1>
  * Project for ENSF 409
@@ -15,6 +9,13 @@ import java.util.Iterator;
  * @version 1.4
  * @since 1.0
  */
+
+package edu.ucalgary.ensf409;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class DatabaseReader {
 
     // Member Variable
