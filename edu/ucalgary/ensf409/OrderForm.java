@@ -18,34 +18,34 @@ import java.time.LocalDate;
 
 
 public class OrderForm {
-    
+
+    // Member Variables
     private int formCounter = 1; //Counter variable used to give different order forms different names
     private boolean textCheck; //Used for error checking
     
-    
     /**
-    * Getter for textCheck
-    */
+     * Getter for textCheck
+     * @return boolean textCheck value
+     */
     public boolean getTextCheck () {
         return this.textCheck;
     }
     
-    
     /**
-    * Getter for formCounter
-    */
+     * Getter for formCounter
+     * @return the number of forms created
+     */
     public int getFormCounter () {
         return this.formCounter;
     }
-    
-    
+
     /**
-    * Getter for formName
-    */
+     * Getter for formName
+     * @return the formName
+     */
     public String getFormName () {
         return "Order_Form" + this.formCounter;
     }
-    
     
     /**
      * The reportShortage method creates the order form in the case of a shortage, 
@@ -62,12 +62,10 @@ public class OrderForm {
         appendToText("\n\nOriginal Request\n", "Order_Form" + formCounter);
         formSetup(hamperList); //Print begining of form
         appendToText("\n", "Order_Form" + formCounter);
-        appendToText("Shortage detected!!!", "Order_Form" + formCounter);
+        appendToText("Shortage detected!!! ", "Order_Form" + formCounter);
         appendToText(FoodInventory.getShortageMessage(), "Order_Form" + formCounter);
         this.formCounter++; //Increment form counter so that next form has different name
     }            
-        
-    
     
     /**
      * The createForm method creates the order form, and then calls different 
@@ -102,7 +100,6 @@ public class OrderForm {
         }
         this.formCounter++; //Increment form counter so that next form has different name
     }
-    
     
     /**
      * The fromSetup method prints the begining of an order form, properly formatted 
@@ -160,7 +157,6 @@ public class OrderForm {
         }
     }
     
-    
     /**
      * The documentHamper method gets and formats information about a  
      * hamper, and returns it as a formatted String.
@@ -180,7 +176,6 @@ public class OrderForm {
         }
         return myString.toString();
     }    
-    
     
     /**
      * The appendToText method appends data to a text file. It does not 
@@ -214,7 +209,6 @@ public class OrderForm {
             }
         }
     }
-    
     
     /**
      * The createNewText method clears any data currently in a specified 
