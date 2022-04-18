@@ -29,8 +29,8 @@ public class HamperTest{
 
         int actualNumAdultMales = hamp.getNumAdultMales();
         int actualNumAdultFemales = hamp.getNumAdultFemales();
-        int actualNumChildrenU8 = hamp.getNumAdultChildrenU8();
-        int actualNumChildrenO8 = hamp.getNumAdultChildrenO8();
+        int actualNumChildrenU8 = hamp.getNumChildrenU8();
+        int actualNumChildrenO8 = hamp.getNumChildrenO8();
 
         assertEquals("Incorrect number of Adult Males", expectedNumAdultMales, actualNumAdultMales);
         assertEquals("Incorrect number of Adult Females", expectedNumAdultFemales, actualNumAdultFemales);
