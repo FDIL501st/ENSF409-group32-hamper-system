@@ -133,17 +133,13 @@ public class FoodCalculatorTest{
 	@Test
 	public void testFoodCalculatorGettersSam(){
 		
-		//// Setting up variables for testing.
 		
-		int[] myHamper = {ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8};
-		ArrayList<int[]> hamperArr = new ArrayList<>(1);
-		hamperArr.add(myHamper);
-		// Create HamperRequest object for testing. 
-		HamperRequest myRequest = new HamperRequest(hamperArr);
-		
+		// Create Hamper object for testing. 
+		Hamper hamper = new Hamper(ADULTMALES, ADULTFEMALES, CHILDU8, CHILDO8);
+	
 		// Grab the FoodCalculator reference for testing.
 		
-		FoodCalculator foodCalcReference = myRequest.getHampers().get(0).getFoodCalculator();
+		FoodCalculator foodCalcReference = hamper.getFoodCalculator();
 		
 		// Calculate expected values for each calorie variable.
 		
