@@ -96,7 +96,7 @@ public class FoodInventoryTests{
     }
 
     @Test
-    public void RemoveHaperTest() {
+    public void RemoveHamperTest() {
         // Tests to see if item actually removed from inventory and moved to toBeRemoved
         FoodInventory foodInventory = new FoodInventory();
         
