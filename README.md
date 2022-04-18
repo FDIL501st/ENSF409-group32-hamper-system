@@ -1,7 +1,7 @@
 # ENSF409 Final Project
 ------------------------
 
-This program allows a Food Bank to generate the optimum combinations of food items from their available inventory to fulfill requests for hampers for families to sustain them for 1 week. The user is able to enter hamper requests of varying configurations of family members through the GUI. The program will generate form indicating either that the request was fulfilled and will list off the items needed for each hamper or it will report the shortage that caused the request to not be fulfilled.
+This program allows a Food Bank to generate the optimum combinations of food items from their available inventory to fulfill requests for hampers for families to sustain them for 1 week. The user is able to enter hamper requests of varying configurations of family members through the GUI. The program will generate a form indicating either that the request was fulfilled and will list off the items needed for each hamper or it will report the shortage that caused the request to not be fulfilled.
 
 - - - - - - - - - - - - - - - - - - - - - - - -
 
