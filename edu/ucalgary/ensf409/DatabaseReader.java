@@ -16,6 +16,8 @@ import java.util.Iterator;
  * @since 1.0
  */
 public class DatabaseReader {
+
+    // Member Variable
     private static Connection connection = null;
 
     /**
@@ -45,7 +47,10 @@ public class DatabaseReader {
         return true;
     }
 
-    // Getter for connection
+    /**
+     * Getter for connection
+     * @return connection
+     */
     public static Connection getConnection() { return connection; }
 
     /**
