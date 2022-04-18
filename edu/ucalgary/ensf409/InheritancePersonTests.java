@@ -17,6 +17,7 @@ import org.junit.*;
 
 
 public class InheritancePersonTests {
+
     //All the tests also check if the functions can be statically called
     AdultMale adultMale;
     AdultFemale adultFemale;
@@ -29,7 +30,10 @@ public class InheritancePersonTests {
         childOverEight = new ChildOverEight(15, 15, 35, 35, 10_000);
         childUnderEight = new ChildUnderEight(3, 2, 5, 90, 10_000);
     }
-    
+
+    /**
+     * Test the getters in the adult female class
+     */
     @Test
     public void AdultFemaleGettersTest() {
         // Tests if getters return the correct value
@@ -54,6 +58,9 @@ public class InheritancePersonTests {
         assertEquals("Expected total calorie intake to be 10 000.", expected, actual, 0.0001);
     }
 
+    /**
+     * Test the getters in the adult male class
+     */
     @Test
     public void AdultMaleGettersTest() {
         // Tests if AdultMale getters return correct value
@@ -77,6 +84,10 @@ public class InheritancePersonTests {
         actual = AdultMale.getOthers();
         assertEquals("Expected veggie intake to be 4000.", expected, actual, 0.0001);
     }
+
+    /**
+     * Test the getters in the child over 8 class
+     */
     @Test
     public void ChildOverEightGettersTest() {
         // Tests ChildUnderEight getters return correct value
@@ -101,6 +112,9 @@ public class InheritancePersonTests {
         assertEquals("Expected veggie intake to be 3500.", expected, actual, 0.0001);
     }
 
+    /**
+     * Test the getters in the child under 8 class
+     */
     @Test
     public void ChildUnderEightGettersTest() {
         // Tests ChildUnderEight getters return correct value
@@ -125,6 +139,9 @@ public class InheritancePersonTests {
         assertEquals("Expected veggie intake to be 9000.", expected, actual, 0.0001);
     }
 
+    /**
+     * Test the setters in the adult male class
+     */
     @Test
     public void AdultMaleSettersTest() {
         double expected = 500;
@@ -149,6 +166,9 @@ public class InheritancePersonTests {
         assertEquals("Expected others to be set to 500.", expected, actual, 0.001);
     }
 
+    /**
+     * Test the setters in the adult female class
+     */
     @Test
     public void AdultFemaleSettersTest() {
         double expected = 500;
@@ -173,6 +193,9 @@ public class InheritancePersonTests {
         assertEquals("Expected others to be set to 500.", expected, actual, 0.001);
     }
 
+    /**
+     * Test the setters in the child over 8 class
+     */
     @Test
     public void ChildOverEightSettersTest() {
         double expected = 500;
@@ -197,6 +220,9 @@ public class InheritancePersonTests {
         assertEquals("Expected others to be set to 500.", expected, actual, 0.001);
     }
 
+    /**
+     * Test the setters in the child under 8 class
+     */
     @Test
     public void ChildUnderEightSettersTest() {
         double expected = 500;
@@ -221,9 +247,12 @@ public class InheritancePersonTests {
         assertEquals("Expected others to be set to 500.", expected, actual, 0.001);
     }
 
+    /**
+     * Test that an IllegalArgumentException is thrown in constructors when first 4 elements in a person's caloric info don't add to 100
+     */
     @Test
     public void ConstructorsThrowExceptionWhenPercentIntakeNot100() {
-        //Test exceptions thrown during constructors when first 4 arguments don't add to 100
+    
         boolean exceptionThrown = false;
         try {
             AdultMale adultM = new AdultMale(5, 5, 5, 5, 10);
@@ -257,9 +286,12 @@ public class InheritancePersonTests {
         assertTrue("Expected IllegalArugmentException to be throw.", exceptionThrown);
     }
 
+    /**
+     * Test that IllegalArgumentException is thrown in constructors when any elements are negative
+     */
     @Test
     public void ConstructorThrowExceptionWhenNegativeArguments() {
-        //Test exceptions thrown during constructors when some arguments are negative
+
         boolean exceptionThrown = false;
         try {
             AdultMale adultM = new AdultMale(-10, 100, 5, 5, 10);
@@ -301,9 +333,12 @@ public class InheritancePersonTests {
         assertTrue("Expected IllegalArugmentException to be throw.", exceptionThrown);
     }
 
+    /**
+     * Test that an IllegalArgumentException is thrown when setters in adult female are given a negative number
+     */
     @Test
     public void AdultFemaleSettersThrowExceptionForNegativeArguement() {
-        // Tests IllegalArgumentException is thrown when setters are given a negative number
+
         boolean exceptionThrown = false;
         try {
             AdultFemale.setCalories(-1);
@@ -345,6 +380,9 @@ public class InheritancePersonTests {
         assertTrue("Expected exception to be thrown.(setOthers)", exceptionThrown);
     }
 
+    /**
+     * Test that an IllegalArgumentException is thrown when setters in adult male are given a negative number
+     */
     @Test
     public void AdultMaleSettersThrowExceptionForNegativeArguement() {
         // Tests IllegalArgumentException is thrown when setters are given a negative number
@@ -389,6 +427,9 @@ public class InheritancePersonTests {
         assertTrue("Expected exception to be thrown.(setOthers)", exceptionThrown);
     }
 
+    /**
+     * Test that an IllegalArgumentException is thrown when setters in child under 8 are given a negative number
+     */
     @Test
     public void ChildUnderEightSettersThrowExceptionForNegativeArguement() {
         // Tests IllegalArgumentException is thrown when setters are given a negative number
@@ -433,6 +474,9 @@ public class InheritancePersonTests {
         assertTrue("Expected exception to be thrown.(setOthers)", exceptionThrown);
     }
 
+    /**
+     * Test that an IllegalArgumentException is thrown when setters in child over 8 are given a negative number
+     */
     @Test
     public void ChildOverEightSettersThrowExceptionForNegativeArguement() {
         // Tests IllegalArgumentException is thrown when setters are given a negative number
