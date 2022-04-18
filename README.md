@@ -1,17 +1,50 @@
-# ENSF409-group32-hamper-system
-A program that through a GUI, lets one make hamper requests for food for a week.<p> 
-You type in number of people you want the hamper to be for. Keeping a field blank means 0.
-There are four types of people, each with their own caloric requirements.<br>
-Adult Male, Adult Female, Child Under 8 and Child Over 8.<br>
-The total number of people each hamper at most can at most accomodate for is 10 people. 10 people in total, not of each type.
-<p>
-By pressing "Add Another Hamper to this Request", you can make request another seperate hamper, for another at most 10 people.<br>
-The fields previously typed in won't go away, so if you don't want to order food for that type of person, delete the number in that field.
-<p>
-When you are finally done making all the hamper requests you want to make, press "Process Hamper Request".<br>
-This will then go calculate the food each hamper you requested need based off of current food availability in a database and needs of each type of person the hamper is supposed to go feed for a week.<br>
-Once all your hamper reuqests have been calculated for their foods, you will get a pop up message telling you all your hampers have been processed.<br>
-It will also tell you about reviewing a txt file. This txt file is the order form. It will tell you what food items each hamper has.
-However, if all the hampers were unable to be completely fulfilled, then the order form will instead tell you there was a shortage. Thus none of the hampers requested in this order will be made, and no food will be provided.
-From here, you can go make another order for more hampers and repeat the process above.<br>
-Or press the X button of the GUI to stop the program.
+# ENSF409 Final Project
+------------------------
+
+This program allows a Food Bank to generate the optimum combinations of food items from their available inventory to fulfill requests for hampers for families to sustain them for 1 week. The user is able to enter hamper requests of varying configurations of family members through the GUI. The program will generate form indicating either that the request was fulfilled and will list off the items needed for each hamper or it will report the shortage that caused the request to not be fulfilled.
+
+- - - - - - - - - - - - - - - - - - - - - - - -
+
+To Run the Program:
+
+Download the ENSF409_FinalProject zip file from D2L. Unzip the file and navigate to the working directory in your computer through your terminal.
+
+Ensure that the MySQL connector jar file is present in your lib folder in the directory. Then compile the files using the following command (Note that this is the command for the Terminal in Mac, it may vary in a different operating system or terminal program.):
+
+	javac -cp .:lib/mysql-connector-java-8.0.23.jar:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar edu/ucalgary/ensf409/*.java
+
+Ensure that the database is present on your computer. The main is contained in the file GUIHamperSystem.java. Run the program using the following command:
+
+	java -cp .:lib/mysql-connector-java-8.0.23.jar:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar edu/ucalgary/ensf409/GUIHamperSystem
+
+
+The input required in the GUI is the number of adult males, adult females, children under 8, and children over 8 up to a maximum of 10 people per family. If a field in the GUI is left blank, a 0 will be assumed.  You may add another hamper to the request by clicking "Add Another Hamper to this Request". Note that the fields are not cleared and so you must overwrite each field with the new family configuration for the new hamper.
+
+When you are done adding hampers, click "Process Hamper Request." Please wait patiently for the algorithm to perform the calculations. When it is done, the program will notify you. Review the text file created in the working directory to see the result of the request. If it is successful, the items required for each hamper will be listed. If it was not successful, the caloric shortage will be reported instead.
+
+You may either enter another hamper request as before or press the X button of the GUI to stop the program.
+
+Note: The DatabaseReader.java class has the database access username and password hardcoded in. The username is "student" and the password is "ensf".
+
+- - - - - - - - - - - - - - - - - - - - - - - -
+
+To Run the Tests:
+
+Ensure that the Hamcrest Core jar file, and the Junit jar file are present in your lib folder in the directory. Then compile the files using the following command (Note that this is the command for the Terminal in Mac, it may vary in a different operating system or terminal program.):
+
+	javac -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar edu/ucalgary/ensf409/*.java
+
+Run the tests using the following command:
+
+	java -cp .;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore edu.ucalgary.ensf409.FILENAME
+
+Here, FILENAME is a placeholder for the name of the file containing the tests. The test files are listed here:
+
+	FoodCalculatorTest
+	FoodInventoryTests
+	GeneralTest
+	HamperRequestTest
+	HamperTest
+	InheritancePersonTests
+	OrderFormTests
+
