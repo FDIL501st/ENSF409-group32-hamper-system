@@ -18,13 +18,7 @@ import org.junit.*;
 
 
 public class GeneralTest{
-	
-	@BeforeClass public static void login() {
-		DatabaseReader.initializeConnection();
-	}
-	@AfterClass public static void logout() {
-		DatabaseReader.close();
-	}
+
 	// @Before
 	// Expected calorie values for each type of person.
 	final double ADULTMALE_GRAIN_CALORIES = 4;
@@ -86,7 +80,6 @@ public class GeneralTest{
 	String[] add9 = {"9", "Gum", "30", "30", "30", "10", "100"};
 	sampleDatabase.add(add9);
 	
-	FoodInventory inventory = new FoodInventory();
 	FoodInventory.setInventory(sampleDatabase);
 	}
 	
@@ -109,7 +102,7 @@ public class GeneralTest{
 		ArrayList<int[]> list = new ArrayList<>(1);
 		list.add(peoples);
 		// Create HamperRequest object for testing. 
-		HamperRequest myRequest = new HamperRequest(list);
+		HamperRequest myRequest = new HamperRequest(list, 0);
 
 		// Grab the FoodCalculator reference for testing.		
 		FoodCalculator foodCalcReference = myRequest.getHampers().get(0).getFoodCalculator();
@@ -144,7 +137,7 @@ public class GeneralTest{
 		list.add(peoples);
 
 		// Create HamperRequest object for testing. 
-		HamperRequest myRequest = new HamperRequest(list);
+		HamperRequest myRequest = new HamperRequest(list, 0);
 
 		// Grab the FoodCalculator reference for testing.		
 		FoodCalculator foodCalcReferenceHamp1 = myRequest.getHampers().get(0).getFoodCalculator();
@@ -194,7 +187,7 @@ public class GeneralTest{
 		list.add(p2);
 				
 		// Create HamperRequest object for testing. 
-		HamperRequest myRequest = new HamperRequest(list);
+		HamperRequest myRequest = new HamperRequest(list, 0);
 
 		// Grab the FoodCalculator reference for testing.		
 		FoodCalculator foodCalcReferenceHamp1 = myRequest.getHampers().get(0).getFoodCalculator();
