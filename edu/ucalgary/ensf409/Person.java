@@ -1,5 +1,3 @@
-package edu.ucalgary.ensf409;
-
 /**
  * <h1>Person</h1>
  * Project for ENSF 409
@@ -12,13 +10,26 @@ package edu.ucalgary.ensf409;
  * @since 1.0
  */
 
+package edu.ucalgary.ensf409;
+
 public abstract class Person {
+
+    // Member Variables
     protected double grain;
     protected double veggie;
     protected double protein;
     protected double other;
     protected double calorie;
 
+    /**
+     * Constructor to set the caloric needs
+     * @param percentGrain is the percentage of grain calories needed 
+     * @param percentVeggies is the percentage of fruits and veggies calories needed 
+     * @param percentProteins is the percentage of protein calories needed 
+     * @param percentOther is the percentage of other calories needed 
+     * @param Calories is the total number of calories needed 
+     * @throws IllegalArgumentException is an exception for when the arguments to the constructor are invalid
+     */
     protected Person(double percentGrain, double percentVeggies, 
                 double percentProteins, double percentOther, double TotalCalories) 
                 throws IllegalArgumentException{
@@ -52,7 +63,11 @@ public abstract class Person {
     // Above assumes insert values
     // So access database from somewhere before creating this object  
 
-    // Throws IllegalArguementException if number is negative
+    /**
+     * Function to check that a number is not negative
+     * @param number is the number to test
+     * @throws IllegalArgumentException is an exception for when the argument is negative
+     */
     protected static void checkNotNegative(double number) throws IllegalArgumentException{
         if (number < 0) {
             throw new IllegalArgumentException("Negative value not allowed.");
