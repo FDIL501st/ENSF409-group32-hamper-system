@@ -8,10 +8,12 @@ import java.util.*;
 
 public class FoodInventoryTests{
 
-    // Test setInventory and getInventory 
+    /**
+     * Test setInventory and getInventory 
+     */
     @Test
     public void setInventoryTest(){
-        FoodInventory inventory = new FoodInventory();
+        //FoodInventory inventory = new FoodInventory();
         ArrayList<String[]> expectedFoods = new ArrayList<String[]>();
         String[] apple = {"1", "Apples", "0", "60", "10", "30", "10"};
         String[] chicken = {"2", "Chicken", "10", "0", "50", "40", "10"};
@@ -22,34 +24,36 @@ public class FoodInventoryTests{
         expectedFoods.add(pie);
         expectedFoods.add(yam);
     
-        inventory.setInventory(expectedFoods);
+        FoodInventory.setInventory(expectedFoods);
         ArrayList<String[]> actualFoods = FoodInventory.getInventory();
-        assertEquals("getInventory did not return the correct values", expectedFoods, actualFoods);
+        assertEquals("getInventory did not return the expected values", expectedFoods, actualFoods);
     }
     
-    // Test that the readDataBaseInventory functions return true indicating successful read of database
-    @Test
-    public void readDatabaseInventoryTest(){
-        DatabaseReader.initializeConnection();
-        FoodInventory inventory = new FoodInventory();
-        boolean expected = true;
-        boolean actual = inventory.readDatabaseInventory();
-        DatabaseReader.close();
-        assertEquals("readDatabaseInventory did not return the correct boolean value", expected, actual);
-    }
+    // // Test that the readDataBaseInventory functions return true indicating successful read of database
+    // @Test
+    // public void readDatabaseInventoryTest(){
+    //     DatabaseReader.initializeConnection();
+    //     FoodInventory inventory = new FoodInventory();
+    //     boolean expected = true;
+    //     boolean actual = inventory.readDatabaseInventory();
+    //     DatabaseReader.close();
+    //     assertEquals("readDatabaseInventory did not return the correct boolean value", expected, actual);
+    // }
     
-    // Test that updateDatabaseTest return true indicating successful update of databases
-    @Test
-    public void updateDatabaseTest(){
-        DatabaseReader.initializeConnection();
-        FoodInventory inventory = new FoodInventory();
-        boolean expected = true;
-        boolean actual = inventory.updateDatabase();
-        DatabaseReader.close();
-        assertEquals("updateDatabase did not return the correct boolean value", expected, actual);
-    }
+    // // Test that updateDatabaseTest return true indicating successful update of databases
+    // @Test
+    // public void updateDatabaseTest(){
+    //     DatabaseReader.initializeConnection();
+    //     FoodInventory inventory = new FoodInventory();
+    //     boolean expected = true;
+    //     boolean actual = inventory.updateDatabase();
+    //     DatabaseReader.close();
+    //     assertEquals("updateDatabase did not return the correct boolean value", expected, actual);
+    // }
     
-    // Test that checkShortageTest returns true when there is a shortage
+    /**
+     * Test that checkShortageTest returns true when there is a shortage
+     */
     @Test
     public void checkShortageTest(){
         // Create a foodCombo of one item
@@ -64,13 +68,15 @@ public class FoodInventoryTests{
         foodItem[6] = "100";
         expectedFoods.add(foodItem);
         FoodInventory.setInventory(expectedFoods);
-        double[] neededCalories = {10.1, 11, 23, 45, 56};
+        double[] neededCalories = {10, 11, 23, 70, 114};
         boolean actual = FoodInventory.checkShortage(neededCalories);
     
-        assertTrue("checkShortageTest did not return true.",actual);
+        assertTrue("The output of checkShortageTest was not as expected.", actual);
     }
     
-    // Test the getters and setters of FoodInventory
+    /**
+     *  Test the getters and setters of FoodInventory
+     */ 
     @Test
     public void setInventoryCaloriesTest(){
         double expectedInventoryProteinCals = 23010;
@@ -78,27 +84,29 @@ public class FoodInventoryTests{
         double expectedInventoryGrainCals = 12000;
         double expectedInventoryOtherCals = 34200;
     
-        FoodInventory inventory = new FoodInventory();
-        inventory.setInventoryProteinCalories(expectedInventoryProteinCals);
-        inventory.setInventoryVeggieCalories(expectedInventoryVeggieCals);
-        inventory.setInventoryGrainCalories(expectedInventoryGrainCals);
-        inventory.setInventoryOtherCalories(expectedInventoryOtherCals);
+       // FoodInventory inventory = new FoodInventory();
+        FoodInventory.setInventoryProteinCalories(expectedInventoryProteinCals);
+        FoodInventory.setInventoryVeggieCalories(expectedInventoryVeggieCals);
+        FoodInventory.setInventoryGrainCalories(expectedInventoryGrainCals);
+        FoodInventory.setInventoryOtherCalories(expectedInventoryOtherCals);
     
-        double actualInventoryProteinCals = inventory.getInventoryProteinCalories();
-        double actualInventoryVeggieCals = inventory.getInventoryVeggieCalories();
-        double actualInventoryGrainCals = inventory.getInventoryGrainCalories();
-        double actualInventoryOtherCals = inventory.getInventoryOtherCalories();
+        double actualInventoryProteinCals = FoodInventory.getInventoryProteinCalories();
+        double actualInventoryVeggieCals = FoodInventory.getInventoryVeggieCalories();
+        double actualInventoryGrainCals = FoodInventory.getInventoryGrainCalories();
+        double actualInventoryOtherCals = FoodInventory.getInventoryOtherCalories();
     
-        assertEquals("Incorrect number of Protein Calories", expectedInventoryProteinCals, actualInventoryProteinCals, 0.001);
-        assertEquals("Incorrect number of Veggie Calories", expectedInventoryVeggieCals, actualInventoryVeggieCals, 0.001);
-        assertEquals("Incorrect number of Grain Calories", expectedInventoryGrainCals, actualInventoryGrainCals, 0.001);
-        assertEquals("Incorrect number of Other Calories", expectedInventoryOtherCals, actualInventoryOtherCals, 0.001);
+        assertEquals("Incorrect number of Protein Calories in the inventory", expectedInventoryProteinCals, actualInventoryProteinCals, 0.001);
+        assertEquals("Incorrect number of Veggie Calories in the inventory", expectedInventoryVeggieCals, actualInventoryVeggieCals, 0.001);
+        assertEquals("Incorrect number of Grain Calories in the inventory", expectedInventoryGrainCals, actualInventoryGrainCals, 0.001);
+        assertEquals("Incorrect number of Other Calories in the inventory", expectedInventoryOtherCals, actualInventoryOtherCals, 0.001);
     }
 
+    /**
+     * Tests to see if item actually removed from inventory and moved to toBeRemoved
+     */
     @Test
     public void RemoveHamperTest() {
-        // Tests to see if item actually removed from inventory and moved to toBeRemoved
-        FoodInventory foodInventory = new FoodInventory();
+       // FoodInventory foodInventory = new FoodInventory();
         
         ArrayList<String[]> newInventory = new ArrayList<>();
         String[] add1 = {"10", "Lettuce", "33", "1", "33", "1", "1000"};
@@ -115,16 +123,16 @@ public class FoodInventoryTests{
         newInventory.add(add5);
         newInventory.add(add6);
         newInventory.add(add7);
-        foodInventory.setInventory(newInventory);
+        FoodInventory.setInventory(newInventory);
 
         ArrayList<String[]> toRemove = new ArrayList<>();
         toRemove.add(add3);
         toRemove.add(add7);
-        foodInventory.removeHamper(toRemove);
+        FoodInventory.removeHamper(toRemove);
         
         ArrayList<String[]> expected = (ArrayList<String[]>) newInventory.clone();
         expected.removeAll(toRemove);
 
-        assertArrayEquals(expected.toArray(), foodInventory.getInventory().toArray());
+        assertArrayEquals("The inventory after removing some items was not as expected.",expected.toArray(), FoodInventory.getInventory().toArray());
     }
 }
